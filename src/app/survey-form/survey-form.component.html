@@ -1,2 +1,7 @@
-<button (click)="getProfile()">Get Profile</button>
-<p>{{ outputText }}</p>
+<button type="button" (click)="getProfile()">Get Profile</button>
+
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <input type="text" ngModel name="employeeName" id="employeeName" />
+  <textarea ngModel name="answer" id="answer" cols="30" rows="10"></textarea>
+  <button>Submit</button>
+</form>
