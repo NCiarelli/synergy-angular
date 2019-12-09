@@ -1,6 +1,8 @@
+import { ContentItem } from './content-item';
+
 export interface Employee {
   name: string;
-  //   id: number;
-  textData: { contentItems: [] };
+  textData: { contentItems: ContentItem[] };
   dominantPersonality?: string;
+  personalityProfile?: {};
 }
