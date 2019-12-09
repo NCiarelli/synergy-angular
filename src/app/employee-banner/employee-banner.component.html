@@ -1,1 +1,8 @@
-<p>employee-banner works!</p>
+<div *ngFor="let employee of employeeList">
+  <p>{{ employee.name }}</p>
+  <p>{{ employee.dominantPersonality }}</p>
+
+  <img [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
+</div>
+
+<!--set width of div to be size of page  flex display no wrap overflow-X -->
