@@ -2,11 +2,10 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
-import { Employee } from '../interfaces/employee';
+import { Employee } from "../interfaces/employee";
 // Import call for example data from static JSON
-import * as exampleData from 'src/assets/example.json';
-import { ContentItem } from '../interfaces/content-item';
-
+import * as exampleData from "src/assets/example.json";
+import { ContentItem } from "../interfaces/content-item";
 
 @Injectable({
   providedIn: "root"
@@ -16,24 +15,23 @@ export class ProfileService {
   private readonly BASE_URL = environment.cartApiBaseUrl;
   employeeList: Employee[] = [];
   nextDataId: number = 0;
-  date: Date = new Date;
+  date: Date = new Date();
 
-
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   findEmployeeIndex(name: string): number {
     // Check if the employee name already exists, case insensitive
     const nameLower: string = name.toLowerCase();
     // Call findIndex array method to try to find an employee with the input name
     // Returns -1 if not found
-    return this.employeeList.findIndex((employee) => employee.name.toLowerCase() === nameLower);
+    return this.employeeList.findIndex(
+      employee => employee.name.toLowerCase() === nameLower
+    );
   }
 
   // Send the profile text from the employee profile object to the express server.
   // The server will pass the text along to Watson which will return a profile JSON, which the server passes back here
   createProfile(employeeName: string): void {
-
     // Find employee index
     let employeeIndex = this.findEmployeeIndex(employeeName);
 
@@ -44,8 +42,13 @@ export class ProfileService {
       return;
     }
     // Make post request to Watson to create the personality profile
-    this.http.post(`${this.BASE_URL}/profile`, this.employeeList[employeeIndex].textData)
+    this.http
+      .post(
+        `${this.BASE_URL}/profile`,
+        this.employeeList[employeeIndex].textData
+      )
       .subscribe(profile => {
+        // DEBUG until get proper display for the profile
         console.log(profile);
         // Save the personality profile to the employee object
         this.employeeList[employeeIndex].personalityProfile = profile;
@@ -61,13 +64,12 @@ export class ProfileService {
   // A check if employee already exists should go here
   // Returns the named employee's index in the array
   addEmployee(newName: string): number {
-
     // Create a new employee with the input name
     let newArray: ContentItem[] = [];
     let newEmployee: Employee = {
       name: newName,
-      textData: { contentItems: newArray },
-    }
+      textData: { contentItems: newArray }
+    };
     // Add the new employee to the employee list
     this.employeeList.push(newEmployee);
     // The new employee index will be the last index of the array now
@@ -94,6 +96,7 @@ export class ProfileService {
     this.nextDataId++;
     // Add the new text data entry to the contentItems array of the employee
     this.employeeList[employeeIndex].textData.contentItems.push(newTextData);
+    // DEBUG
     console.log(this.employeeList[employeeIndex].textData.contentItems);
   }
 
@@ -105,6 +108,7 @@ export class ProfileService {
     for (const contentItem of dataArray) {
       wordCount += this.countWords(contentItem.content);
     }
+    // DEBUG
     console.log("Word Count: ", wordCount);
     if (wordCount >= numRequiredWords) {
       enoughData = true;
