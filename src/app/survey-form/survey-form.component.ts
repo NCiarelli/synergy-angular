@@ -25,6 +25,12 @@ export class SurveyFormComponent implements OnInit {
   // If the employee does not exist, it creates them in the list
   onSubmit(formData: NgForm) {
 
+    // Check if the form data is empty, do nothing if so (may change later)
+    if (!formData.value.employeeName || !formData.value.answer || (formData.value.employeeName === "") || (formData.value.answer === "")) {
+      console.log("Survey Submission invalid. A required text field is empty.");
+      return
+    }
+
     // Try to add the employee to the list in the service and get the employee's index 
     let employeeIndex = this.profileService.findEmployeeIndex(formData.value.employeeName);
 

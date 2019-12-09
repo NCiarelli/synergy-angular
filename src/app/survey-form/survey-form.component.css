@@ -89,6 +89,22 @@ button:focus {
   outline: none;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 button > span {
   vertical-align: middle;
+}
+
+.getProfileButton {
+  left: 300px;
+  width: 100px;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.enableProfilebutton {
+  border: 1px solid #fa7116;
+  background-color: #fa7116;
 }
