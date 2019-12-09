@@ -1,5 +1,3 @@
-<button type="button" (click)="getProfile()">Get Profile</button>
-
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <input type="text" [(ngModel)]=employeeName name="employeeName" id="employeeName" />
   <button (click)=addEmployeeEvent() type="button">Add Employee</button>

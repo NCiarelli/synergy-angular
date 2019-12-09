@@ -53,7 +53,7 @@ export class SurveyFormComponent implements OnInit {
     // Create the new text data object
     let newTextData: ContentItem = {
       // Get the text data from the form
-      content: "something",
+      content: formData.value.answer,
       contenttype: "text/plain",
       // Get the current timestamp
       created: this.date.getTime(),
