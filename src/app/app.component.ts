@@ -15,6 +15,6 @@ export class AppComponent implements OnInit {
     // Import some static example data from the JSON to the service employeeList array
     // REMOVE WHEN WE GET A DATABASE WORKING
     this.profileService.importExampleData();
-    console.log(this.profileService.getEmployeeList);
+    console.log(this.profileService.getEmployeeList());
   }
 }
