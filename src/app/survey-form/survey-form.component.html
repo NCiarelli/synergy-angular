@@ -2,5 +2,5 @@
   <input type="text" [(ngModel)]=employeeName name="employeeName" id="employeeName" />
   <textarea ngModel name="answer" id="answer" cols="30" rows="10"></textarea>
   <button type="submit">Submit Survey</button>
-  <button type="button" (click)="createProfile()">Create Personality Profile</button>
+  <button type="button" *ngIf="enoughData" (click)="createProfile()">Create Personality Profile</button>
 </form>

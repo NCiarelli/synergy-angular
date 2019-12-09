@@ -97,6 +97,25 @@ export class ProfileService {
     console.log(this.employeeList[employeeIndex].textData.contentItems);
   }
 
+  checkIfEnoughDataForProfile(employeeIndex: number): boolean {
+    let enoughData: boolean = false;
+    const numRequiredWords = 100;
+    let wordCount = 0;
+    const dataArray = this.employeeList[employeeIndex].textData.contentItems;
+    for (const contentItem of dataArray) {
+      wordCount += this.countWords(contentItem.content);
+    }
+    console.log("Word Count: ", wordCount);
+    if (wordCount >= numRequiredWords) {
+      enoughData = true;
+    }
+    return enoughData;
+  }
+
+  countWords(str) {
+    return str.split(" ").length;
+  }
+
   // Sets the employeeList to the example data from static JSON
   importExampleData() {
     this.employeeList = exampleData.employeeList;

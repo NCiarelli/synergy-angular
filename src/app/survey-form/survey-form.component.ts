@@ -12,6 +12,7 @@ import { ContentItem } from '../interfaces/content-item';
 export class SurveyFormComponent implements OnInit {
   outputText;
   employeeName: string;
+  enoughData: boolean = false;
 
   constructor(private profileService: ProfileService) { }
 
@@ -33,7 +34,13 @@ export class SurveyFormComponent implements OnInit {
     }
     // Add the text data to the employee
     this.profileService.addTextData(formData.value.answer, employeeIndex);
+    // Check if there is enough data for the profile and enable the button if so.
+    this.enoughData = this.profileService.checkIfEnoughDataForProfile(employeeIndex);
   }
+
+
+
+
 
   ngOnInit() { }
 }
