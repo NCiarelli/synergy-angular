@@ -1,6 +1,28 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
-  <input type="text" [(ngModel)]=employeeName name="employeeName" id="employeeName" />
-  <textarea ngModel name="answer" id="answer" cols="30" rows="10"></textarea>
-  <button type="submit">Submit Survey</button>
-  <button type="button" *ngIf="enoughData" (click)="createProfile()">Create Personality Profile</button>
-</form>
+<body>
+  <img class="logo" src="../../assets/logo2.jpg" alt="" />
+  <h4 class="header">
+    build your employee profile.
+  </h4>
+  <main class="main">
+    <div class="inputDirective">
+      <span class="nameText">name: </span>
+      <span class="answerText">answer: </span>
+    </div>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <input type="text" ngModel name="employeeName" id="employeeName" />
+
+      <textarea
+        ngModel
+        name="answer"
+        id="answer"
+        cols="30"
+        rows="10"
+      ></textarea>
+
+      <button class="addInputButton">next >></button>
+    </form>
+  </main>
+  <button class="getProfileButton" type="button" (click)="getProfile()">
+    get employee profile
+  </button>
+</body>

@@ -1,0 +1,94 @@
+body {
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.logo {
+  width: 170px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+}
+main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.header {
+  margin: 15 auto;
+  color: #545454;
+}
+.inputDirective {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  margin-right: 5px;
+}
+.nameText {
+  color: #545454;
+  margin-bottom: 10px;
+}
+#employeeName {
+  border-radius: 5px;
+  border: rgb(211, 211, 211);
+  background-color: rgb(233, 227, 227);
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.addInputButton {
+  border: 1px solid #fa7116;
+  width: 100px;
+  padding: 5px;
+  left: 300px;
+  margin-top: 5px;
+  background-color: #fa7116;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid rgb(236, 232, 232); */
+  border-radius: 3px;
+  width: 400px;
+}
+form:hover {
+  border-color: #f26322;
+}
+.answerText {
+  color: #545454;
+}
+#answer {
+  border: none;
+  background-color: rgb(233, 227, 227);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+button {
+  /* min-width: 150px;
+  max-width: 250px;
+  width: 300px;
+  display: block;
+  margin: 1em;
+  padding: 1em 2em;
+  /* border: none; */
+  border: 1px solid #f26322;
+  background: none;
+  color: rgb(233, 227, 227);
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
+  border: 1px solid #f26322;
+  width: 100px;
+  padding: 5px;
+}
+
+button:focus {
+  outline: none;
+}
+
+button > span {
+  vertical-align: middle;
+}
