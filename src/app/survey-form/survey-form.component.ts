@@ -10,62 +10,29 @@ import { ContentItem } from '../interfaces/content-item';
   styleUrls: ["./survey-form.component.css"]
 })
 export class SurveyFormComponent implements OnInit {
-  employeeList: Employee[] = [];
-  nextDataId: number = 0;
   outputText;
-  date: Date = new Date;
   employeeName: string;
 
   constructor(private profileService: ProfileService) { }
 
-  getProfile(employeeIndex) {
-    this.profileService
-      .getProfile(this.employeeList[employeeIndex].textData)
-      .subscribe(profile => {
-        this.outputText = profile;
-        console.log(profile);
-      });
+  createProfile() {
+    this.profileService.createProfile(this.employeeName);
   }
 
-  // Function to add employees to the list
-  // A check if employee already exists should go here
-  addEmployee(newName: string): void {
-    let newArray: ContentItem[] = [];
-    let newEmployee: Employee = {
-      name: newName,
-      textData: { contentItems: newArray },
-    }
-    this.employeeList.push(newEmployee);
-    console.log(this.employeeList[0].name);
-  }
 
-  // Wrapper to call on button click
-  addEmployeeEvent() {
-    this.addEmployee(this.employeeName);
-  }
-
+  // Adds the submitted survey text to the employee's textdata
+  // If the employee does not exist, it creates them in the list
   onSubmit(formData: NgForm) {
-    //find if employee exists with given name
-    //  if exists add text data entry
-    //  else create employee and add text data entry
 
-    // Single employee code
-    // Create the new text data object
-    let newTextData: ContentItem = {
-      // Get the text data from the form
-      content: formData.value.answer,
-      contenttype: "text/plain",
-      // Get the current timestamp
-      created: this.date.getTime(),
-      // Get an id for this entry
-      id: `${this.nextDataId}`,
-      language: "en"
-    };
-    // Increment ID counter
-    this.nextDataId++;
-    // Add the new text data entry to the contentItems array of the employee
-    this.employeeList[0].textData.contentItems.push(newTextData);
-    console.log(this.employeeList[0].textData.contentItems);
+    // Try to add the employee to the list in the service and get the employee's index 
+    let employeeIndex = this.profileService.findEmployeeIndex(formData.value.employeeName);
+
+    // If the employee doesn't exist, create them
+    if (employeeIndex === -1) {
+      employeeIndex = this.profileService.addEmployee(formData.value.employeeName);
+    }
+    // Add the text data to the employee
+    this.profileService.addTextData(formData.value.answer, employeeIndex);
   }
 
   ngOnInit() { }

@@ -1,7 +1,6 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <input type="text" [(ngModel)]=employeeName name="employeeName" id="employeeName" />
-  <button (click)=addEmployeeEvent() type="button">Add Employee</button>
   <textarea ngModel name="answer" id="answer" cols="30" rows="10"></textarea>
   <button type="submit">Submit Survey</button>
-  <button type="button" (click)="getProfile(0)">Get Profile</button>
+  <button type="button" (click)="createProfile()">Create Personality Profile</button>
 </form>
