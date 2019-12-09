@@ -11,6 +11,7 @@ import { SurveyFormComponent } from "./survey-form/survey-form.component";
 import { ProfileCardComponent } from "./profile-card/profile-card.component";
 import { EmployerDashboardComponent } from "./employer-dashboard/employer-dashboard.component";
 import { EmployeeBannerComponent } from "./employee-banner/employee-banner.component";
+import { HeaderComponent } from "./header/header.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EmployeeBannerComponent } from "./employee-banner/employee-banner.compo
     SurveyFormComponent,
     ProfileCardComponent,
     EmployerDashboardComponent,
-    EmployeeBannerComponent
+    EmployeeBannerComponent,
+    HeaderComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

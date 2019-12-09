@@ -1,1 +1,19 @@
-<p>splash works!</p>
+<div *ngIf="modalDisplay" class="whole-page">
+  <div class="modal-window">
+    <div>
+      <h3>Which type of account do you have?</h3>
+    </div>
+    <div class="btn-container">
+      <button (click)="loadAdmin()" [routerLink]="['employer-dashboard']">
+        Admin
+      </button>
+      <button (click)="loadUser()" [routerLink]="['employee-survey']">
+        User
+      </button>
+    </div>
+  </div>
+  <div *ngIf="overlayDisplay" class="overlay"></div>
+</div>
+<div>
+  <button (click)="loadModal()">Enter</button>
+</div>

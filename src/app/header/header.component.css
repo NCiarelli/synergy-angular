@@ -1,0 +1,16 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.header {
+  padding: 5px;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+h3 {
+  font-family: "Open Sans", sans-serif;
+  padding: 5px;
+  margin: 0;
+}
