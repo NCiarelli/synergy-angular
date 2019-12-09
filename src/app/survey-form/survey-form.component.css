@@ -40,9 +40,9 @@ main {
   border: 1px solid #fa7116;
   width: 100px;
   padding: 5px;
-  left: 300px;
   margin-top: 5px;
   background-color: #fa7116;
+  align-self: flex-end;
 }
 
 form {
@@ -51,6 +51,7 @@ form {
   /* border: 1px solid rgb(236, 232, 232); */
   border-radius: 3px;
   width: 400px;
+  position: relative;
 }
 form:hover {
   border-color: #f26322;
@@ -98,7 +99,7 @@ button > span {
 }
 
 .getProfileButton {
-  left: 300px;
+  margin:auto;
   width: 100px;
   padding: 5px;
   margin-top: 5px;
