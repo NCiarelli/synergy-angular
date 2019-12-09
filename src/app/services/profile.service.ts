@@ -46,6 +46,7 @@ export class ProfileService {
     // Make post request to Watson to create the personality profile
     this.http.post(`${this.BASE_URL}/profile`, this.employeeList[employeeIndex].textData)
       .subscribe(profile => {
+        // DEBUG until get proper display for the profile
         console.log(profile);
         // Save the personality profile to the employee object
         this.employeeList[employeeIndex].personalityProfile = profile;
@@ -94,6 +95,7 @@ export class ProfileService {
     this.nextDataId++;
     // Add the new text data entry to the contentItems array of the employee
     this.employeeList[employeeIndex].textData.contentItems.push(newTextData);
+    // DEBUG
     console.log(this.employeeList[employeeIndex].textData.contentItems);
   }
 
@@ -105,6 +107,7 @@ export class ProfileService {
     for (const contentItem of dataArray) {
       wordCount += this.countWords(contentItem.content);
     }
+    // DEBUG
     console.log("Word Count: ", wordCount);
     if (wordCount >= numRequiredWords) {
       enoughData = true;

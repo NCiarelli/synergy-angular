@@ -9,20 +9,14 @@
       <span class="answerText">answer: </span>
     </div>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-      <input type="text" ngModel name="employeeName" id="employeeName" />
+      <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" />
 
-      <textarea
-        ngModel
-        name="answer"
-        id="answer"
-        cols="30"
-        rows="10"
-      ></textarea>
+      <textarea ngModel name="answer" id="answer" cols="30" rows="10"></textarea>
 
       <button class="addInputButton">next >></button>
     </form>
   </main>
-  <button class="getProfileButton" type="button" (click)="getProfile()">
+  <button class="getProfileButton" type="button" (click)="createProfile()">
     get employee profile
   </button>
 </body>
