@@ -17,7 +17,7 @@ export class ProfileService {
   nextDataId: number = 0;
   date: Date = new Date();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   findEmployeeIndex(name: string): number {
     // Check if the employee name already exists, case insensitive
@@ -58,6 +58,15 @@ export class ProfileService {
   // returns a reference to the service's employeeList array
   getEmployeeList(): Employee[] {
     return this.employeeList;
+  }
+
+  getEmployee(employeeName: string): Employee | number {
+    let employeeIndex = this.findEmployeeIndex(employeeName);
+    if (employeeIndex === -1) {
+      return employeeIndex;
+    } else {
+      return this.employeeList[employeeIndex];
+    }
   }
 
   // Function to add employees to the list

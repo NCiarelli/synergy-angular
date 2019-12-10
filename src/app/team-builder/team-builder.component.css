@@ -1,0 +1,26 @@
+#button-section {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+app-employee-banner{
+  height: 20vh;
+  overflow: auto;
+  display: none;/* remove when updated */
+  
+}
+
+.slots-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.member-slot {
+  height: 100px;
+  width: 100px;
+  border: 1px solid black; 
+}
