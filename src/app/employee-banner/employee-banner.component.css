@@ -7,6 +7,9 @@
   height: 30px;
 }
 
+.None {
+  background-color: red;
+}
 .Openness {
   background-color: #ffd22e;
 }
