@@ -3,7 +3,7 @@
     {
       "name": "Kelsey Drivinski",
       "headShot": "../../assets/Kelsey Drivinski.jpeg",
-      "dominantPersonality": "Disruptor",
+      "dominantPersonality": "Openness",
       "textData": {
         "contentItems": [
           {
@@ -19,7 +19,7 @@
     {
       "name": "Dewan Burson",
       "headShot": "../../assets/Dewan Burson.jpeg",
-      "dominantPersonality": "Disruptor",
+      "dominantPersonality": "Agreeableness",
       "textData": {
         "contentItems": [
           {
@@ -35,7 +35,7 @@
     {
       "name": "Dequan Chambers",
       "headShot": "../../assets/Dequan Chambers.jpeg",
-      "dominantPersonality": "Disruptor",
+      "dominantPersonality": "Openness",
       "textData": {
         "contentItems": [
           {
@@ -51,7 +51,7 @@
     {
       "name": "Emily Biegas",
       "headShot": "../../assets/Emily Biegas.jpeg",
-      "dominantPersonality": "Innovative Thinker",
+      "dominantPersonality": "Extraversion",
       "textData": {
         "contentItems": [
           {
@@ -67,7 +67,7 @@
     {
       "name": "Ivan Wolyniec",
       "headShot": "../../assets/Ivan Wo.jpeg",
-      "dominantPersonality": "Disruptor",
+      "dominantPersonality": "Conscientiousness",
       "textData": {
         "contentItems": [
           {
@@ -83,7 +83,7 @@
     {
       "name": "Laura Xu",
       "headShot": "../../assets/Laura Xu.jpeg",
-      "dominantPersonality": "Innovative Thinker",
+      "dominantPersonality": "Extraversion",
       "textData": {
         "contentItems": [
           {
@@ -99,7 +99,7 @@
     {
       "name": "Alicia Martin",
       "headShot": "../../assets/Alicia Martin.jpeg",
-      "dominantPersonality": "Process Follower",
+      "dominantPersonality": "Neuroticism",
       "textData": {
         "contentItems": [
           {
@@ -115,7 +115,7 @@
     {
       "name": "Casey Yeager",
       "headShot": "../../assets/Casey Yeager.jpeg",
-      "dominantPersonality": "Relationship Builder",
+      "dominantPersonality": "Openness",
       "textData": {
         "contentItems": [
           {
@@ -131,7 +131,7 @@
     {
       "name": "Tyler Weiss",
       "headShot": "../../assets/Tyler Weiss.jpeg",
-      "dominantPersonality": "Relationship Builder",
+      "dominantPersonality": "Neuroticism",
       "textData": {
         "contentItems": [
           {
@@ -147,7 +147,7 @@
     {
       "name": "Denna Bellman",
       "headShot": "../../assets/Denna Bellman.jpeg",
-      "dominantPersonality": "Pragmatic Thinker",
+      "dominantPersonality": "Agreeableness",
       "textData": {
         "contentItems": [
           {
@@ -163,7 +163,7 @@
     {
       "name": "Ali Hossein",
       "headShot": "../../assets/Ali Hossein.jpeg",
-      "dominantPersonality": "Relationship Builder",
+      "dominantPersonality": "Conscientiousness",
       "textData": {
         "contentItems": [
           {
@@ -179,7 +179,7 @@
     {
       "name": "Nicholas Ciarelli",
       "headShot": "../../assets/Nicholas Ciarelli.jpeg",
-      "dominantPersonality": "Pragmatic Thinker",
+      "dominantPersonality": "Neuroticism",
       "textData": {
         "contentItems": [
           {
@@ -195,7 +195,7 @@
     {
       "name": "Colin Sords",
       "headShot": "../../assets/Colin Sords.jpeg",
-      "dominantPersonality": "Innovative Thinker",
+      "dominantPersonality": "Conscientiousness",
       "textData": {
         "contentItems": [
           {
@@ -212,7 +212,7 @@
     {
       "name": "Christian Christan",
       "headShot": "../../assets/Christian Christian.jpeg",
-      "dominantPersonality": "Innovative Thinker",
+      "dominantPersonality": "Extraversion",
       "textData": {
         "contentItems": [
           {
@@ -228,7 +228,7 @@
     {
       "name": "Rion Nunez",
       "headShot": "../../assets/Rion Nunez.jpeg",
-      "dominantPersonality": "Pragmatic Thinker",
+      "dominantPersonality": "Extraversion",
       "textData": {
         "contentItems": [
           {
@@ -244,7 +244,7 @@
     {
       "name": "Liam Do",
       "headShot": "../../assets/Liam.jpeg",
-      "dominantPersonality": "Relationship Builder",
+      "dominantPersonality": "Agreeableness",
       "textData": {
         "contentItems": [
           {

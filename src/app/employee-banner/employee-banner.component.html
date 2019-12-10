@@ -131,13 +131,16 @@
   </div> -->
   <div class="slide" *ngFor="let employee of employeeList">
     <div class="cardBanner"></div>
-    <img class="headShot" [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
-    <div id="extraversion" class="profileText">
+    <img
+      class="headShot"
+      [src]="employee.headShot ? employee.headShot : defaultAvatar"
+      alt=""
+    />
+    <div [ngClass]="[employee.dominantPersonality]" class="profileText">
       <p>{{ employee.name }}</p>
       <p>{{ employee.dominantPersonality }}</p>
     </div>
   </div>
 </main>
-
 
 <!--set width of div to be size of page  flex display no wrap overflow-X -->
