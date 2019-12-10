@@ -17,6 +17,15 @@ export class ProfileService {
   nextDataId: number = 0;
   date: Date = new Date();
 
+  personalityTypes = [
+    "Openness",
+    "Conscientiousness",
+    "Extraversion",
+    "Agreeableness",
+    "Neuroticism",
+    "Any"
+  ];
+
   constructor(private http: HttpClient) { }
 
   findEmployeeIndex(name: string): number {
@@ -34,24 +43,27 @@ export class ProfileService {
   createProfile(employeeName: string): void {
     // Find employee index
     let employeeIndex = this.findEmployeeIndex(employeeName);
-
+    let employee: Employee;
     // If the employee doesn't exist (findIndex returns -1)...
     if (employeeIndex === -1) {
       // If the employee doesn't exist, let the user know and return
       console.log("Employee Doesn't exist!!!");
       return;
+    } else {
+      employee = this.employeeList[employeeIndex]
     }
     // Make post request to Watson to create the personality profile
     this.http
       .post(
         `${this.BASE_URL}/profile`,
-        this.employeeList[employeeIndex].textData
+        employee.textData
       )
-      .subscribe(profile => {
+      .subscribe((response: any) => {
         // DEBUG until get proper display for the profile
-        console.log(profile);
+        console.log(response.result);
         // Save the personality profile to the employee object
-        this.employeeList[employeeIndex].personalityProfile = profile;
+        employee.personalityProfile = response.result;
+        this.assignDominantPersonality(employee);
       });
   }
 
@@ -133,5 +145,30 @@ export class ProfileService {
   // Sets the employeeList to the example data from static JSON
   importExampleData() {
     this.employeeList = exampleData.employeeList;
+  }
+
+  assignDominantPersonality(employee: Employee) {
+    // Check the profile exists
+    if (employee.personalityProfile) {
+      // If it exists...
+      let highestPersonalityIndex: number = -1;
+      let highestPersonalityPercentile = -Infinity;
+      let personalityArray = employee.personalityProfile.personality
+      // Go through the personality array to find the highest percentile
+      for (let i = 0; i < personalityArray.length; i++) {
+        if (personalityArray[i].percentile > highestPersonalityPercentile) {
+          // If the current percentile being checked is higher than the recorded max percentile
+          // Put the current index into highestPersonalityIndex 
+          highestPersonalityIndex = i;
+          // And replace the max with the current percentile
+          highestPersonalityPercentile = personalityArray[i].percentile;
+        }
+      }
+      employee.dominantPersonality = this.personalityTypes[highestPersonalityIndex];
+      console.log(`${employee.name}'s dominant personality type is now ${this.personalityTypes[highestPersonalityIndex]}`);
+    } else {
+      // If it doesn't someone did an oopsie
+      console.log(`Sometinhg is wrong. There is no personality profile for ${employee.name}`);
+    }
   }
 }

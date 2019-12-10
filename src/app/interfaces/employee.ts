@@ -4,6 +4,6 @@ export interface Employee {
   name: string;
   textData: { contentItems: ContentItem[] };
   dominantPersonality: string;
-  personalityProfile?: {};
+  personalityProfile?: { personality: any[] };
   headShot?: string;
 }
