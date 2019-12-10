@@ -10,7 +10,6 @@
 app-employee-banner{
   height: 20vh;
   overflow: auto;
-  display: none;/* remove when updated */
   
 }
 

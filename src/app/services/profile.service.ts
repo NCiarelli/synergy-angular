@@ -77,7 +77,8 @@ export class ProfileService {
     let newArray: ContentItem[] = [];
     let newEmployee: Employee = {
       name: newName,
-      textData: { contentItems: newArray }
+      textData: { contentItems: newArray },
+      dominantPersonality: "None"
     };
     // Add the new employee to the employee list
     this.employeeList.push(newEmployee);

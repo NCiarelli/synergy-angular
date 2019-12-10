@@ -7,6 +7,9 @@
   height: 30px;
 }
 
+.None {
+  background-color: red;
+}
 .Openness {
   background-color: #ffd22e;
 }
@@ -44,6 +47,7 @@ p {
   width: 100%;
   position: relative;
   overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
   flex-direction: row;
   height: 400px;
