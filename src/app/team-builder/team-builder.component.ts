@@ -89,7 +89,7 @@ export class TeamBuilderComponent implements OnInit {
   }
 
   isSlotOpen(slotObject): boolean {
-    if (Object.entries(slotObject).length === 0) {
+    if (Object.entries(slotObject).length === 0 && slotObject.constructor === Object) {
       return true;
     } else {
       return false;
