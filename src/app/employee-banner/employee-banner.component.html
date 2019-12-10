@@ -1,5 +1,5 @@
 <main class="slider">
-  <div class="slide active">
+  <!-- <div class="slide active">
     <div class="cardBanner"></div>
     <img class="headShot" src="../../assets/Kelsey Drivinski.jpeg" alt="" />
     <div id="openness" class="profileText">
@@ -128,13 +128,16 @@
       <p>Liam</p>
       <p>Extraversion</p>
     </div>
+  </div> -->
+  <div class="slide" *ngFor="let employee of employeeList">
+    <div class="cardBanner"></div>
+    <img class="headShot" [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
+    <div id="extraversion" class="profileText">
+      <p>{{ employee.name }}</p>
+      <p>{{ employee.dominantPersonality }}</p>
+    </div>
   </div>
 </main>
-<!-- <div *ngFor="let employee of employeeList">
-  <p>{{ employee.name }}</p>
-  <p>{{ employee.dominantPersonality }}</p>
 
-  <img [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
-</div> -->
 
 <!--set width of div to be size of page  flex display no wrap overflow-X -->
