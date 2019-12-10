@@ -4,15 +4,16 @@ body {
 }
 
 .header {
-  padding: 10px;
-  border-bottom: 1px solid black;
+  padding: 12px;
+  border-bottom: 1px solid lightgray;
   width: 100%;
 }
 
 h3 {
   font-family: "Open Sans", sans-serif;
-  padding: 5px;
+  padding: 7px;
   margin: 0;
+  margin-left: 10px;
 }
 
 .logo-link {
