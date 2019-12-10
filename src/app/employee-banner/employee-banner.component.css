@@ -7,19 +7,19 @@
   height: 30px;
 }
 
-#openness {
+.Openness {
   background-color: #ffd22e;
 }
-#neuroticism {
+.Neuroticism {
   background-color: #181b46;
 }
-#agreeableness {
+.Agreeableness {
   background-color: #416eb6;
 }
-#conscientiousness {
+.Conscientiousness {
   background-color: #ff65a7;
 }
-#extraversion {
+.Extraversion {
   background-color: #6a70d9;
 }
 /* Color Theme Swatches in Hex
