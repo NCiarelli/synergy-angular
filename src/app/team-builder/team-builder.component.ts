@@ -57,7 +57,7 @@ export class TeamBuilderComponent implements OnInit {
     // Try to add the employee to one of the slots for the current personality type
     for (let i = 0; i < personalityTypeSlots.length; i++) {
       // If a slot is empty...
-      if (Object.entries(personalityTypeSlots[i]).length === 0) {
+      if (this.isSlotOpen(personalityTypeSlots[i])) {
         // Put the employee in the slot
         personalityTypeSlots[i] = employee;
         // And exit the function
