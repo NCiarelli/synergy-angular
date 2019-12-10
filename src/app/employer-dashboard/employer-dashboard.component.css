@@ -1,0 +1,82 @@
+main {
+  display: flex;
+  font-family: sans-serif;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  height: 300px;
+  align-items: center;
+  margin-right: 3px;
+  text-align: center;
+}
+a {
+  width: 175px;
+  padding: 10px;
+  background-color: #fd9c3c;
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 20px;
+}
+h4 {
+  font-size: 20px;
+  margin: 5px;
+}
+
+p {
+  font-size: 15px;
+  padding-bottom: 10px;
+}
+.profile {
+  margin: 2px;
+  transition: all 0.5s ease;
+}
+.profile:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.cardBanner {
+  background-color: #fd9c3c;
+  height: 30px;
+}
+
+.profileText {
+  font-family: sans-serif;
+  width: 200px;
+  color: #fff;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+p {
+  margin: 3px;
+  text-align: center;
+}
+.None {
+  background-color: red;
+}
+.Openness {
+  background-color: #ffd22e;
+}
+.Neuroticism {
+  background-color: #181b46;
+}
+.Agreeableness {
+  background-color: #416eb6;
+}
+.Conscientiousness {
+  background-color: #ff65a7;
+}
+.Extraversion {
+  background-color: #6a70d9;
+}
