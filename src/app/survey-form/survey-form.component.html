@@ -11,15 +11,33 @@
       <span class="answerText">answer: </span>
     </div>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
-      <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required />
+      <input
+        type="text"
+        [(ngModel)]="employeeName"
+        name="employeeName"
+        id="employeeName"
+        required
+      />
 
-      <textarea ngModel name="answer" id="answer" cols="30" rows="10" required></textarea>
+      <textarea
+        ngModel
+        name="answer"
+        id="answer"
+        cols="30"
+        rows="10"
+        required
+      ></textarea>
 
       <button class="addInputButton">next >></button>
     </form>
   </main>
-  <button class="getProfileButton" [ngClass]="{enableProfilebutton: enoughData}" [disabled]="!enoughData" type="button"
-    (click)="createProfile()">
+  <button
+    class="getProfileButton"
+    [ngClass]="{ enableProfilebutton: enoughData }"
+    [disabled]="!enoughData"
+    type="button"
+    (click)="createProfile()"
+  >
     get employee profile
   </button>
 </body>
