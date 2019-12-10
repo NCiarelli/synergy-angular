@@ -16,6 +16,11 @@ export class SplashComponent implements OnInit {
     this.modalDisplay = true;
   }
 
+  closeModal() {
+    this.overlayDisplay = false;
+    this.modalDisplay = false;
+  }
+
   loadAdmin() {
     console.log("clicked admin");
     this.overlayDisplay = false;

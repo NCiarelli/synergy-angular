@@ -24,8 +24,22 @@
   background-color: white;
   border-radius: 5px;
   z-index: 2;
-  width: auto;
-  height: auto;
+  width: 600px;
+  height: 400px;
+  position: relative;
+}
+
+.modal-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 70%;
+}
+
+.modal-btns h3 {
+  font-size: 30px;
 }
 
 body {
@@ -47,18 +61,22 @@ body {
 
 .btn-container {
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
   width: 100%;
+  align-items: center;
 }
 
 .btn-container button {
-  width: 125px;
-  padding: 15px;
+  width: 70%;
+  padding: 10px;
   border-style: none;
-  background-color: #f26322;
+  background-color: #fd9c3c;
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .btn-container button:active {
@@ -71,7 +89,7 @@ body {
   /* border: 3px solid #f26322; */
   /* color: #f26322; */
   /* background-color: white; */
-  background-color: #f26322;
+  background-color: #fd9c3c;
   color: white;
   border-style: none;
   border-radius: 5px;
@@ -123,12 +141,23 @@ section img {
   padding-left: 40px;
 }
 
+.close-btn {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 992px) {
   section {
     padding-right: 50px;
   }
   .landing-text {
     padding-left: 50px;
+  }
+  .modal-window {
+    width: 500px;
+    height: 300px;
   }
 }
 
@@ -147,5 +176,11 @@ section img {
     margin-bottom: 10px;
     margin-top: 10px;
     padding: 15px;
+  }
+  .modal-window {
+    width: 75%;
+    height: auto;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
