@@ -57,7 +57,7 @@ export class TeamBuilderComponent implements OnInit {
     // Try to add the employee to one of the slots for the current personality type
     for (let i = 0; i < personalityTypeSlots.length; i++) {
       // If a slot is empty...
-      if (personalityTypeSlots[i] === {}) {
+      if (Object.entries(personalityTypeSlots[i]).length === 0) {
         // Put the employee in the slot
         personalityTypeSlots[i] = employee;
         // And exit the function
@@ -69,21 +69,30 @@ export class TeamBuilderComponent implements OnInit {
   }
 
   getSrcLink(slotObject) {
-    if (slotObject === {}) {
-      // If the slotObject is empty, display the default Avatar picture
+    if (this.isSlotOpen(slotObject)) {
+      // If the slot is open/empty, display the default Avatar picture
       return this.defaultAvatar
     } else {
-      // Otherwise check if the slot's employee object has a picture
+      // Otherwise check if the slot's employee object has a picture and return the appropriate link
       return slotObject.headShot ? slotObject.headShot : this.defaultAvatar
     }
   }
 
   getPersonalityClass(slotObject): string[] {
-    // if (slotObject !== {}) {
-    //   return [slotObject.dominantPersonality];
-    // } else {
-    //   return ["None"];
-    // }
-    return ["None"];
+    if (!this.isSlotOpen(slotObject)) {
+      // If the slot is filled, pass on the dominant personality as the class
+      return [slotObject.dominantPersonality];
+    } else {
+      // Otherwise, use the None class
+      return ["None"];
+    }
+  }
+
+  isSlotOpen(slotObject): boolean {
+    if (Object.entries(slotObject).length === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

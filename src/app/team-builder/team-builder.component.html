@@ -13,12 +13,12 @@
     <div class="slots-container">
       <div *ngFor="let slot of teamSlots[i]" class="member-slot">
         <div class="cardBanner"></div>
-        <!-- <img class="headShot" [src]="getSrcLink(slot)" alt="" /> -->
-        <div *ngIf="slot !== {}" [ngClass]="getPersonalityClass(slot)" class="profileText">
+        <img class="headShot" [src]="getSrcLink(slot)" alt="" />
+        <div *ngIf="!isSlotOpen(slot)" [ngClass]="getPersonalityClass(slot)" class="profileText">
           <p>{{ slot.name }}</p>
           <p>{{ slot.dominantPersonality }}</p>
         </div>
-        <div *ngIf="slot === {}">
+        <div *ngIf="isSlotOpen(slot)">
           <p>No Employee Selected</p>
         </div>
       </div>
