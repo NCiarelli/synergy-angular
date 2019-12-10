@@ -47,6 +47,7 @@ p {
   width: 100%;
   position: relative;
   overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
   flex-direction: row;
   height: 400px;
