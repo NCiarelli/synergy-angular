@@ -1,0 +1,74 @@
+.headShot {
+  margin: 0px;
+}
+
+.cardBanner {
+  background-color: #f26322;
+  width: 200px;
+  height: 30px;
+}
+
+#openness {
+  background-color: #fec804;
+}
+#neuroticism {
+  background-color: #181b46;
+}
+#agreeableness {
+  background-color: #416eb6;
+}
+#conscientiousness {
+  background-color: #311418;
+}
+#extraversion {
+  background-color: #7a2d59;
+}
+
+.profileText {
+  font-family: sans-serif;
+  width: 200px;
+  color: #fff;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+p {
+  margin: 3px;
+  text-align: center;
+}
+
+.photoRollContainer {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  height: 400px;
+}
+
+/* $photoCount: 10;
+$photoWidth: 350px;
+$photoHeight: 233px; */
+
+.photoRoll {
+  /* width: 2000px; */
+  margin-bottom: 5px;
+  transition: all 0.5s ease;
+}
+.photoRoll:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+img {
+  margin-bottom: 10px;
+  margin-right: 5px;
+}
+/* img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+} */
+/* {
+  display: flex;
+  flex-direction: row;
+} */
+
+/* #FEC804 -yellow #F26322 orange #7A2D59 #181B46 */
