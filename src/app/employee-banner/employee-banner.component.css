@@ -1,43 +1,4 @@
-.headShot {
-  margin: 0px;
-}
 
-.cardBanner {
-  background-color: #fd9c3c;
-  height: 30px;
-}
-
-.None {
-  background-color: red;
-}
-.Openness {
-  background-color: #ffd22e;
-}
-.Neuroticism {
-  background-color: #181b46;
-}
-.Agreeableness {
-  background-color: #416eb6;
-}
-.Conscientiousness {
-  background-color: #ff65a7;
-}
-.Extraversion {
-  background-color: #6a70d9;
-}
-/* Color Theme Swatches in Hex
-.team-1-hex { color: } pink
-.team-2-hex { color: #6A70D9; } purple
-.team-3-hex { color: #8EC2FF; } light blue
-.team-4-hex { color: #FFD22E; } yellowish-orange
-.team-5-hex { color: #FD9C3C; } orange */
-.profileText {
-  font-family: sans-serif;
-  width: 200px;
-  color: #fff;
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
 p {
   margin: 3px;
   text-align: center;

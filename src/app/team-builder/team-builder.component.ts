@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ProfileService } from '../services/profile.service';
+import { Employee } from '../interfaces/employee';
 
 @Component({
   selector: "app-team-builder",
@@ -30,6 +31,9 @@ export class TeamBuilderComponent implements OnInit {
     "Any"
   ];
 
+  defaultAvatar: string = "../../assets/defaultAvatar.png";
+
+
   //   big5 trait order key
   // 0. openness
   // 1. conscientiousness = pragmatic
@@ -49,25 +53,37 @@ export class TeamBuilderComponent implements OnInit {
   }
 
   // Add an employee to the team's slots for the current personality type
-  addEmployee(employeeName: string, personalityTypeSlots: any[]): void {
-    // Get the employee object from the profile service based on employee name
-    let employeeObject = this.profileService.getEmployee(employeeName);
-    // Check if the employee exists (should be extra, should only be possible if coding did something wrong)
-    if (employeeObject === -1) {
-      console.log("Something is wrong, no employee found!");
-    } else {
-      // If employee exists, try to add it to one of the slots for the current personality type
-      for (let i = 0; i < personalityTypeSlots.length; i++) {
-        // If a slot is empty...
-        if (personalityTypeSlots[i] === {}) {
-          // Put the employee in the slot
-          personalityTypeSlots[i] = employeeObject;
-          // And exit the function
-          return;
-        }
+  addEmployee(employee: Employee, personalityTypeSlots: any[]): void {
+    // Try to add the employee to one of the slots for the current personality type
+    for (let i = 0; i < personalityTypeSlots.length; i++) {
+      // If a slot is empty...
+      if (personalityTypeSlots[i] === {}) {
+        // Put the employee in the slot
+        personalityTypeSlots[i] = employee;
+        // And exit the function
+        return;
       }
-      // If all slots are full, say something (shoould change this)
-      console.log("All slots full for this personality type.");
     }
+    // If all slots are full, say something (should change this)
+    console.log("All slots full for this personality type.");
+  }
+
+  getSrcLink(slotObject) {
+    if (slotObject === {}) {
+      // If the slotObject is empty, display the default Avatar picture
+      return this.defaultAvatar
+    } else {
+      // Otherwise check if the slot's employee object has a picture
+      return slotObject.headShot ? slotObject.headShot : this.defaultAvatar
+    }
+  }
+
+  getPersonalityClass(slotObject): string[] {
+    // if (slotObject !== {}) {
+    //   return [slotObject.dominantPersonality];
+    // } else {
+    //   return ["None"];
+    // }
+    return ["None"];
   }
 }
