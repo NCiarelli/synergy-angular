@@ -17,8 +17,16 @@ export class SurveyFormComponent implements OnInit {
   enoughData: boolean = false;
   questionArrayIndex: number = 0;
   questionArray: string[] = [
+    "When you are stressed, what things do you do to calm down?",
+    "If you were an animal, which animal would you be? Why?",
+    "How do you behave at a party?",
     "How do you handle conflict?",
-    "What is your favorite animal, why?"
+    "What's a personal accomplishment you are proud of? Why?",
+    "What's something that irritates you? Why?",
+    "What is the major factor that determines if you trust someone? Why?",
+    "Are you quick to take risks? Why?",
+    "How do you feel when you meet new people? Why?",
+    "Do you often second guess your decisions? Why?"
   ];
 
   constructor(private profileService: ProfileService) {}

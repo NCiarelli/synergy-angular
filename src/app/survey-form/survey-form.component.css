@@ -213,3 +213,7 @@ label {
   display: flex;
   justify-content: flex-end;
 }
+
+.congrats-img {
+  width: 100%;
+}

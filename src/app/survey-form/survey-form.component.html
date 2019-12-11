@@ -52,15 +52,15 @@
         <button type="submit">Submit</button>
       </form>
     </section>
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="surveyFormActive">
-      <label for="employeeName">Name:</label>
-      <input
-        type="text"
-        [(ngModel)]="employeeName"
-        name="employeeName"
-        id="employeeName"
-        required
-      />
+    <form
+      #form="ngForm"
+      (ngSubmit)="onSubmit(form)"
+      *ngIf="surveyFormActive && enoughData === false"
+    >
+      <!-- <label for="employeeName">Name:</label> -->
+      <!-- <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required /> -->
+      <p>Name: {{ employeeName }}</p>
+      <p>{{ questionArray[questionArrayIndex] }}</p>
       <label for="answer">Answer:</label>
       <textarea
         ngModel
@@ -85,7 +85,8 @@
       </div>
     </form>
     <div *ngIf="enoughData">
-      <p>Congratulations! The survey is complete.</p>
+      <p>Congratulations! Your survey is complete.</p>
+      <img class="congrats-img" src="../../assets/form_img.png" />
       <!-- <p *ngIf="!profileBuilt">Now buidling your profile...</p>
       <div *ngIf="profileBuilt">Employee Profile Here</div> -->
     </div>
