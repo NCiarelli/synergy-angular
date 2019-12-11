@@ -1,12 +1,17 @@
 <body>
-  <h4 class="header">
-    Build your employee profile
-  </h4>
+  <!-- <img src="../../assets/form_img.png" /> -->
+  <span class="form-header">
+    <!-- <img class="form-icon" src="../../assets/personality icon.png" /> -->
+    <i class="far fa-address-card"></i>
+    <h2 class="header">
+      Build your employee profile
+    </h2>
+  </span>
   <main class="main">
-    <div class="inputDirective">
-      <!-- <span class="nameText">Name: </span> -->
-      <!-- <span class="answerText">Answer: </span> -->
-    </div>
+    <!-- <div class="inputDirective">
+      <span class="nameText">Name: </span>
+      <span class="answerText">Answer: </span>
+    </div> -->
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
       <label for="employeeName">Name:</label>
       <input
@@ -26,16 +31,18 @@
         required
       ></textarea>
 
-      <button class="addInputButton">Next</button>
+      <div class="btn-container">
+        <button class="addInputButton">Next</button>
+        <button
+          class="getProfileButton"
+          [ngClass]="{ enableProfilebutton: enoughData }"
+          [disabled]="!enoughData"
+          type="button"
+          (click)="createProfile()"
+        >
+          Get Employee Profile
+        </button>
+      </div>
     </form>
   </main>
-  <button
-    class="getProfileButton"
-    [ngClass]="{ enableProfilebutton: enoughData }"
-    [disabled]="!enoughData"
-    type="button"
-    (click)="createProfile()"
-  >
-    Get Employee Profile
-  </button>
 </body>

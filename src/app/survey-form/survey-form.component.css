@@ -7,6 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   background: white;
+  height: auto;
 }
 
 .logo {
@@ -23,12 +24,12 @@ main {
   margin: 15 auto;
   color: #545454;
 }
-.inputDirective {
+/* .inputDirective {
   display: flex;
   flex-direction: column;
   text-align: right;
   margin-right: 5px;
-}
+} */
 .nameText {
   color: #545454;
   margin-bottom: 10px;
@@ -38,16 +39,21 @@ main {
   border: rgb(211, 211, 211);
   background-color: rgb(233, 227, 227);
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 10px;
 }
 
 .addInputButton {
-  border: 1px solid #fa7116;
-  width: 100px;
-  padding: 5px;
-  margin-top: 5px;
-  background-color: #fa7116;
-  align-self: flex-end;
+  padding: 10px;
+  border-style: none;
+  background-color: #fd9c3c;
+  border: 2px solid #fd9c3c;
+
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  align-self: flex-start;
+  margin-top: 10px;
 }
 
 form {
@@ -95,9 +101,9 @@ button:focus {
   outline: none;
 }
 
-button:hover {
+/* button:hover {
   cursor: pointer;
-}
+} */
 
 button > span {
   vertical-align: middle;
@@ -105,12 +111,60 @@ button > span {
 
 .getProfileButton {
   margin: auto;
-  width: 150px;
+  width: auto;
   padding: 5px;
-  margin-top: 50px;
+  /* margin-top: 40px; */
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  border: 2px solid #fd9c3c;
+  background-color: white;
+  color: #fd9c3c;
+  border-radius: 5px;
+  font-size: 15px;
 }
 
 .enableProfilebutton {
-  border: 1px solid #fa7116;
-  background-color: #fa7116;
+  background-color: #fd9c3c;
+  color: white;
+  cursor: pointer;
+}
+
+img {
+  margin-top: 40px;
+  width: 200px;
+}
+
+h3 {
+  padding-top: 25px;
+}
+
+label {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.form-icon {
+  width: 40px;
+  margin: 0;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.form-header i {
+  font-size: 35px;
+  padding: 0;
+  margin: 0;
+  margin-right: 10px;
+  color: #545454;
+}
+
+.btn-container {
+  margin-top: 5px;
 }
