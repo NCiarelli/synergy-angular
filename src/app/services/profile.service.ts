@@ -26,7 +26,7 @@ export class ProfileService {
     "Any"
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   findEmployeeIndex(name: string): number {
     // Check if the employee name already exists, case insensitive
@@ -130,7 +130,10 @@ export class ProfileService {
     // DEBUG
     console.log("Word Count: ", wordCount);
     if (wordCount >= numRequiredWords) {
+      // Once enough text data is collected, set enough data to true to indicate to the caller
       enoughData = true;
+      // And create a personality profile for the employee
+      this.createProfile(this.employeeList[employeeIndex].name);
     }
     return enoughData;
   }

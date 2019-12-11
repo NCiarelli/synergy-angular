@@ -12,13 +12,15 @@ import { ContentItem } from '../interfaces/content-item';
 export class SurveyFormComponent implements OnInit {
   outputText;
   employeeName: string;
+  nameFormActive: boolean = true;
+  surveyFormActive: boolean = false;
   enoughData: boolean = false;
 
   constructor(private profileService: ProfileService) { }
 
-  createProfile() {
-    this.profileService.createProfile(this.employeeName);
-  }
+  // createProfile() {
+  //   this.profileService.createProfile(this.employeeName);
+  // }
 
 
   // Adds the submitted survey text to the employee's textdata
@@ -42,10 +44,16 @@ export class SurveyFormComponent implements OnInit {
     this.profileService.addTextData(formData.value.answer, employeeIndex);
     // Check if there is enough data for the profile and enable the button if so.
     this.enoughData = this.profileService.checkIfEnoughDataForProfile(employeeIndex);
+    // Reset the form
+    formData.reset();
   }
 
 
-
+  onNameSubmit(formData: NgForm) {
+    this.employeeName = formData.value.nameInput;
+    this.nameFormActive = false;
+    this.surveyFormActive = true;
+  }
 
 
   ngOnInit() { }
