@@ -1,6 +1,18 @@
 * {
   font-family: "Open Sans", sans-serif;
 }
+.risk {
+  background-color: brown;
+}
+.creativity {
+  background-color: red;
+}
+.relationship {
+  background-color: blue;
+}
+.efficiency {
+  background-color: green;
+}
 
 #button-section {
   /* border: 1px solid black; */

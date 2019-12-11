@@ -40,6 +40,8 @@ export class TeamBuilderComponent implements OnInit {
   // 3. agreeableness = relationship
   // 4. neuroticism =
   // 5. any
+  //default to an array with empty string which applies no class
+  headerBackgroundClass: string[] = [""];
 
   constructor(private profileService: ProfileService) {}
 
@@ -49,6 +51,7 @@ export class TeamBuilderComponent implements OnInit {
   // Uses the HTML templates to populate
   createBuilder(teamName: string) {
     this.teamSlots = [...this.teamTypes[teamName]];
+    this.changeBackground(teamName);
   }
 
   // Add an employee to the team's slots for the current personality type
@@ -102,6 +105,17 @@ export class TeamBuilderComponent implements OnInit {
       return true;
     } else {
       return false;
+    }
+  }
+  changeBackground(teamType) {
+    if (this.teamNames[0] === teamType) {
+      this.headerBackgroundClass = ["efficiency"];
+    } else if (this.teamNames[1] === teamType) {
+      this.headerBackgroundClass = ["relationship"];
+    } else if (this.teamNames[2] === teamType) {
+      this.headerBackgroundClass = ["creativity"];
+    } else if (this.teamNames[3] === teamType) {
+      this.headerBackgroundClass = ["risk"];
     }
   }
 }
