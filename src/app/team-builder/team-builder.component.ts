@@ -63,6 +63,8 @@ export class TeamBuilderComponent implements OnInit {
   //default to an array with empty string which applies no class
   headerBackgroundClass: string[] = [""];
   activeHeaderText: string = "";
+  teamBuilt: boolean = false;
+  doneTeam: any[] = [];
 
   constructor(private profileService: ProfileService) { }
 
@@ -81,6 +83,9 @@ export class TeamBuilderComponent implements OnInit {
     }
     // Select the clicked team type
     teamType.buttonActiveClass = teamType.backgroundClass;
+    // Reset the built team boolean and array
+    this.teamBuilt = false;
+    this.doneTeam = [];
   }
 
   // Add an employee to the team's slots for the current personality type
@@ -100,8 +105,14 @@ export class TeamBuilderComponent implements OnInit {
         personalityTypeSlots[i] = employee;
         // Check if all slots are full
         if (!this.checkTeamSlots(slot => this.isSlotOpen(slot))) {
-          // If all slots are full, notify the user
-          console.log("Team finsihed Building!!!");
+          // Push all the employees in slots to the finished team array
+          for (let PersonalityTypeSlots of this.teamSlots) {
+            for (let slot of PersonalityTypeSlots) {
+              this.doneTeam.push(slot);
+            }
+          }
+          // Change to the finished team display
+          this.teamBuilt = true;
         }
         // And exit the function
         return;

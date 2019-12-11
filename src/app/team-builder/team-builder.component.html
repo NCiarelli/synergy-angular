@@ -3,49 +3,46 @@
   <!-- buttons for loadouts -->
   <div class="btn-container">
     <button class="team-names team-name-btn">Optimize team for...</button>
-    <button
-      class="team-names"
-      *ngFor="let teamType of teamTypes"
-      class="team-name-btn"
-      type="button"
-      (click)="createBuilder(teamType)"
-      [ngClass]="teamType.buttonActiveClass"
-    >
+    <button class="team-names" *ngFor="let teamType of teamTypes" class="team-name-btn" type="button"
+      (click)="createBuilder(teamType)" [ngClass]="teamType.buttonActiveClass">
       {{ teamType.name }}
     </button>
   </div>
-  <div class="header-background" [ngClass]="headerBackgroundClass">
+  <!-- <div class="header-background" [ngClass]="headerBackgroundClass">
     <p>{{ activeHeaderText }}</p>
-    <!-- <h4>Choose a Team Type</h4> -->
-  </div>
+  </div> -->
 </section>
 
-<section id="team-slots">
-  <div
-    *ngFor="let personalityType of personalityTypes; index as i"
-    [ngClass]="{ hide: teamSlots[i].length === 0 }"
-  >
+<section id="team-slots" *ngIf="!teamBuilt">
+  <div *ngFor="let personalityType of personalityTypes; index as i" [ngClass]="{ hide: teamSlots[i].length === 0 }">
     <h4>{{ personalityType }}</h4>
-    <app-employee-banner
-      [personalityFilter]="personalityType"
-      (pickEmployee)="addEmployee($event, teamSlots[i])"
-    >
+    <app-employee-banner [personalityFilter]="personalityType" (pickEmployee)="addEmployee($event, teamSlots[i])">
     </app-employee-banner>
     <div class="slots-container">
       <div *ngFor="let slot of teamSlots[i]" class="member-slot">
         <div class="cardBanner"></div>
         <img class="headShot" [src]="getSrcLink(slot)" alt="" />
-        <div
-          *ngIf="!isSlotOpen(slot)"
-          [ngClass]="getPersonalityClass(slot)"
-          class="profileText"
-        >
+        <div *ngIf="!isSlotOpen(slot)" [ngClass]="getPersonalityClass(slot)" class="profileText">
           <p>{{ slot.name }}</p>
           <p>{{ slot.dominantPersonality }}</p>
         </div>
         <div *ngIf="isSlotOpen(slot)">
           <p>No Employee Selected</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section *ngIf="teamBuilt">
+  <h4>This is the team you built:</h4>
+  <div class="team-container">
+    <div *ngFor="let slot of doneTeam" class="member-slot">
+      <div class="cardBanner"></div>
+      <img class="headShot" [src]="getSrcLink(slot)" alt="" />
+      <div [ngClass]="getPersonalityClass(slot)" class="profileText">
+        <p>{{ slot.name }}</p>
+        <p>{{ slot.dominantPersonality }}</p>
       </div>
     </div>
   </div>
