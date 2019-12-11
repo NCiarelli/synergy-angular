@@ -12,7 +12,7 @@ import { ContentItem } from "../interfaces/content-item";
 })
 export class ProfileService {
   // Store the appropriate base URL. Angular automatically selects the right environment file.
-  private readonly BASE_URL = environment.cartApiBaseUrl;
+  private readonly BASE_URL = environment.expressServerBaseUrl;
   employeeList: Employee[] = [];
   nextDataId: number = 0;
   date: Date = new Date();
@@ -26,7 +26,7 @@ export class ProfileService {
     "Any"
   ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   findEmployeeIndex(name: string): number {
     // Check if the employee name already exists, case insensitive
@@ -50,14 +50,11 @@ export class ProfileService {
       console.log("Employee Doesn't exist!!!");
       return;
     } else {
-      employee = this.employeeList[employeeIndex]
+      employee = this.employeeList[employeeIndex];
     }
     // Make post request to Watson to create the personality profile
     this.http
-      .post(
-        `${this.BASE_URL}/profile`,
-        employee.textData
-      )
+      .post(`${this.BASE_URL}/profile`, employee.textData)
       .subscribe((response: any) => {
         // DEBUG until get proper display for the profile
         console.log(response.result);
@@ -153,22 +150,28 @@ export class ProfileService {
       // If it exists...
       let highestPersonalityIndex: number = -1;
       let highestPersonalityPercentile = -Infinity;
-      let personalityArray = employee.personalityProfile.personality
+      let personalityArray = employee.personalityProfile.personality;
       // Go through the personality array to find the highest percentile
       for (let i = 0; i < personalityArray.length; i++) {
         if (personalityArray[i].percentile > highestPersonalityPercentile) {
           // If the current percentile being checked is higher than the recorded max percentile
-          // Put the current index into highestPersonalityIndex 
+          // Put the current index into highestPersonalityIndex
           highestPersonalityIndex = i;
           // And replace the max with the current percentile
           highestPersonalityPercentile = personalityArray[i].percentile;
         }
       }
-      employee.dominantPersonality = this.personalityTypes[highestPersonalityIndex];
-      console.log(`${employee.name}'s dominant personality type is now ${this.personalityTypes[highestPersonalityIndex]}`);
+      employee.dominantPersonality = this.personalityTypes[
+        highestPersonalityIndex
+      ];
+      console.log(
+        `${employee.name}'s dominant personality type is now ${this.personalityTypes[highestPersonalityIndex]}`
+      );
     } else {
       // If it doesn't someone did an oopsie
-      console.log(`Sometinhg is wrong. There is no personality profile for ${employee.name}`);
+      console.log(
+        `Sometinhg is wrong. There is no personality profile for ${employee.name}`
+      );
     }
   }
 }

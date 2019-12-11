@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  cartApiBaseUrl: "http://localhost:3000"
+  expressServerBaseUrl: "http://localhost:3000"
 };
 
 /*
