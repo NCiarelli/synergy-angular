@@ -8,12 +8,28 @@ import { Employee } from "../interfaces/employee";
   styleUrls: ["./team-builder.component.css"]
 })
 export class TeamBuilderComponent implements OnInit {
-  teamTypes = {
-    Efficiency: [[{}], [{}, {}, {}], [], [{}], [], []],
-    "Relationship Building": [[{}], [], [{}, {}], [{}, {}], [], []],
-    Creativity: [[{}, {}], [], [{}, {}], [], [], [{}]],
-    "Risk Management": [[], [{}, {}], [], [], [{}, {}], [{}]]
-  };
+  teamTypes = [
+    {
+      name: "Efficiency",
+      structure: [[{}], [{}, {}, {}], [], [{}], [], []],
+      backgroundClass: ["efficiency"]
+    },
+    {
+      name: "Relationship Building",
+      structure: [[{}], [], [{}, {}], [{}, {}], [], []],
+      backgroundClass: ["relationship"]
+    },
+    {
+      name: "Creativity",
+      structure: [[{}, {}], [], [{}, {}], [], [], [{}]],
+      backgroundClass: ["creativity"]
+    },
+    {
+      name: "Risk Management",
+      structure: [[], [{}, {}], [], [], [{}, {}], [{}]],
+      backgroundClass: ["risk"]
+    }
+  ];
   //   team_types = {
   //     Efficiency: [1, 3, 0, 1, 0, 0];
   //     Relationship_building: [1, 0, 2, 2, 0, 0];
@@ -43,15 +59,18 @@ export class TeamBuilderComponent implements OnInit {
   //default to an array with empty string which applies no class
   headerBackgroundClass: string[] = [""];
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // Sets up the structure of the team builder for this team type by using the pre-defined team types object
   // Uses the HTML templates to populate
-  createBuilder(teamName: string) {
-    this.teamSlots = [...this.teamTypes[teamName]];
-    this.changeBackground(teamName);
+  createBuilder(teamType) {
+    // Set up structure of employee slots for the team  type
+    this.teamSlots = [...(teamType.structure)];
+    // Set what the background color should be for this team type
+    this.headerBackgroundClass = teamType.backgroundClass;
+
   }
 
   // Add an employee to the team's slots for the current personality type
@@ -107,15 +126,5 @@ export class TeamBuilderComponent implements OnInit {
       return false;
     }
   }
-  changeBackground(teamType) {
-    if (this.teamNames[0] === teamType) {
-      this.headerBackgroundClass = ["efficiency"];
-    } else if (this.teamNames[1] === teamType) {
-      this.headerBackgroundClass = ["relationship"];
-    } else if (this.teamNames[2] === teamType) {
-      this.headerBackgroundClass = ["creativity"];
-    } else if (this.teamNames[3] === teamType) {
-      this.headerBackgroundClass = ["risk"];
-    }
-  }
+
 }

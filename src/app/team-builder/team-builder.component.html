@@ -2,37 +2,22 @@
 <section id="button-section" [ngClass]="headerBackgroundClass">
   <h4>Choose a Team Type</h4>
   <!-- buttons for loadouts -->
-  <button
-    class="team-names"
-    *ngFor="let teamName of teamNames"
-    class="team-name-btn"
-    type="button"
-    (click)="createBuilder(teamName)"
-  >
-    {{ teamName }}
+  <button class="team-names" *ngFor="let teamType of teamTypes" class="team-name-btn" type="button"
+    (click)="createBuilder(teamType)">
+    {{ teamType.name }}
   </button>
 </section>
 
 <section id="team-slots">
-  <div
-    *ngFor="let personalityType of personalityTypes; index as i"
-    [ngClass]="{ hide: teamSlots[i].length === 0 }"
-  >
+  <div *ngFor="let personalityType of personalityTypes; index as i" [ngClass]="{ hide: teamSlots[i].length === 0 }">
     <h4>{{ personalityType }}</h4>
-    <app-employee-banner
-      [personalityFilter]="personalityType"
-      (pickEmployee)="addEmployee($event, teamSlots[i])"
-    >
+    <app-employee-banner [personalityFilter]="personalityType" (pickEmployee)="addEmployee($event, teamSlots[i])">
     </app-employee-banner>
     <div class="slots-container">
       <div *ngFor="let slot of teamSlots[i]" class="member-slot">
         <div class="cardBanner"></div>
         <img class="headShot" [src]="getSrcLink(slot)" alt="" />
-        <div
-          *ngIf="!isSlotOpen(slot)"
-          [ngClass]="getPersonalityClass(slot)"
-          class="profileText"
-        >
+        <div *ngIf="!isSlotOpen(slot)" [ngClass]="getPersonalityClass(slot)" class="profileText">
           <p>{{ slot.name }}</p>
           <p>{{ slot.dominantPersonality }}</p>
         </div>
