@@ -8,20 +8,34 @@
     </h2>
   </header>
   <main class="main">
-    <form #nameForm="ngForm" (ngSubmit)="onNameSubmit(nameForm)" *ngIf="nameFormActive">
-      <label for="nameInput">Enter your Name:
-        <input type="text" name="nameInput" id="nameInput" ngModel>
+    <form
+      #nameForm="ngForm"
+      (ngSubmit)="onNameSubmit(nameForm)"
+      *ngIf="nameFormActive"
+    >
+      <label for="nameInput"
+        >Enter your Name:
+        <input type="text" name="nameInput" id="nameInput" ngModel />
       </label>
       <button type="submit">Submit</button>
     </form>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="surveyFormActive">
-      <label for="employeeName">Name:</label>
-      <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required />
+      <!-- <label for="employeeName">Name:</label> -->
+      <!-- <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required /> -->
+      <p>Name: {{ employeeName }}</p>
+      <p>{{ questionArray[questionArrayIndex] }}</p>
       <label for="answer">Answer:</label>
-      <textarea ngModel name="answer" id="answer" cols="30" rows="10" required></textarea>
+      <textarea
+        ngModel
+        name="answer"
+        id="answer"
+        cols="30"
+        rows="10"
+        required
+      ></textarea>
 
       <div class="btn-container">
-        <button class="addInputButton">Next</button>
+        <button class="addInputButton">Submit Answer</button>
         <!-- <button
           class="getProfileButton"
           [ngClass]="{ enableProfilebutton: enoughData }"
@@ -34,7 +48,7 @@
       </div>
     </form>
     <div *ngIf="enoughData">
-      <p>Congratulations! The survey is complete. </p>
+      <p>Congratulations! The survey is complete.</p>
       <!-- <p *ngIf="!profileBuilt">Now buidling your profile...</p>
       <div *ngIf="profileBuilt">Employee Profile Here</div> -->
     </div>
