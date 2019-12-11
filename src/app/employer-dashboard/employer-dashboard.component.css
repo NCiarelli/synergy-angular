@@ -3,6 +3,7 @@ main {
   font-family: "Open Sans", sans-serif;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 5px;
 }
 .btn {
