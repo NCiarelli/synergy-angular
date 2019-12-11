@@ -1,11 +1,8 @@
-<h3>Team Builder</h3>
+<!-- <h3>Team Builder</h3> -->
 <section id="button-section">
-  <div class="header-background" [ngClass]="headerBackgroundClass">
-    <h4>Choose a Team Type</h4>
-  </div>
   <!-- buttons for loadouts -->
   <div class="btn-container">
-    <p>{{ activeHeaderText }}</p>
+    <button class="team-names team-name-btn">Optimize team for...</button>
     <button
       class="team-names"
       *ngFor="let teamType of teamTypes"
@@ -16,6 +13,10 @@
     >
       {{ teamType.name }}
     </button>
+  </div>
+  <div class="header-background" [ngClass]="headerBackgroundClass">
+    <p>{{ activeHeaderText }}</p>
+    <!-- <h4>Choose a Team Type</h4> -->
   </div>
 </section>
 

@@ -1,17 +1,11 @@
 * {
   font-family: "Open Sans", sans-serif;
 }
-.risk {
-  background-color: brown;
-}
-.creativity {
-  background-color: red;
-}
-.relationship {
-  background-color: blue;
-}
+.risk,
+.creativity,
+.relationship,
 .efficiency {
-  background-color: green;
+  background-color: #fd9c3c;
 }
 
 #button-section {
@@ -70,9 +64,15 @@ h4 {
   margin: auto;
   width: 100%;
   height: 50px;
+  color: black;
+  font-size: 1.2em;
   /* margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 10px; */
+}
+
+.team-name-btn:focus {
+  outline: none;
 }
 
 .selected {
@@ -88,6 +88,8 @@ h4 {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
 }
 
 .header-background {
