@@ -2,8 +2,9 @@
 <section id="button-section" [ngClass]="headerBackgroundClass">
   <h4>Choose a Team Type</h4>
   <!-- buttons for loadouts -->
+  <p>{{activeHeaderText}}</p>
   <button class="team-names" *ngFor="let teamType of teamTypes" class="team-name-btn" type="button"
-    (click)="createBuilder(teamType)">
+    (click)="createBuilder(teamType)" [ngClass]="teamType.buttonActiveClass">
     {{ teamType.name }}
   </button>
 </section>

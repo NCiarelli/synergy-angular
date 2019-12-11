@@ -12,22 +12,26 @@ export class TeamBuilderComponent implements OnInit {
     {
       name: "Efficiency",
       structure: [[{}], [{}, {}, {}], [], [{}], [], []],
-      backgroundClass: ["efficiency"]
+      backgroundClass: ["efficiency"],
+      buttonActiveClass: [""]
     },
     {
       name: "Relationship Building",
       structure: [[{}], [], [{}, {}], [{}, {}], [], []],
-      backgroundClass: ["relationship"]
+      backgroundClass: ["relationship"],
+      buttonActiveClass: [""]
     },
     {
       name: "Creativity",
       structure: [[{}, {}], [], [{}, {}], [], [], [{}]],
-      backgroundClass: ["creativity"]
+      backgroundClass: ["creativity"],
+      buttonActiveClass: [""]
     },
     {
       name: "Risk Management",
       structure: [[], [{}, {}], [], [], [{}, {}], [{}]],
-      backgroundClass: ["risk"]
+      backgroundClass: ["risk"],
+      buttonActiveClass: [""]
     }
   ];
   //   team_types = {
@@ -58,6 +62,7 @@ export class TeamBuilderComponent implements OnInit {
   // 5. any
   //default to an array with empty string which applies no class
   headerBackgroundClass: string[] = [""];
+  activeHeaderText: string = "";
 
   constructor(private profileService: ProfileService) { }
 
@@ -70,30 +75,54 @@ export class TeamBuilderComponent implements OnInit {
     this.teamSlots = [...(teamType.structure)];
     // Set what the background color should be for this team type
     this.headerBackgroundClass = teamType.backgroundClass;
-
+    // Clear out any previous team selection
+    for (let teamType of this.teamTypes) {
+      teamType.buttonActiveClass = [""];
+    }
+    // Select the clicked team type
+    teamType.buttonActiveClass = teamType.backgroundClass;
   }
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): void {
+    // Check if the employee is already in a slot somewhere
+    if (this.checkTeamSlots(slot => employee.name === slot.name)) {
+      // If so, notify the user.
+      console.log(`${employee.name} is already in this team!`);
+      // And exit the function
+      return;
+    }
     // Try to add the employee to one of the slots for the current personality type
     for (let i = 0; i < personalityTypeSlots.length; i++) {
       // If a slot is empty...
       if (this.isSlotOpen(personalityTypeSlots[i])) {
         // Put the employee in the slot
         personalityTypeSlots[i] = employee;
+        // Check if all slots are full
+        if (!this.checkTeamSlots(slot => this.isSlotOpen(slot))) {
+          // If all slots are full, notify the user
+          console.log("Team finsihed Building!!!");
+        }
         // And exit the function
         return;
-      } else {
-        // If a slot is not empty, check if the employee is already in this slot
-        if (personalityTypeSlots[i].name === employee.name) {
-          console.log(`${employee.name} is already in this team!`);
-          // If so, exit the function
-          return;
-        }
       }
     }
     // If all slots are full, say something (should change this)
     console.log("All slots full for this personality type.");
+  }
+
+  // Give a function to check all slots against
+  // Returns true if the function returns true for any slot
+  // Returns false otherwise
+  checkTeamSlots(checkFunction) {
+    for (let PersonalityTypeSlots of this.teamSlots) {
+      for (let slot of PersonalityTypeSlots) {
+        if (checkFunction(slot)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   getSrcLink(slotObject) {
