@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ComponentFactoryResolver } from "@angular/core";
 import { ProfileService } from '../services/profile.service';
 import { Employee } from '../interfaces/employee';
 
@@ -62,6 +62,13 @@ export class TeamBuilderComponent implements OnInit {
         personalityTypeSlots[i] = employee;
         // And exit the function
         return;
+      } else {
+        // If a slot is not empty, check if the employee is already in this slot
+        if (personalityTypeSlots[i].name === employee.name) {
+          console.log(`${employee.name} is already in this team!`);
+          // If so, exit the function
+          return;
+        }
       }
     }
     // If all slots are full, say something (should change this)
