@@ -24,6 +24,41 @@ main {
   margin: 15 auto;
   color: #545454;
 }
+.bold-open {
+  font-size: 1.5em;
+  margin-bottom: 3px;
+}
+.text-container {
+  position: relative;
+  /* left: 80px; */
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 5px;
+}
+.title {
+  font-size: 1.5em;
+  color: #545454;
+}
+.why {
+  background-color: rgb(33, 33, 33);
+  color: white;
+  padding: 8px;
+}
+.we-know {
+  width: 100%;
+  background-color: #fd9c3c;
+  text-align: center;
+  color: white;
+}
+.an-ask {
+  background-color: rgb(33, 33, 33);
+  color: white;
+  padding: 8px;
+}
 /* .inputDirective {
   display: flex;
   flex-direction: column;
@@ -55,7 +90,9 @@ main {
   /* align-self: flex-start; */
   margin-top: 10px;
 }
-
+#nameForm {
+  align-items: center;
+}
 form {
   display: flex;
   flex-direction: column;
@@ -64,6 +101,10 @@ form {
   width: 100%;
   position: relative;
 }
+#nameForm input {
+  margin: 3px;
+}
+
 form:hover {
   border-color: #f26322;
 }
@@ -169,6 +210,6 @@ label {
 .btn-container {
   margin-top: 5px;
   margin-bottom: 5px;
-  display:flex;
+  display: flex;
   justify-content: flex-end;
 }

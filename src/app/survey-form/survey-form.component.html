@@ -8,6 +8,7 @@
     </h2>
   </header>
   <main class="main">
+<<<<<<< Updated upstream
     <form
       #nameForm="ngForm"
       (ngSubmit)="onNameSubmit(nameForm)"
@@ -24,6 +25,61 @@
       <!-- <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required /> -->
       <p>Name: {{ employeeName }}</p>
       <p>{{ questionArray[questionArrayIndex] }}</p>
+=======
+    <section *ngIf="nameFormActive" class="text-container">
+      <p class="title">Some things to keep in mind:</p>
+      <div class="why">
+        <p class="bold-open">The Why:</p>
+        <p>
+          If you've ever been on a team where personality dynamics have hindered
+          team performance, you understand how the right mix of personalities
+          can be critical to successful outcomes. Your employer will use the
+          results of this survey to build teams optimized for a specific
+          performance goal. The aim is to create well balanced teams where
+          individuals are valued for the unique roles they naturally play on a
+          team.
+        </p>
+      </div>
+      <div class="we-know">
+        <p class="bold-open">We Know:</p>
+        <p>
+          Privacy is critical. So your answers are never visible to your
+          employers.
+        </p>
+      </div>
+      <div class="an-ask">
+        <p class="bold-open">An Ask:</p>
+        <p>
+          We want you to be through and honest to ensure accurate results so
+          that you are placed on a team where you are best suited to thrive.
+          With that aim in mind you will be prompted to answer open-ended
+          questions until a word count is reached that ensures accurate results.
+          Please be as thorough as possible in your answers and use complete
+          sentences. Ready to get started?
+        </p>
+      </div>
+
+      <form
+        id="nameForm"
+        #nameForm="ngForm"
+        (ngSubmit)="onNameSubmit(nameForm)"
+      >
+        <label for="nameInput">Enter your Name:</label>
+        <input type="text" name="nameInput" id="nameInput" ngModel />
+
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="surveyFormActive">
+      <label for="employeeName">Name:</label>
+      <input
+        type="text"
+        [(ngModel)]="employeeName"
+        name="employeeName"
+        id="employeeName"
+        required
+      />
+>>>>>>> Stashed changes
       <label for="answer">Answer:</label>
       <textarea
         ngModel
