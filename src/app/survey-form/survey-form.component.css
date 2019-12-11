@@ -5,6 +5,7 @@
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: white;
 }
 
@@ -104,9 +105,9 @@ button > span {
 
 .getProfileButton {
   margin: auto;
-  width: 100px;
+  width: 150px;
   padding: 5px;
-  margin-top: 5px;
+  margin-top: 50px;
 }
 
 .enableProfilebutton {

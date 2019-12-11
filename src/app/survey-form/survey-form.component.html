@@ -4,10 +4,11 @@
   </h4>
   <main class="main">
     <div class="inputDirective">
-      <span class="nameText">Name: </span>
-      <span class="answerText">Answer: </span>
+      <!-- <span class="nameText">Name: </span> -->
+      <!-- <span class="answerText">Answer: </span> -->
     </div>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+      <label for="employeeName">Name:</label>
       <input
         type="text"
         [(ngModel)]="employeeName"
@@ -15,7 +16,7 @@
         id="employeeName"
         required
       />
-
+      <label for="answer">Answer:</label>
       <textarea
         ngModel
         name="answer"
