@@ -1,14 +1,11 @@
-<app-employee-banner></app-employee-banner>
-
 <body>
-  <img class="logo" src="../../assets/logo2.jpg" alt="" />
   <h4 class="header">
-    build your employee profile.
+    Build your employee profile
   </h4>
   <main class="main">
     <div class="inputDirective">
-      <span class="nameText">name: </span>
-      <span class="answerText">answer: </span>
+      <span class="nameText">Name: </span>
+      <span class="answerText">Answer: </span>
     </div>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)">
       <input
@@ -28,7 +25,7 @@
         required
       ></textarea>
 
-      <button class="addInputButton">next >></button>
+      <button class="addInputButton">Next</button>
     </form>
   </main>
   <button
@@ -38,6 +35,6 @@
     type="button"
     (click)="createProfile()"
   >
-    get employee profile
+    Get Employee Profile
   </button>
 </body>

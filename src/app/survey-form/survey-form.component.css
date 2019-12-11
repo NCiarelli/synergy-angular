@@ -1,3 +1,7 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -99,7 +103,7 @@ button > span {
 }
 
 .getProfileButton {
-  margin:auto;
+  margin: auto;
   width: 100px;
   padding: 5px;
   margin-top: 5px;

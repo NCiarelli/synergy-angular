@@ -1,4 +1,3 @@
-
 p {
   margin: 3px;
   text-align: center;
@@ -11,14 +10,17 @@ p {
   overflow-y: hidden;
   display: flex;
   flex-direction: row;
-  height: 400px;
+  /* height: 400px; */
+  height: auto;
   margin: auto;
+  padding-bottom: 20px;
 }
 
 .slide {
   /* position: absolute; */
   margin-bottom: 5px;
   transition: all 0.5s ease;
+  margin-right: 4px;
   /* Move slides off to the left  by default transform */
   /* transform: translate(-100%, 0); */
 }

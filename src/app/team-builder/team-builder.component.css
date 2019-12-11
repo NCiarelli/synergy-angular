@@ -1,28 +1,67 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 #button-section {
-  border: 1px solid black;
-  padding: 10px;
+  /* border: 1px solid black; */
+  padding: 15px;
 }
 
 .hide {
   display: none;
 }
 
-app-employee-banner{
-  height: 20vh;
+app-employee-banner {
+  height: auto;
   overflow: auto;
-  
 }
 
 .slots-container {
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  /* height: 400px; */
+  height: auto;
+  margin: auto;
+  padding-bottom: 20px;
 }
 
 .member-slot {
-  border: 1px solid black; 
+  border: 1px solid black;
 }
 
 p {
   margin: 3px;
   text-align: center;
+}
+
+h3 {
+  padding-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.team-name-btn {
+  border-style: none;
+  padding: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.selected {
+  background-color: orange;
+  color: white;
+}
+
+#team-slots {
+  margin-left: 15px;
 }

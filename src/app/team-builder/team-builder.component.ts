@@ -1,6 +1,6 @@
 import { Component, OnInit, ComponentFactoryResolver } from "@angular/core";
-import { ProfileService } from '../services/profile.service';
-import { Employee } from '../interfaces/employee';
+import { ProfileService } from "../services/profile.service";
+import { Employee } from "../interfaces/employee";
 
 @Component({
   selector: "app-team-builder",
@@ -33,7 +33,6 @@ export class TeamBuilderComponent implements OnInit {
 
   defaultAvatar: string = "../../assets/defaultAvatar.png";
 
-
   //   big5 trait order key
   // 0. openness
   // 1. conscientiousness = pragmatic
@@ -42,9 +41,9 @@ export class TeamBuilderComponent implements OnInit {
   // 4. neuroticism =
   // 5. any
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // Sets up the structure of the team builder for this team type by using the pre-defined team types object
   // Uses the HTML templates to populate
@@ -78,10 +77,10 @@ export class TeamBuilderComponent implements OnInit {
   getSrcLink(slotObject) {
     if (this.isSlotOpen(slotObject)) {
       // If the slot is open/empty, display the default Avatar picture
-      return this.defaultAvatar
+      return this.defaultAvatar;
     } else {
       // Otherwise check if the slot's employee object has a picture and return the appropriate link
-      return slotObject.headShot ? slotObject.headShot : this.defaultAvatar
+      return slotObject.headShot ? slotObject.headShot : this.defaultAvatar;
     }
   }
 
@@ -96,7 +95,10 @@ export class TeamBuilderComponent implements OnInit {
   }
 
   isSlotOpen(slotObject): boolean {
-    if (Object.entries(slotObject).length === 0 && slotObject.constructor === Object) {
+    if (
+      Object.entries(slotObject).length === 0 &&
+      slotObject.constructor === Object
+    ) {
       return true;
     } else {
       return false;
