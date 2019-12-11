@@ -8,24 +8,6 @@
     </h2>
   </header>
   <main class="main">
-<<<<<<< Updated upstream
-    <form
-      #nameForm="ngForm"
-      (ngSubmit)="onNameSubmit(nameForm)"
-      *ngIf="nameFormActive"
-    >
-      <label for="nameInput"
-        >Enter your Name:
-        <input type="text" name="nameInput" id="nameInput" ngModel />
-      </label>
-      <button type="submit">Submit</button>
-    </form>
-    <form #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="surveyFormActive">
-      <!-- <label for="employeeName">Name:</label> -->
-      <!-- <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required /> -->
-      <p>Name: {{ employeeName }}</p>
-      <p>{{ questionArray[questionArrayIndex] }}</p>
-=======
     <section *ngIf="nameFormActive" class="text-container">
       <p class="title">Some things to keep in mind:</p>
       <div class="why">
@@ -79,7 +61,6 @@
         id="employeeName"
         required
       />
->>>>>>> Stashed changes
       <label for="answer">Answer:</label>
       <textarea
         ngModel
