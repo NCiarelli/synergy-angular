@@ -13,9 +13,18 @@
 }
 
 .created-team-header {
-  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 15px;
 }
-
+.scrum-icon {
+  width: 125px;
+}
+.created-team-copy {
+  font-size: 1.25em;
+}
 #button-section {
   /* border: 1px solid black; */
   padding: 15px;

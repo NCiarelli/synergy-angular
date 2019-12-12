@@ -58,10 +58,14 @@
 </section>
 
 <section class="created-team" *ngIf="teamBuilt">
-  <h4 class="created-team-header">
-    This team is ready to get to work and is optimized for
-    {{ activeTeamTypeName }}
-  </h4>
+  <div class="created-team-header">
+    <img class="scrum-icon" src="../../assets/scrum_board_icon.svg" alt="" />
+    <h4 class="created-team-copy">
+      This team is ready to get to work and is optimized for
+      {{ activeTeamTypeName }}.
+    </h4>
+  </div>
+
   <div class="team-container created-team">
     <div *ngFor="let slot of doneTeam" class="member-slot">
       <div class="cardBanner"></div>
