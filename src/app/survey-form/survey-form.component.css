@@ -10,6 +10,17 @@ body {
   height: auto;
 }
 
+#dataForm p {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.question-text {
+  font-weight: bold;
+}
+
 .logo {
   width: 170px;
   margin: 0 auto;
@@ -21,12 +32,13 @@ main {
   justify-content: center;
 }
 .header {
-  margin: 15 auto;
+  margin: 0;
   color: #545454;
+  font-size: 20px;
 }
 .bold-open {
-  font-size: 1.5em;
-  margin-bottom: 3px;
+  font-size: 20px;
+  margin: 0;
 }
 .text-container {
   position: relative;
@@ -44,19 +56,37 @@ main {
   color: #545454;
 }
 .why {
-  background-color: rgb(33, 33, 33);
-  color: white;
+  /* background-color: rgb(33, 33, 33); */
+  /* color: white; */
   padding: 8px;
 }
 .we-know {
   width: 100%;
-  background-color: #fd9c3c;
+  /* background-color: #fd9c3c; */
+  border: 2px solid #fd9c3c;
   text-align: center;
-  color: white;
+  /* color: white; */
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
+
+.we-know header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.we-know header i {
+  font-size: 22px;
+  margin-right: 5px;
+}
+
 .an-ask {
-  background-color: rgb(33, 33, 33);
-  color: white;
+  /* background-color: rgb(33, 33, 33); */
+  /* color: white; */
   padding: 8px;
 }
 /* .inputDirective {
@@ -82,13 +112,13 @@ main {
   border-style: none;
   background-color: #fd9c3c;
   border: 2px solid #fd9c3c;
-
   color: white;
   border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
   /* align-self: flex-start; */
   margin-top: 10px;
+  width: 100%;
 }
 #nameForm {
   align-items: center;
@@ -98,7 +128,7 @@ form {
   flex-direction: column;
   /* border: 1px solid rgb(236, 232, 232); */
   border-radius: 3px;
-  width: 100%;
+  width: 80vw;
   position: relative;
 }
 #nameForm input {
@@ -134,7 +164,7 @@ button {
   z-index: 1;
   border-radius: 3px;
   border: 1px solid #f26322;
-  width: 100px;
+  width: auto;
   padding: 5px;
 }
 
@@ -195,12 +225,12 @@ label {
 .form-header {
   display: flex;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 10px;
   padding: 5px;
 }
 
 .form-header i {
-  font-size: 35px;
+  font-size: 20px;
   padding: 0;
   margin: 0;
   margin-right: 10px;
@@ -216,4 +246,59 @@ label {
 
 .congrats-img {
   width: 100%;
+  margin: 25px;
+}
+
+#nameInput {
+  padding: 10px;
+  border-style: none;
+  width: 75%;
+  background-color: rgb(233, 227, 227);
+}
+
+.submit-btn {
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  border-style: none;
+  color: white;
+}
+
+.survey-done {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  form {
+    width: 500px;
+  }
+  .form-header i {
+    font-size: 25px;
+  }
+  .form-header {
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+  .header {
+    font-size: 25px;
+  }
+  .addInputButton {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .we-know {
+    width: 50%;
+  }
+  .why,
+  .an-ask {
+    width: 80%;
+  }
 }

@@ -43,7 +43,7 @@ p {
   transition: all 0.5s ease;
 }
 .profile:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   cursor: pointer;
 }
 
@@ -63,4 +63,3 @@ p {
   margin: 3px;
   text-align: center;
 }
-

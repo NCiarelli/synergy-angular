@@ -1,6 +1,6 @@
 <body>
   <!-- <img src="../../assets/form_img.png" /> -->
-  <header class="form-header">
+  <header class="form-header" *ngIf="!enoughData">
     <!-- <img class="form-icon" src="../../assets/personality icon.png" /> -->
     <i class="far fa-address-card"></i>
     <h2 class="header">
@@ -9,9 +9,9 @@
   </header>
   <main class="main">
     <section *ngIf="nameFormActive" class="text-container">
-      <p class="title">Some things to keep in mind:</p>
+      <!-- <p class="title">Some things to keep in mind:</p> -->
       <div class="why">
-        <p class="bold-open">The Why:</p>
+        <p class="bold-open">The Why</p>
         <p>
           If you've ever been on a team where personality dynamics have hindered
           team performance, you understand how the right mix of personalities
@@ -23,14 +23,17 @@
         </p>
       </div>
       <div class="we-know">
-        <p class="bold-open">We Know:</p>
+        <header>
+          <i class="fas fa-user-shield"></i>
+          <p class="bold-open">We Know</p>
+        </header>
         <p>
           Privacy is critical. So your answers are never visible to your
           employers.
         </p>
       </div>
       <div class="an-ask">
-        <p class="bold-open">An Ask:</p>
+        <p class="bold-open">An Ask</p>
         <p>
           We want you to be through and honest to ensure accurate results so
           that you are placed on a team where you are best suited to thrive.
@@ -46,13 +49,14 @@
         #nameForm="ngForm"
         (ngSubmit)="onNameSubmit(nameForm)"
       >
-        <label for="nameInput">Enter your Name:</label>
+        <label for="nameInput">Enter your full name to get started:</label>
         <input type="text" name="nameInput" id="nameInput" ngModel />
 
-        <button type="submit">Submit</button>
+        <button class="submit-btn" type="submit">Submit</button>
       </form>
     </section>
     <form
+      id="dataForm"
       #form="ngForm"
       (ngSubmit)="onSubmit(form)"
       *ngIf="surveyFormActive && enoughData === false"
@@ -60,7 +64,7 @@
       <!-- <label for="employeeName">Name:</label> -->
       <!-- <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required /> -->
       <p>Name: {{ employeeName }}</p>
-      <p>{{ questionArray[questionArrayIndex] }}</p>
+      <p class="question-text">{{ questionArray[questionArrayIndex] }}</p>
       <label for="answer">Answer:</label>
       <textarea
         ngModel
@@ -84,8 +88,9 @@
         </button> -->
       </div>
     </form>
-    <div *ngIf="enoughData">
-      <p>Congratulations! Your survey is complete.</p>
+    <div class="survey-done" *ngIf="enoughData">
+      <h3>Congratulations! Your survey is complete.</h3>
+      <h4>You may now close out of this window.</h4>
       <img class="congrats-img" src="../../assets/form_img.png" />
       <!-- <p *ngIf="!profileBuilt">Now buidling your profile...</p>
       <div *ngIf="profileBuilt">Employee Profile Here</div> -->

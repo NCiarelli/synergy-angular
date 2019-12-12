@@ -8,6 +8,14 @@
   background-color: #fd9c3c;
 }
 
+.created-team {
+  justify-content: center;
+}
+
+.created-team-header {
+  text-align: center;
+}
+
 #button-section {
   /* border: 1px solid black; */
   padding: 15px;
@@ -67,9 +75,6 @@ h4 {
   height: 50px;
   color: black;
   font-size: 15px;
-  /* margin-right: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px; */
 }
 
 .cardBanner {
@@ -116,6 +121,10 @@ h4 {
   padding-bottom: 20px;
 }
 
+.profileText {
+  width: auto;
+}
+
 @media only screen and (min-width: 768px) {
   .btn-container {
     flex-wrap: nowrap;
@@ -123,8 +132,4 @@ h4 {
   .team-container {
     flex-direction: row;
   }
-}
-
-.profileText {
-  width: auto;
 }
