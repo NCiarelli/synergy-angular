@@ -1,8 +1,15 @@
-<!-- <h3>Team Builder</h3> -->
-<section id="button-section">
+<section id="instructional-copy">
+  <h3>Team Builder</h3>
+  <p class="instructions" *ngIf="!teamBuilt">
+    Let's get the right mix of employees to maximize success. What would you
+    like to optimize for this project?
+  </p>
+</section>
+<div class="team-formula-container"></div>
+<section id="button-section" *ngIf="!teamBuilt">
   <!-- buttons for loadouts -->
   <div class="btn-container">
-    <button class="team-names team-name-btn">Optimize team for...</button>
+    <!-- <button class="team-names team-name-btn">Optimize team for...</button> -->
     <button
       class="team-names"
       *ngFor="let teamType of teamTypes"
@@ -51,7 +58,10 @@
 </section>
 
 <section class="created-team" *ngIf="teamBuilt">
-  <h4 class="created-team-header">Meet your team:</h4>
+  <h4 class="created-team-header">
+    This team is ready to get to work and is optimized for
+    {{ activeTeamTypeName }}
+  </h4>
   <div class="team-container created-team">
     <div *ngFor="let slot of doneTeam" class="member-slot">
       <div class="cardBanner"></div>

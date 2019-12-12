@@ -65,16 +65,16 @@ export class TeamBuilderComponent implements OnInit {
   activeHeaderText: string = "";
   teamBuilt: boolean = false;
   doneTeam: any[] = [];
+  activeTeamTypeName: string = "";
+  constructor(private profileService: ProfileService) {}
 
-  constructor(private profileService: ProfileService) { }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   // Sets up the structure of the team builder for this team type by using the pre-defined team types object
   // Uses the HTML templates to populate
   createBuilder(teamType) {
     // Set up structure of employee slots for the team  type
-    this.teamSlots = [...(teamType.structure)];
+    this.teamSlots = [...teamType.structure];
     // Set what the background color should be for this team type
     this.headerBackgroundClass = teamType.backgroundClass;
     // Clear out any previous team selection
@@ -86,6 +86,7 @@ export class TeamBuilderComponent implements OnInit {
     // Reset the built team boolean and array
     this.teamBuilt = false;
     this.doneTeam = [];
+    this.activeTeamTypeName = teamType.name;
   }
 
   // Add an employee to the team's slots for the current personality type
@@ -166,5 +167,4 @@ export class TeamBuilderComponent implements OnInit {
       return false;
     }
   }
-
 }
