@@ -96,6 +96,7 @@ h4 {
 }
 .cardBanner {
   width: auto;
+  position: relative;
 }
 
 .team-name-btn:focus {
@@ -140,6 +141,17 @@ h4 {
 
 .profileText {
   width: auto;
+}
+
+.cardBanner button {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 5px;
+  top: 15%;
+}
+.cardBanner button:hover {
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {

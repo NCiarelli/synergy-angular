@@ -41,8 +41,16 @@
     >
     </app-employee-banner>
     <div class="slots-container">
-      <div *ngFor="let slot of teamSlots[i]" class="member-slot">
-        <div class="cardBanner"></div>
+      <div *ngFor="let slot of teamSlots[i]; index as j" class="member-slot">
+        <div class="cardBanner">
+          <button
+            type="button"
+            *ngIf="!isSlotOpen(slot)"
+            (click)="removeTeamMember(i, j)"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
         <img class="headShot" [src]="getSrcLink(slot)" alt="" />
         <div
           *ngIf="!isSlotOpen(slot)"
