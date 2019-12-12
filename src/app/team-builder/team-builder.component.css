@@ -7,7 +7,10 @@
 .efficiency {
   background-color: #fd9c3c;
 }
-
+.instructions {
+  display: inline block;
+  text-align: center;
+}
 .created-team {
   justify-content: center;
 }
@@ -20,10 +23,10 @@
   margin: 15px;
 }
 .scrum-icon {
-  width: 125px;
+  width: 150px;
 }
 .created-team-copy {
-  font-size: 1.25em;
+  font-size: 1.5em;
 }
 #button-section {
   /* border: 1px solid black; */
@@ -82,10 +85,15 @@ h4 {
   margin: auto;
   width: 100%;
   height: 50px;
-  color: black;
+  color: #1d1e1e;
   font-size: 15px;
+  font-weight: 800;
 }
-
+.add-instructions {
+  margin-bottom: 20px;
+  font-size: 1em;
+  margin-left: 0px;
+}
 .cardBanner {
   width: auto;
 }

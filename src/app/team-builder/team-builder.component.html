@@ -1,10 +1,10 @@
-<section id="instructional-copy">
-  <h3>Team Builder</h3>
-  <p class="instructions" *ngIf="!teamBuilt">
-    Let's get the right mix of employees to maximize success. What would you
-    like to optimize for this project?
-  </p>
-</section>
+<h3>Team Builder</h3>
+
+<h3 class="instructions" *ngIf="!teamBuilt">
+  Let's get the right mix of employees to maximize success. What would you like
+  to optimize for this project?
+</h3>
+
 <div class="team-formula-container"></div>
 <section id="button-section" *ngIf="!teamBuilt">
   <!-- buttons for loadouts -->
@@ -31,6 +31,9 @@
     *ngFor="let personalityType of personalityTypes; index as i"
     [ngClass]="{ hide: teamSlots[i].length === 0 }"
   >
+    <h3 class="add-instructions">
+      Click an employee to add to the team.
+    </h3>
     <h4>{{ personalityType }}</h4>
     <app-employee-banner
       [personalityFilter]="personalityType"
