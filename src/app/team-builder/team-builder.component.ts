@@ -66,9 +66,9 @@ export class TeamBuilderComponent implements OnInit {
   teamBuilt: boolean = false;
   doneTeam: any[] = [];
   activeTeamTypeName: string = "";
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   // Sets up the structure of the team builder for this team type by using the pre-defined team types object
   // Uses the HTML templates to populate
@@ -166,5 +166,9 @@ export class TeamBuilderComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  removeTeamMember(personalityIndex, slotIndex) {
+    this.teamSlots[personalityIndex][slotIndex] = {};
   }
 }
