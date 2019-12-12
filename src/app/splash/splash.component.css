@@ -177,4 +177,7 @@ section img {
   .landing-text {
     padding-left: 150px;
   }
+  .landing-text h1 {
+    font-size: 45px;
+  }
 }
