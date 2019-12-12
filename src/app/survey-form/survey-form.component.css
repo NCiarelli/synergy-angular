@@ -266,7 +266,8 @@ label {
   color: white;
 }
 
-.survey-done {
+.survey-done,
+.survey-error {
   display: flex;
   flex-direction: column;
   justify-content: center;

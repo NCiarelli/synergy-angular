@@ -15,6 +15,7 @@ export class SurveyFormComponent implements OnInit {
   nameFormActive: boolean = true;
   surveyFormActive: boolean = false;
   enoughData: boolean = false;
+  surveyError: boolean = false;
   questionArrayIndex: number = 0;
   questionArray: string[] = [
     "What are things you do to de-stress?",
@@ -45,6 +46,8 @@ export class SurveyFormComponent implements OnInit {
     }
     if (this.questionArrayIndex < this.questionArray.length - 1) {
       this.questionArrayIndex++;
+    } else {
+      this.surveyError = true;
     }
 
     // Try to add the employee to the list in the service and get the employee's index

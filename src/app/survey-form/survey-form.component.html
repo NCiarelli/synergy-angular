@@ -59,7 +59,7 @@
       id="dataForm"
       #form="ngForm"
       (ngSubmit)="onSubmit(form)"
-      *ngIf="surveyFormActive && enoughData === false"
+      *ngIf="surveyFormActive && !enoughData && !surveyError"
     >
       <!-- <label for="employeeName">Name:</label> -->
       <!-- <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required /> -->
@@ -94,6 +94,12 @@
       <img class="congrats-img" src="../../assets/form_img.png" />
       <!-- <p *ngIf="!profileBuilt">Now buidling your profile...</p>
       <div *ngIf="profileBuilt">Employee Profile Here</div> -->
+    </div>
+    <div class="survey-error" *ngIf="!enoughData && surveyError">
+      <h3>Sorry, something went wrong.</h3>
+      <h4>An admin will reach out with next steps.</h4>
+      <!-- <p *ngIf="!profileBuilt">Now buidling your profile...</p>
+        <div *ngIf="profileBuilt">Employee Profile Here</div> -->
     </div>
   </main>
 </body>
