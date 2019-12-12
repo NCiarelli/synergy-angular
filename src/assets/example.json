@@ -51,7 +51,7 @@
     {
       "name": "Emily Biegas",
       "headShot": "../../assets/Emily Biegas.jpeg",
-      "dominantPersonality": "Extraversion",
+      "dominantPersonality": "Agreeableness",
       "textData": {
         "contentItems": [
           {
@@ -67,7 +67,7 @@
     {
       "name": "Ivan Wolyniec",
       "headShot": "../../assets/Ivan Wo.jpeg",
-      "dominantPersonality": "Conscientiousness",
+      "dominantPersonality": "Extraversion",
       "textData": {
         "contentItems": [
           {
@@ -83,7 +83,7 @@
     {
       "name": "Laura Xu",
       "headShot": "../../assets/Laura Xu.jpeg",
-      "dominantPersonality": "Extraversion",
+      "dominantPersonality": "Conscientiousness",
       "textData": {
         "contentItems": [
           {
@@ -148,7 +148,7 @@
     {
       "name": "Denna Bellman",
       "headShot": "../../assets/Denna Bellman.jpeg",
-      "dominantPersonality": "Agreeableness",
+      "dominantPersonality": "Conscientiousness",
       "textData": {
         "contentItems": [
           {
@@ -164,7 +164,7 @@
     {
       "name": "Ali Hossein",
       "headShot": "../../assets/Ali Hossein.jpeg",
-      "dominantPersonality": "Conscientiousness",
+      "dominantPersonality": "Extraversion",
       "textData": {
         "contentItems": [
           {
@@ -213,7 +213,7 @@
     {
       "name": "Christian Christan",
       "headShot": "../../assets/Christian Christian.jpeg",
-      "dominantPersonality": "Extraversion",
+      "dominantPersonality": "Conscientiousness",
       "textData": {
         "contentItems": [
           {
