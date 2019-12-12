@@ -1,3 +1,11 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+.instructions {
+  align-self: flex-start;
+}
+
 main {
   display: flex;
   font-family: "Open Sans", sans-serif;
@@ -8,13 +16,12 @@ main {
 }
 .btn {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  width: 200px;
-  height: 300px;
-  align-items: center;
-  margin-right: 3px;
-  text-align: center;
+  /* width: 100%; */
+  /* align-items: center; */
+  /* margin-right: 3px; */
+  /* text-align: flex-start; */
 }
 a {
   width: 175px;
@@ -32,11 +39,26 @@ a {
 h4 {
   font-size: 20px;
   margin: 5px;
+  padding-top: 10px;
 }
 
-p {
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#instructional-copy {
+  padding-left: 15px;
+  margin-bottom: 25px;
+}
+
+.profileText p {
   font-size: 15px;
   padding-bottom: 10px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  margin: 3px;
 }
 .profile {
   margin: 2px;
@@ -58,8 +80,4 @@ p {
   color: #fff;
   padding-top: 3px;
   padding-bottom: 3px;
-}
-p {
-  margin: 3px;
-  text-align: center;
 }
