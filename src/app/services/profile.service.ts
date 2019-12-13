@@ -40,18 +40,11 @@ export class ProfileService {
 
   // Send the profile text from the employee profile object to the express server.
   // The server will pass the text along to Watson which will return a profile JSON, which the server passes back here
-  createProfile(employeeName: string): void {
-    // Find employee index
-    let employeeIndex = this.findEmployeeIndex(employeeName);
-    let employee: Employee;
-    // If the employee doesn't exist (findIndex returns -1)...
-    if (employeeIndex === -1) {
-      // If the employee doesn't exist, let the user know and return
-      console.log("Employee Doesn't exist!!!");
-      return;
-    } else {
-      employee = this.employeeList[employeeIndex];
-    }
+  createProfile(employeeIndex: number): void {
+    // // Find employee index
+    // let employeeIndex = this.findEmployeeIndex(employeeName);
+    // Grab the employee object from the employee list for use here
+    let employee: Employee = this.employeeList[employeeIndex];
     // Make post request to Watson to create the personality profile
     this.http
       .post(`${this.BASE_URL}/profile`, employee.textData)
@@ -121,23 +114,29 @@ export class ProfileService {
 
   checkIfEnoughDataForProfile(employeeIndex: number): boolean {
     let enoughData: boolean = false;
+    // Setting for how many required text data words for profile generation
     const numRequiredWords = 100;
     let wordCount = 0;
+    // Creating a variable to shorten refernces to the array of survey text entries
     const dataArray = this.employeeList[employeeIndex].textData.contentItems;
+    // Go through the array of entries
     for (const contentItem of dataArray) {
+      // Add the number of words in the entry to the total count for this employee
       wordCount += this.countWords(contentItem.content);
     }
     // DEBUG
-    console.log("Word Count: ", wordCount);
+    // console.log("Word Count: ", wordCount);
     if (wordCount >= numRequiredWords) {
-      // Once enough text data is collected, set enough data to true to indicate to the caller
+      // Once enough text data is collected, set enoughData to true for the return value
       enoughData = true;
-      // And create a personality profile for the employee
-      this.createProfile(this.employeeList[employeeIndex].name);
+      // And create a personality profile for the employee, which also overwites the dominant personality of the employee
+      this.createProfile(employeeIndex);
     }
+    // Pass the boolean result back to the calling code
     return enoughData;
   }
 
+  // Small function to count up all space seperated words
   countWords(str) {
     return str.split(" ").length;
   }
@@ -151,27 +150,29 @@ export class ProfileService {
     // Check the profile exists
     if (employee.personalityProfile) {
       // If it exists...
+      // Setup variable for temporary maximum value tracking
       let highestPersonalityIndex: number = -1;
       let highestPersonalityPercentile = -Infinity;
+      // For ease of code reading, A variable for shortcutting references to the used array in the the personality profile of the employee
       let personalityArray = employee.personalityProfile.personality;
-      // Go through the personality array to find the highest percentile
+      // Go through the personality array to find the highest percentile personality
       for (let i = 0; i < personalityArray.length; i++) {
         if (personalityArray[i].percentile > highestPersonalityPercentile) {
           // If the current percentile being checked is higher than the recorded max percentile
           // Put the current index into highestPersonalityIndex
           highestPersonalityIndex = i;
-          // And replace the max with the current percentile
+          // And replace the saved max with the percentile currently being checked
           highestPersonalityPercentile = personalityArray[i].percentile;
         }
       }
-      employee.dominantPersonality = this.personalityTypes[
-        highestPersonalityIndex
-      ];
+      // Stores the Name of the personality type with the highest percentile in the dominantPersonality of the employee
+      employee.dominantPersonality = this.personalityTypes[highestPersonalityIndex];
+      // DEBUG
       console.log(
         `${employee.name}'s dominant personality type is now ${this.personalityTypes[highestPersonalityIndex]}`
       );
     } else {
-      // If it doesn't someone did an oopsie
+      // If the personality profile doesn't exist someone did an oopsie
       console.log(
         `Sometinhg is wrong. There is no personality profile for ${employee.name}`
       );
