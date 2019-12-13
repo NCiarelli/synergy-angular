@@ -25,23 +25,36 @@
     <p>{{ activeHeaderText }}</p>
   </div> -->
 </section>
+<form
+  *ngIf="teamTypeSelected && !teamBuilt"
+  id="teamNameForm"
+  #nameForm="ngForm"
+  (ngSubmit)="onTeamNameSubmit(nameForm)"
+>
+  <label for="teamNameInput">Give your team a name:</label>
+  <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
 
+  <button class="nameTeamButton" type="submit">Submit</button>
+</form>
 <section id="team-slots" *ngIf="!teamBuilt">
+  <h3 *ngIf="selectInstructions" class="add-instructions">
+    Click an employee to add to {{ namedTeam }}.
+  </h3>
   <div
     *ngFor="let personalityType of personalityTypes; index as i"
     [ngClass]="{ hide: teamSlots[i].length === 0 }"
   >
-    <h3 class="add-instructions">
-      Click an employee to add to the team.
-    </h3>
     <h4>{{ personalityType }}</h4>
     <app-employee-banner
       [personalityFilter]="personalityType"
       (pickEmployee)="addEmployee($event, teamSlots[i])"
     >
+      <div id="hi" [ngClass]="{ selectedGray: this.selectedGray }"></div>
     </app-employee-banner>
     <div class="slots-container">
       <div *ngFor="let slot of teamSlots[i]; index as j" class="member-slot">
+        <!-- [ngclass] triggers method which applies class based on boolean {class: method (slot) } -->
+
         <div class="cardBanner">
           <button
             type="button"
@@ -72,7 +85,7 @@
   <div class="created-team-header">
     <img class="scrum-icon" src="../../assets/scrum_board_icon.svg" alt="" />
     <h4 class="created-team-copy">
-      This team is ready to get to work and is optimized for
+      {{ namedTeam }} team is ready to work and is optimized for
       {{ activeTeamTypeName }}.
     </h4>
   </div>
