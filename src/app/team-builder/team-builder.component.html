@@ -10,14 +10,8 @@
   <!-- buttons for loadouts -->
   <div class="btn-container">
     <!-- <button class="team-names team-name-btn">Optimize team for...</button> -->
-    <button
-      class="team-names"
-      *ngFor="let teamType of teamTypes"
-      class="team-name-btn"
-      type="button"
-      (click)="createBuilder(teamType)"
-      [ngClass]="teamType.buttonActiveClass"
-    >
+    <button *ngFor="let teamType of teamTypes" class="team-names team-name-btn" type="button"
+      (click)="createBuilder(teamType)" [ngClass]="teamType.buttonActiveClass">
       {{ teamType.name }}
     </button>
   </div>
@@ -65,11 +59,7 @@
           </button>
         </div>
         <img class="headShot" [src]="getSrcLink(slot)" alt="" />
-        <div
-          *ngIf="!isSlotOpen(slot)"
-          [ngClass]="getPersonalityClass(slot)"
-          class="profileText"
-        >
+        <div *ngIf="!isSlotOpen(slot)" [ngClass]="getPersonalityClass(slot)" class="profileText">
           <p>{{ slot.name }}</p>
           <p>{{ slot.dominantPersonality }}</p>
         </div>

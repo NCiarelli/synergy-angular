@@ -71,20 +71,22 @@ export class TeamBuilderComponent implements OnInit {
   ngOnInit() { }
 
   // Sets up the structure of the team builder for this team type by using the pre-defined team types object
-  // Uses the HTML templates to populate
+  // Uses the structure property  of the teamType object to populate the team slot structure
+  // Also does some changes for styling the buttons so that one button displays as active when clicked
   createBuilder(teamType) {
-    // Set up structure of employee slots for the team  type
+    // Set up structure of employee slots for the team type
+    // Uses the spread operator to generate a clean structure each time a button is clicked
     this.teamSlots = [...teamType.structure];
-    // Set what the background color should be for this team type
+    // Set what the background color should be for this team type, NOT IN USE RIGHT NOW
     this.headerBackgroundClass = teamType.backgroundClass;
-    // Clear out any previous team selection
+    // Clear out any previous team selection for the button styling
     for (let teamType of this.teamTypes) {
       teamType.buttonActiveClass = [""];
     }
-    // Select the clicked team type
+    // Gives styling for the clicked team type to the active button, CHANGE TO ALL THE SAME BACKGROUND
     teamType.buttonActiveClass = teamType.backgroundClass;
     // Reset the built team boolean and array
-    this.teamBuilt = false;
+    // this.teamBuilt = false;
     this.doneTeam = [];
     this.activeTeamTypeName = teamType.name;
   }
@@ -93,7 +95,7 @@ export class TeamBuilderComponent implements OnInit {
   addEmployee(employee: Employee, personalityTypeSlots: any[]): void {
     // Check if the employee is already in a slot somewhere
     if (this.checkTeamSlots(slot => employee.name === slot.name)) {
-      // If so, notify the user.
+      // If so, notify the user. ADD REAL INDICATION OF THIS
       console.log(`${employee.name} is already in this team!`);
       // And exit the function
       return;

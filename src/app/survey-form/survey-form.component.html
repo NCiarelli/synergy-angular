@@ -44,39 +44,24 @@
         </p>
       </div>
 
-      <form
-        id="nameForm"
-        #nameForm="ngForm"
-        (ngSubmit)="onNameSubmit(nameForm)"
-      >
+      <form id="nameForm" #nameForm="ngForm" (ngSubmit)="onNameSubmit(nameForm)">
         <label for="nameInput">Enter your full name to get started:</label>
         <input type="text" name="nameInput" id="nameInput" ngModel />
 
         <button class="submit-btn" type="submit">Submit</button>
       </form>
     </section>
-    <form
-      id="dataForm"
-      #form="ngForm"
-      (ngSubmit)="onSubmit(form)"
-      *ngIf="surveyFormActive && !enoughData && !surveyError"
-    >
+    <form id="dataForm" #form="ngForm" (ngSubmit)="onSubmit(form)"
+      *ngIf="surveyFormActive && !enoughData && !surveyError">
       <!-- <label for="employeeName">Name:</label> -->
       <!-- <input type="text" [(ngModel)]="employeeName" name="employeeName" id="employeeName" required /> -->
       <p>Name: {{ employeeName }}</p>
       <p class="question-text">{{ questionArray[questionArrayIndex] }}</p>
       <label for="answer">Answer:</label>
-      <textarea
-        ngModel
-        name="answer"
-        id="answer"
-        cols="30"
-        rows="10"
-        required
-      ></textarea>
+      <textarea ngModel name="answer" id="answer" cols="30" rows="10" required></textarea>
 
       <div class="btn-container">
-        <button class="addInputButton">Submit Answer</button>
+        <button type="submit" class="addInputButton">Submit Answer</button>
         <!-- <button
           class="getProfileButton"
           [ngClass]="{ enableProfilebutton: enoughData }"

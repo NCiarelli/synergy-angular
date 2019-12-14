@@ -9,7 +9,7 @@ export class SplashComponent implements OnInit {
   overlayDisplay: boolean = false;
   modalDisplay: boolean = false;
 
-  constructor() {}
+  constructor() { }
 
   loadModal() {
     this.overlayDisplay = true;
@@ -23,15 +23,15 @@ export class SplashComponent implements OnInit {
 
   loadAdmin() {
     console.log("clicked admin");
-    this.overlayDisplay = false;
-    this.modalDisplay = false;
+    // this.overlayDisplay = false;
+    // this.modalDisplay = false;
   }
 
   loadUser() {
     console.log("clicked user");
-    this.overlayDisplay = false;
-    this.modalDisplay = false;
+    // this.overlayDisplay = false;
+    // this.modalDisplay = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

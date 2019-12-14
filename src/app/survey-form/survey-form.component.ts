@@ -30,7 +30,7 @@ export class SurveyFormComponent implements OnInit {
     "Do you often second guess your decisions? Why?"
   ];
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
   // createProfile() {
   //   this.profileService.createProfile(this.employeeName);
@@ -44,13 +44,17 @@ export class SurveyFormComponent implements OnInit {
       console.log("Survey Submission invalid. The survey field is empty.");
       return;
     }
+    // Check if the survey is at the last question
     if (this.questionArrayIndex < this.questionArray.length - 1) {
+      // If not, increment the array index for the questions to display the next question
       this.questionArrayIndex++;
     } else {
+      // If so, an error is indicated, displays an error page
       this.surveyError = true;
     }
 
     // Try to add the employee to the list in the service and get the employee's index
+    // For database, move this to the name input form
     let employeeIndex = this.profileService.findEmployeeIndex(
       this.employeeName
     );
@@ -59,13 +63,16 @@ export class SurveyFormComponent implements OnInit {
     if (employeeIndex === -1) {
       employeeIndex = this.profileService.addEmployee(this.employeeName);
     }
-    // Add the text data to the employee
+    // Add the text data to the employee object in the textData object, contentItems array
     this.profileService.addTextData(formData.value.answer, employeeIndex);
-    // Check if there is enough data for the profile and enable the button if so.
-    this.enoughData = this.profileService.checkIfEnoughDataForProfile(
-      employeeIndex
-    );
+    // Check if there is enough data for the personality profile analysis.
+    // This will trigger creating a personality profile in the profile service
+    // Which is added to the employee object and overwrites the dominant personality stored
+    this.enoughData = this.profileService.checkIfEnoughDataForProfile(employeeIndex);
     if (this.enoughData) {
+      // If enough text data has been collected switch to the finished survey screen,
+      // Meaning flip the boolean surveyFormActive to remove the survey form from the view.
+      // With enoughData being true, the congrats screen will appear
       this.surveyFormActive = false;
     }
     // Reset the form
@@ -74,9 +81,13 @@ export class SurveyFormComponent implements OnInit {
 
   onNameSubmit(formData: NgForm) {
     this.employeeName = formData.value.nameInput;
+    // Check if the employee already exists and has completed the survey. Then just display an open ended prompt like "Tell us more about yourself."
+    // After the submit it will reanalyze a new personality profile including the recently submitted text data
+    // This requires making the boolean value changes after the check on the employee name comes back.
+    // For database, this means it has to happen in the subscribe function callback of the database query.
     this.nameFormActive = false;
     this.surveyFormActive = true;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }
