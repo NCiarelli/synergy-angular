@@ -95,7 +95,7 @@ export class TeamBuilderComponent implements OnInit {
   addEmployee(employee: Employee, personalityTypeSlots: any[]): void {
     // Check if the employee is already in a slot somewhere
     if (this.checkTeamSlots(slot => employee.name === slot.name)) {
-      // If so, notify the user.
+      // If so, notify the user. ADD REAL INDICATION OF THIS
       console.log(`${employee.name} is already in this team!`);
       // And exit the function
       return;
