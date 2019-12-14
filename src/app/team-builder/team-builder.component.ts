@@ -169,4 +169,10 @@ export class TeamBuilderComponent implements OnInit {
       return false;
     }
   }
+
+  // Function for removing a team member from a team slot
+  removeTeamMember(personalityIndex, slotIndex) {
+    // This overwrites the employee in the team slot with an empty object
+    this.teamSlots[personalityIndex][slotIndex] = {};
+  }
 }

@@ -18,7 +18,7 @@ export class SurveyFormComponent implements OnInit {
   surveyError: boolean = false;
   questionArrayIndex: number = 0;
   questionArray: string[] = [
-    "What are things you do to de-stress?",
+    "How do you de-stress?",
     "If you were an animal, which animal would you be? Why?",
     "How do you behave at a party?",
     "How do you handle conflict?",

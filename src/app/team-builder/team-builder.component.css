@@ -7,15 +7,27 @@
 .efficiency {
   background-color: #fd9c3c;
 }
-
+.instructions {
+  display: inline block;
+  text-align: center;
+}
 .created-team {
   justify-content: center;
 }
 
 .created-team-header {
-  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 15px;
 }
-
+.scrum-icon {
+  width: 150px;
+}
+.created-team-copy {
+  font-size: 1.5em;
+}
 #button-section {
   /* border: 1px solid black; */
   padding: 15px;
@@ -73,12 +85,18 @@ h4 {
   margin: auto;
   width: 100%;
   height: 50px;
-  color: black;
+  color: #1d1e1e;
   font-size: 15px;
+  font-weight: 800;
 }
-
+.add-instructions {
+  margin-bottom: 20px;
+  font-size: 1em;
+  margin-left: 0px;
+}
 .cardBanner {
   width: auto;
+  position: relative;
 }
 
 .team-name-btn:focus {
@@ -123,6 +141,17 @@ h4 {
 
 .profileText {
   width: auto;
+}
+
+.cardBanner button {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 5px;
+  top: 15%;
+}
+.cardBanner button:hover {
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {

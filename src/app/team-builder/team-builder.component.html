@@ -1,10 +1,10 @@
-<section id="instructional-copy">
-  <h3>Team Builder</h3>
-  <p class="instructions" *ngIf="!teamBuilt">
-    Let's get the right mix of employees to maximize success. What would you
-    like to optimize for this project?
-  </p>
-</section>
+<h3>Team Builder</h3>
+
+<h3 class="instructions" *ngIf="!teamBuilt">
+  Let's get the right mix of employees to maximize success. What would you like
+  to optimize for this project?
+</h3>
+
 <div class="team-formula-container"></div>
 <section id="button-section" *ngIf="!teamBuilt">
   <!-- buttons for loadouts -->
@@ -19,15 +19,45 @@
     <p>{{ activeHeaderText }}</p>
   </div> -->
 </section>
+<form
+  *ngIf="teamTypeSelected && !teamBuilt"
+  id="teamNameForm"
+  #nameForm="ngForm"
+  (ngSubmit)="onTeamNameSubmit(nameForm)"
+>
+  <label for="teamNameInput">Give your team a name:</label>
+  <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
 
+  <button class="nameTeamButton" type="submit">Submit</button>
+</form>
 <section id="team-slots" *ngIf="!teamBuilt">
-  <div *ngFor="let personalityType of personalityTypes; index as i" [ngClass]="{ hide: teamSlots[i].length === 0 }">
+  <h3 *ngIf="selectInstructions" class="add-instructions">
+    Click an employee to add to {{ namedTeam }}.
+  </h3>
+  <div
+    *ngFor="let personalityType of personalityTypes; index as i"
+    [ngClass]="{ hide: teamSlots[i].length === 0 }"
+  >
     <h4>{{ personalityType }}</h4>
-    <app-employee-banner [personalityFilter]="personalityType" (pickEmployee)="addEmployee($event, teamSlots[i])">
+    <app-employee-banner
+      [personalityFilter]="personalityType"
+      (pickEmployee)="addEmployee($event, teamSlots[i])"
+    >
+      <div id="hi" [ngClass]="{ selectedGray: this.selectedGray }"></div>
     </app-employee-banner>
     <div class="slots-container">
-      <div *ngFor="let slot of teamSlots[i]" class="member-slot">
-        <div class="cardBanner"></div>
+      <div *ngFor="let slot of teamSlots[i]; index as j" class="member-slot">
+        <!-- [ngclass] triggers method which applies class based on boolean {class: method (slot) } -->
+
+        <div class="cardBanner">
+          <button
+            type="button"
+            *ngIf="!isSlotOpen(slot)"
+            (click)="removeTeamMember(i, j)"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
         <img class="headShot" [src]="getSrcLink(slot)" alt="" />
         <div *ngIf="!isSlotOpen(slot)" [ngClass]="getPersonalityClass(slot)" class="profileText">
           <p>{{ slot.name }}</p>
@@ -42,10 +72,14 @@
 </section>
 
 <section class="created-team" *ngIf="teamBuilt">
-  <h4 class="created-team-header">
-    This team is ready to get to work and is optimized for
-    {{ activeTeamTypeName }}
-  </h4>
+  <div class="created-team-header">
+    <img class="scrum-icon" src="../../assets/scrum_board_icon.svg" alt="" />
+    <h4 class="created-team-copy">
+      {{ namedTeam }} team is ready to work and is optimized for
+      {{ activeTeamTypeName }}.
+    </h4>
+  </div>
+
   <div class="team-container created-team">
     <div *ngFor="let slot of doneTeam" class="member-slot">
       <div class="cardBanner"></div>
