@@ -60,18 +60,27 @@ h3 {
   margin: 0;
   margin: 3px;
 }
+
 .profile {
   margin: 2px;
   transition: all 0.5s ease;
 }
+
 .profile:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
 
+/* display: initial */
 .cardBanner {
   background-color: #fd9c3c;
   height: 30px;
+  display: none;
+}
+
+/* display: initial */
+.headShot {
+  display: none;
 }
 
 .profileText {

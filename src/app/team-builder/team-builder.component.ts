@@ -41,7 +41,6 @@ export class TeamBuilderComponent implements OnInit {
   //     Creativity: [2, 0, 2, 0, 0, 1];
   //     Risk_management: [0, 2, 0, 0, 2, 1]
   // }
-  teamNames = Object.keys(this.teamTypes);
   teamSlots: any[] = [[], [], [], [], [], []];
   personalityTypes = [
     "Openness",
@@ -67,10 +66,6 @@ export class TeamBuilderComponent implements OnInit {
   teamBuilt: boolean = false;
   doneTeam: any[] = [];
   activeTeamTypeName: string = "";
-  namedTeam: string = "";
-  teamTypeSelected: boolean = false;
-  selectInstructions: boolean = false;
-
   constructor(private profileService: ProfileService) {}
 
   ngOnInit() {}

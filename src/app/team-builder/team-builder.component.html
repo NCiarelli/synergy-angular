@@ -10,8 +10,13 @@
   <!-- buttons for loadouts -->
   <div class="btn-container">
     <!-- <button class="team-names team-name-btn">Optimize team for...</button> -->
-    <button *ngFor="let teamType of teamTypes" class="team-names team-name-btn" type="button"
-      (click)="createBuilder(teamType)" [ngClass]="teamType.buttonActiveClass">
+    <button
+      class="team-names team-name-btn"
+      *ngFor="let teamType of teamTypes"
+      type="button"
+      (click)="createBuilder(teamType)"
+      [ngClass]="teamType.buttonActiveClass"
+    >
       {{ teamType.name }}
     </button>
   </div>
