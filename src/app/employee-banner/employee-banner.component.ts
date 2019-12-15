@@ -11,12 +11,12 @@ export class EmployeeBannerComponent implements OnInit {
   @Input() personalityFilter: string;
   @Output() pickEmployee = new EventEmitter<Employee>();
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService) {}
   employeeList: Employee[];
   defaultAvatar: string = "../../assets/defaultAvatar.png";
 
   ngOnInit() {
-    // Filter the employee list based on any persoanlity type that was given as an input binding
+    // Filter the employee list based on any personality type that was given as an input binding
 
     // If there is not filter type or the type is "Any"
     if (!this.personalityFilter || this.personalityFilter === "Any") {
@@ -25,9 +25,11 @@ export class EmployeeBannerComponent implements OnInit {
     } else {
       // Otherwise
       // Get only the employees that match the personality type filter
-      this.employeeList = this.profileService.getEmployeeList().filter((employee: Employee) => {
-        return employee.dominantPersonality === this.personalityFilter;
-      });
+      this.employeeList = this.profileService
+        .getEmployeeList()
+        .filter((employee: Employee) => {
+          return employee.dominantPersonality === this.personalityFilter;
+        });
     }
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, ComponentFactoryResolver } from "@angular/core";
 import { ProfileService } from "../services/profile.service";
 import { Employee } from "../interfaces/employee";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-team-builder",
@@ -66,9 +67,13 @@ export class TeamBuilderComponent implements OnInit {
   teamBuilt: boolean = false;
   doneTeam: any[] = [];
   activeTeamTypeName: string = "";
-  constructor(private profileService: ProfileService) { }
+  namedTeam: string = "";
+  teamTypeSelected: boolean = false;
+  selectInstructions: boolean = false;
 
-  ngOnInit() { }
+  constructor(private profileService: ProfileService) {}
+
+  ngOnInit() {}
 
   // Sets up the structure of the team builder for this team type by using the pre-defined team types object
   // Uses the structure property  of the teamType object to populate the team slot structure
@@ -89,10 +94,11 @@ export class TeamBuilderComponent implements OnInit {
     // this.teamBuilt = false;
     this.doneTeam = [];
     this.activeTeamTypeName = teamType.name;
+    this.teamTypeSelected = true;
   }
 
   // Add an employee to the team's slots for the current personality type
-  addEmployee(employee: Employee, personalityTypeSlots: any[]): void {
+  addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {
     // Check if the employee is already in a slot somewhere
     if (this.checkTeamSlots(slot => employee.name === slot.name)) {
       // If so, notify the user. ADD REAL INDICATION OF THIS
@@ -174,5 +180,11 @@ export class TeamBuilderComponent implements OnInit {
   removeTeamMember(personalityIndex, slotIndex) {
     // This overwrites the employee in the team slot with an empty object
     this.teamSlots[personalityIndex][slotIndex] = {};
+  }
+
+  onTeamNameSubmit(formData: NgForm) {
+    this.namedTeam = formData.value.teamNameInput;
+    this.selectInstructions = true;
+    // console.log(this.teamName);
   }
 }

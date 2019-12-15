@@ -4,15 +4,18 @@
     *ngFor="let employee of employeeList"
     (click)="clickEmployee(employee)"
   >
-    <div class="cardBanner"></div>
-    <img
-      class="headShot"
-      [src]="employee.headShot ? employee.headShot : defaultAvatar"
-      alt=""
-    />
-    <div [ngClass]="[employee.dominantPersonality]" class="profileText">
-      <p>{{ employee.name }}</p>
-      <p>{{ employee.dominantPersonality }}</p>
+    <!-- ng class here -->
+    <div>
+      <div class="cardBanner"></div>
+      <img
+        class="headShot"
+        [src]="employee.headShot ? employee.headShot : defaultAvatar"
+        alt=""
+      />
+      <div [ngClass]="[employee.dominantPersonality]" class="profileText">
+        <p>{{ employee.name }}</p>
+        <p>{{ employee.dominantPersonality }}</p>
+      </div>
     </div>
   </div>
 </main>

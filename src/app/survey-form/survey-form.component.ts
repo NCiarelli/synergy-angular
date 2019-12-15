@@ -87,7 +87,8 @@ export class SurveyFormComponent implements OnInit {
     // For database, this means it has to happen in the subscribe function callback of the database query.
     this.nameFormActive = false;
     this.surveyFormActive = true;
-  }
+  } //no longer want name for active
+  //want survey form active
 
   ngOnInit() { }
 }
