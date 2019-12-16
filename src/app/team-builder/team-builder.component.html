@@ -65,7 +65,12 @@
         {{ countEmptySlots(teamSlots[i]) }} from the above employees.
       </p>
     </div>
-    <i class="fa fa-check" aria-hidden="true"></i>
+    <div
+      class="hide"
+      [ngClass]="{ displayCheck: countEmptySlots(teamSlots[i]) == 0 }"
+    >
+      <i class="fa fa-check" aria-hidden="true"></i>
+    </div>
     <div class="slots-container">
       <div *ngFor="let slot of teamSlots[i]; index as j" class="member-slot">
         <div class="cardBanner">

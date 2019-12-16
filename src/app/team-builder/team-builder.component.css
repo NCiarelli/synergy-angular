@@ -157,7 +157,9 @@ h4 {
 #team-slots {
   margin-left: 15px;
 }
-
+.displayCheck div {
+  color: red;
+}
 .btn-container {
   width: 100%;
   display: flex;

@@ -1,4 +1,9 @@
-import { Component, OnInit, ComponentFactoryResolver } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ComponentFactoryResolver,
+  OnDestroy
+} from "@angular/core";
 import { ProfileService } from "../services/profile.service";
 import { Employee } from "../interfaces/employee";
 import { NgForm } from "@angular/forms";
@@ -8,7 +13,7 @@ import { NgForm } from "@angular/forms";
   templateUrl: "./team-builder.component.html",
   styleUrls: ["./team-builder.component.css"]
 })
-export class TeamBuilderComponent implements OnInit {
+export class TeamBuilderComponent implements OnInit, OnDestroy {
   teamTypes = [
     {
       name: "Efficiency",
@@ -88,6 +93,10 @@ export class TeamBuilderComponent implements OnInit {
 
   ngOnInit() {}
 
+  ngOnDestroy() {
+    this.profileService.setSelectedFalseAllEmployees();
+  }
+
   // Sets up the structure of the team builder for this team type by using the pre-defined team types object
   // Uses the structure property  of the teamType object to populate the team slot structure
   // Also does some changes for styling the buttons so that one button displays as active when clicked
@@ -109,6 +118,7 @@ export class TeamBuilderComponent implements OnInit {
     this.activeTeamTypeName = teamType.name;
     this.teamTypeSelected = true;
     this.activeTeamFormula = teamType.formula;
+    this.profileService.setSelectedFalseAllEmployees();
   }
 
   createTeamFormula(teamFormula) {}
@@ -128,10 +138,6 @@ export class TeamBuilderComponent implements OnInit {
       if (this.isSlotOpen(personalityTypeSlots[i])) {
         // Put the employee in the slot
         personalityTypeSlots[i] = employee;
-
-        // if (this.teamSlots[i].length <= 1) {
-        //   this.progress = true;
-        // }
 
         // switch the boolean value to true to toggle the grayed out class
         employee.selected = true;
