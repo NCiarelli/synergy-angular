@@ -12,7 +12,7 @@ import { ContentItem } from "../interfaces/content-item";
 })
 export class ProfileService {
   // Store the appropriate base URL. Angular automatically selects the right environment file.
-  private readonly BASE_URL = environment.expressServerBaseUrl;
+  private readonly EXPRESS_URL = environment.expressServerBaseUrl;
   employeeList: Employee[] = [];
   nextDataId: number = 0;
   date: Date = new Date();
@@ -47,13 +47,15 @@ export class ProfileService {
     let employee: Employee = this.employeeList[employeeIndex];
     // Make post request to Watson to create the personality profile
     this.http
-      .post(`${this.BASE_URL}/profile`, employee.textData)
+      .post(`${this.EXPRESS_URL}/profile`, employee.textData)
       .subscribe((response: any) => {
         // DEBUG until get proper display for the profile
         console.log(response.result);
         // Save the personality profile to the employee object
         employee.personalityProfile = response.result;
         this.assignDominantPersonality(employee);
+        // Update the database with the new personality data
+
       });
   }
 
@@ -177,5 +179,10 @@ export class ProfileService {
         `Sometinhg is wrong. There is no personality profile for ${employee.name}`
       );
     }
+  }
+
+  // Gets the entire employee list from the database
+  retrieveEmployeeList(): Employee[] {
+    this.http.get(`${this.EXPRESS_URL}/employees`)
   }
 }
