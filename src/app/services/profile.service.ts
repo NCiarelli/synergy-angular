@@ -16,7 +16,6 @@ export class ProfileService {
   private readonly EXPRESS_URL = environment.expressServerBaseUrl;
   employeeList: Employee[] = [];
   nextDataId: number = 0;
-  date: Date = new Date();
 
   personalityTypes = [
     "Openness",
@@ -52,7 +51,10 @@ export class ProfileService {
         employee.personalityProfile = response.result;
         this.assignDominantPersonality(employee);
         // Update the database with the new personality data
-
+        this.updateEmployeeDatabasePersonalityProfile(employee).subscribe((response) => {
+          // DEBUG
+          console.log(response);
+        });
       });
   }
 
@@ -88,12 +90,12 @@ export class ProfileService {
       // The new employee index will be the last index of the array now
       const employeeIndex = this.employeeList.length - 1;
       // DEBUG
-      console.log(this.employeeList[employeeIndex].name);
+      console.log(this.employeeList[employeeIndex]);
     }));
 
   }
 
-  addTextData(inputTextData: string, employee: Employee): void {
+  addTextData(inputTextData: string, employee: Employee): Observable<any> {
     // Single employee code
     // Create the new text data object
     let newTextData: ContentItem = {
@@ -101,17 +103,20 @@ export class ProfileService {
       content: inputTextData,
       contenttype: "text/plain",
       // Get the current timestamp
-      created: this.date.getTime(),
-      // Get an id for this entry
-      id: `${this.nextDataId}`,
-      language: "en"
+      created: Date.now(),
+      language: "en",
+      employeeId: employee.databaseId
     };
-    // Increment ID counter
-    this.nextDataId++;
-    // Add the new text data entry to the contentItems array of the employee
-    employee.textData.contentItems.push(newTextData);
-    // DEBUG
-    console.log(employee.textData.contentItems);
+    // Send the new text entry to the database
+    return this.addSurveyEntryToDatabase(newTextData).pipe(map((response) => {
+      let returnedEntry: ContentItem = this.surveyEntryDatabaseStructureToLocal(response);
+      // Add the new text data entry to the contentItems array of the employee
+      employee.textData.contentItems.push(returnedEntry);
+      // DEBUG
+      console.log(employee.textData.contentItems);
+    }));
+
+
   }
 
   checkIfEnoughDataForProfile(employee: Employee): boolean {
@@ -131,8 +136,6 @@ export class ProfileService {
     if (wordCount >= numRequiredWords) {
       // Once enough text data is collected, set enoughData to true for the return value
       enoughData = true;
-      // And create a personality profile for the employee, which also overwites the dominant personality of the employee
-      this.createProfile(employee);
     }
     // Pass the boolean result back to the calling code
     return enoughData;
@@ -182,14 +185,15 @@ export class ProfileService {
   }
 
   // Gets the entire employee list from the database
-  retrieveEmployeeList(): void {
-    this.http.get(`${this.EXPRESS_URL}/employees`).subscribe((response: any) => {
-      // Creates a new array
-      this.employeeList = [];
+  retrieveEmployeeList(): Observable<any> {
+    return this.http.get(`${this.EXPRESS_URL}/employees`).pipe(map((response: any) => {
+      // Force the employee list to be empty
+      this.employeeList.length = 0;
+      // Add all the employees retrieved from the database to the local service employee list
       for (let databaseEmployee of response) {
         this.employeeList.push(this.employeeDatabaseStructureToLocal(databaseEmployee));
       }
-    });
+    }));
   }
 
   employeeDatabaseStructureToLocal(employee: any): Employee {
@@ -209,5 +213,34 @@ export class ProfileService {
 
   getNewestEmployee(): Employee {
     return this.getEmployeeList[this.employeeList.length - 1];
+  }
+
+  surveyEntryDatabaseStructureToLocal(surveyEntry: any): ContentItem {
+    return {
+      content: surveyEntry.content,
+      contenttype: "text/plain",
+      created: surveyEntry.created,
+      language: "en",
+      id: surveyEntry.id
+    }
+  }
+
+  addSurveyEntryToDatabase(surveyEntry: ContentItem): Observable<any> {
+    return this.http.post(`${this.EXPRESS_URL}/employees/${surveyEntry.employeeId}/survey-entries`, surveyEntry)
+  }
+
+  getSurveyEntriesByEmployeeId(employee: Employee): Observable<any> {
+    return this.http.get(`${this.EXPRESS_URL}/employees/${employee.databaseId}/survey-entries`).pipe(map((response: any) => {
+
+      for (let surveyEntry of response) {
+        // Add the retrieved survey entries to the contentItems array after translating the structure
+        employee.textData.contentItems.push(this.surveyEntryDatabaseStructureToLocal(surveyEntry));
+      }
+    }));
+  }
+
+  // Send an update to the database to include the personality profile and dominant personality
+  updateEmployeeDatabasePersonalityProfile(employee: Employee): Observable<any> {
+    return this.http.put(`${this.EXPRESS_URL}/employees/${employee.databaseId}/personality-profile`, { personalityProfile: employee.personalityProfile, dominantPersonality: employee.dominantPersonality });
   }
 }

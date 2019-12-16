@@ -17,8 +17,9 @@ export class SurveyFormComponent implements OnInit {
   surveyFormActive: boolean = false;
   enoughData: boolean = false;
   surveyError: boolean = false;
-  questionArrayIndex: number = 0;
+  questionArrayIndex: number = 1;
   questionArray: string[] = [
+    "Please tell us more about yourself.",
     "How do you de-stress?",
     "If you were an animal, which animal would you be? Why?",
     "How do you behave at a party?",
@@ -51,22 +52,23 @@ export class SurveyFormComponent implements OnInit {
     }
 
 
-    // Add the text data to the employee object in the textData object, contentItems array
-    this.profileService.addTextData(formData.value.answer, this.activeEmployee);
-    // Add the new entry to the database
-
-    // Check if there is enough data for the personality profile analysis.
-    // This will trigger creating a personality profile in the profile service
-    // Which is added to the employee object and overwrites the dominant personality stored
-    this.enoughData = this.profileService.checkIfEnoughDataForProfile(this.activeEmployee);
-    if (this.enoughData) {
-      // If enough text data has been collected switch to the finished survey screen,
-      // Meaning flip the boolean surveyFormActive to remove the survey form from the view.
-      // With enoughData being true, the congrats screen will appear
-      this.surveyFormActive = false;
-    }
-    // Reset the form
-    formData.reset();
+    // Add the text data to the employee object in the textData object, contentItems array, as well as the database
+    this.profileService.addTextData(formData.value.answer, this.activeEmployee).subscribe(() => {
+      // Check if there is enough data for the personality profile analysis.
+      // This will trigger creating a personality profile in the profile service
+      // Which is added to the employee object and overwrites the dominant personality stored
+      this.enoughData = this.profileService.checkIfEnoughDataForProfile(this.activeEmployee);
+      if (this.enoughData) {
+        // If enough text data has been collected...
+        // Create the personality profile for the employee
+        this.profileService.createProfile(this.activeEmployee);
+        // And flip the boolean surveyFormActive to remove the survey form from the view.
+        // With enoughData being true, the congrats screen will appear
+        this.surveyFormActive = false;
+      }
+      // Reset the form
+      formData.reset();
+    });
   }
 
   onNameSubmit(formData: NgForm) {
@@ -75,6 +77,7 @@ export class SurveyFormComponent implements OnInit {
     // After the submit it will reanalyze a new personality profile including the recently submitted text data
     // This requires making the boolean value changes after the check on the employee name comes back.
     // For database, this means it has to happen in the subscribe function callback of the database query.
+
     // Try to find the employee in the local list in the service and get the employee
     this.activeEmployee = this.profileService.getEmployee(this.employeeName);
 
@@ -83,7 +86,7 @@ export class SurveyFormComponent implements OnInit {
       this.profileService.addEmployee(this.employeeName).subscribe(() => {
         // When an employee has finished being added to both the database anad local list
         // Get the added (newest) employee on the list
-        const employeeList = this.profileService.getNewestEmployee()
+        this.activeEmployee = this.profileService.getNewestEmployee()
         // Then activate the survey form
         this.nameFormActive = false;
         this.surveyFormActive = true;
@@ -91,10 +94,18 @@ export class SurveyFormComponent implements OnInit {
     } else {
       // If the employee exists, check how much survey data they have entered already
       // Retrieve the data from the database
+      this.profileService.getSurveyEntriesByEmployeeId(this.activeEmployee).subscribe(() => {
+        // Check if there is enough data for the personality profile analysis.
+        this.enoughData = this.profileService.checkIfEnoughDataForProfile(this.activeEmployee);
+        if (this.enoughData) {
+          // If enough text data has been collected, change the survey question index to 0 to display the generic prompt for more info
+          this.questionArrayIndex = 0;
+        }
+        // Activate the survey form
+        this.nameFormActive = false;
+        this.surveyFormActive = true;
+      })
 
-      // Activate the survey form
-      this.nameFormActive = false;
-      this.surveyFormActive = true;
     }
 
   }

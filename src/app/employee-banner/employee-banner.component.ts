@@ -16,16 +16,20 @@ export class EmployeeBannerComponent implements OnInit {
   defaultAvatar: string = "../../assets/defaultAvatar.png";
 
   ngOnInit() {
-    // Filter the employee list based on any persoanlity type that was given as an input binding
+    this.employeeList = this.profileService.getEmployeeList();
+  }
+
+  filterEmployeeList(): Employee[] {
+    // Filter the employee list based on any personlity type that was given as an input binding
 
     // If there is not filter type or the type is "Any"
     if (!this.personalityFilter || this.personalityFilter === "Any") {
       // Get all employees from the list in the service
-      this.employeeList = this.profileService.getEmployeeList();
+      return this.employeeList;
     } else {
       // Otherwise
       // Get only the employees that match the personality type filter
-      this.employeeList = this.profileService.getEmployeeList().filter((employee: Employee) => {
+      return this.employeeList.filter((employee: Employee) => {
         return employee.dominantPersonality === this.personalityFilter;
       });
     }
