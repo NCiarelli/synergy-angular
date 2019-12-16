@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
 
   constructor(private profileService: ProfileService) { }
   ngOnInit() {
-    // Import all employee data from the database
+    // Import all employee data from the database when the site starts up anywhere
     this.profileService.retrieveEmployeeList().subscribe(() => {
       console.log(this.profileService.getEmployeeList());
     });
