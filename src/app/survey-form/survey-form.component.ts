@@ -12,6 +12,7 @@ import { ContentItem } from "../interfaces/content-item";
 export class SurveyFormComponent implements OnInit {
   outputText;
   employeeName: string;
+  activeEmployee: Employee;
   nameFormActive: boolean = true;
   surveyFormActive: boolean = false;
   enoughData: boolean = false;
@@ -32,10 +33,6 @@ export class SurveyFormComponent implements OnInit {
 
   constructor(private profileService: ProfileService) { }
 
-  // createProfile() {
-  //   this.profileService.createProfile(this.employeeName);
-  // }
-
   // Adds the submitted survey text to the employee's textdata
   // If the employee does not exist, it creates them in the list
   onSubmit(formData: NgForm) {
@@ -53,22 +50,15 @@ export class SurveyFormComponent implements OnInit {
       this.surveyError = true;
     }
 
-    // Try to add the employee to the list in the service and get the employee's index
-    // For database, move this to the name input form
-    let employeeIndex = this.profileService.findEmployeeIndex(
-      this.employeeName
-    );
 
-    // If the employee doesn't exist, create them
-    if (employeeIndex === -1) {
-      employeeIndex = this.profileService.addEmployee(this.employeeName);
-    }
     // Add the text data to the employee object in the textData object, contentItems array
-    this.profileService.addTextData(formData.value.answer, employeeIndex);
+    this.profileService.addTextData(formData.value.answer, this.activeEmployee);
+    // Add the new entry to the database
+
     // Check if there is enough data for the personality profile analysis.
     // This will trigger creating a personality profile in the profile service
     // Which is added to the employee object and overwrites the dominant personality stored
-    this.enoughData = this.profileService.checkIfEnoughDataForProfile(employeeIndex);
+    this.enoughData = this.profileService.checkIfEnoughDataForProfile(this.activeEmployee);
     if (this.enoughData) {
       // If enough text data has been collected switch to the finished survey screen,
       // Meaning flip the boolean surveyFormActive to remove the survey form from the view.
@@ -85,8 +75,28 @@ export class SurveyFormComponent implements OnInit {
     // After the submit it will reanalyze a new personality profile including the recently submitted text data
     // This requires making the boolean value changes after the check on the employee name comes back.
     // For database, this means it has to happen in the subscribe function callback of the database query.
-    this.nameFormActive = false;
-    this.surveyFormActive = true;
+    // Try to find the employee in the local list in the service and get the employee
+    this.activeEmployee = this.profileService.getEmployee(this.employeeName);
+
+    // If the employee doesn't exist, create them
+    if (this.activeEmployee.name === "") {
+      this.profileService.addEmployee(this.employeeName).subscribe(() => {
+        // When an employee has finished being added to both the database anad local list
+        // Get the added (newest) employee on the list
+        const employeeList = this.profileService.getNewestEmployee()
+        // Then activate the survey form
+        this.nameFormActive = false;
+        this.surveyFormActive = true;
+      });
+    } else {
+      // If the employee exists, check how much survey data they have entered already
+      // Retrieve the data from the database
+
+      // Activate the survey form
+      this.nameFormActive = false;
+      this.surveyFormActive = true;
+    }
+
   }
 
   ngOnInit() { }

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { Employee } from "../interfaces/employee";
 // Import call for example data from static JSON
 import * as exampleData from "src/assets/example.json";
@@ -40,11 +41,7 @@ export class ProfileService {
 
   // Send the profile text from the employee profile object to the express server.
   // The server will pass the text along to Watson which will return a profile JSON, which the server passes back here
-  createProfile(employeeIndex: number): void {
-    // // Find employee index
-    // let employeeIndex = this.findEmployeeIndex(employeeName);
-    // Grab the employee object from the employee list for use here
-    let employee: Employee = this.employeeList[employeeIndex];
+  createProfile(employee: Employee): void {
     // Make post request to Watson to create the personality profile
     this.http
       .post(`${this.EXPRESS_URL}/profile`, employee.textData)
@@ -64,10 +61,15 @@ export class ProfileService {
     return this.employeeList;
   }
 
-  getEmployee(employeeName: string): Employee | number {
+  // returns an employee object if found by name
+  getEmployee(employeeName: string): Employee {
     let employeeIndex = this.findEmployeeIndex(employeeName);
     if (employeeIndex === -1) {
-      return employeeIndex;
+      return {
+        name: "",
+        textData: { contentItems: [] },
+        dominantPersonality: ""
+      };
     } else {
       return this.employeeList[employeeIndex];
     }
@@ -76,24 +78,22 @@ export class ProfileService {
   // Function to add employees to the list
   // A check if employee already exists should go here
   // Returns the named employee's index in the array
-  addEmployee(newName: string): number {
-    // Create a new employee with the input name
-    let newArray: ContentItem[] = [];
-    let newEmployee: Employee = {
-      name: newName,
-      textData: { contentItems: newArray },
-      dominantPersonality: "None"
-    };
-    // Add the new employee to the employee list
-    this.employeeList.push(newEmployee);
-    // The new employee index will be the last index of the array now
-    const employeeIndex = this.employeeList.length - 1;
-    // DEBUG
-    console.log(this.employeeList[employeeIndex].name);
-    return employeeIndex;
+  addEmployee(newName: string): Observable<any> {
+    // Add the new employee to the database
+    return this.addEmployeeToDatabase(newName).pipe(map((response) => {
+      // Restructure the returned employee data to local structure
+      let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
+      // Add the new employee to the employee list
+      this.employeeList.push(newEmployee);
+      // The new employee index will be the last index of the array now
+      const employeeIndex = this.employeeList.length - 1;
+      // DEBUG
+      console.log(this.employeeList[employeeIndex].name);
+    }));
+
   }
 
-  addTextData(inputTextData: string, employeeIndex: number): void {
+  addTextData(inputTextData: string, employee: Employee): void {
     // Single employee code
     // Create the new text data object
     let newTextData: ContentItem = {
@@ -109,18 +109,18 @@ export class ProfileService {
     // Increment ID counter
     this.nextDataId++;
     // Add the new text data entry to the contentItems array of the employee
-    this.employeeList[employeeIndex].textData.contentItems.push(newTextData);
+    employee.textData.contentItems.push(newTextData);
     // DEBUG
-    console.log(this.employeeList[employeeIndex].textData.contentItems);
+    console.log(employee.textData.contentItems);
   }
 
-  checkIfEnoughDataForProfile(employeeIndex: number): boolean {
+  checkIfEnoughDataForProfile(employee: Employee): boolean {
     let enoughData: boolean = false;
     // Setting for how many required text data words for profile generation
     const numRequiredWords = 100;
     let wordCount = 0;
     // Creating a variable to shorten refernces to the array of survey text entries
-    const dataArray = this.employeeList[employeeIndex].textData.contentItems;
+    const dataArray = employee.textData.contentItems;
     // Go through the array of entries
     for (const contentItem of dataArray) {
       // Add the number of words in the entry to the total count for this employee
@@ -132,7 +132,7 @@ export class ProfileService {
       // Once enough text data is collected, set enoughData to true for the return value
       enoughData = true;
       // And create a personality profile for the employee, which also overwites the dominant personality of the employee
-      this.createProfile(employeeIndex);
+      this.createProfile(employee);
     }
     // Pass the boolean result back to the calling code
     return enoughData;
@@ -182,7 +182,32 @@ export class ProfileService {
   }
 
   // Gets the entire employee list from the database
-  retrieveEmployeeList(): Employee[] {
-    this.http.get(`${this.EXPRESS_URL}/employees`)
+  retrieveEmployeeList(): void {
+    this.http.get(`${this.EXPRESS_URL}/employees`).subscribe((response: any) => {
+      // Creates a new array
+      this.employeeList = [];
+      for (let databaseEmployee of response) {
+        this.employeeList.push(this.employeeDatabaseStructureToLocal(databaseEmployee));
+      }
+    });
+  }
+
+  employeeDatabaseStructureToLocal(employee: any): Employee {
+    return {
+      name: employee.name,
+      textData: { contentItems: [] },
+      dominantPersonality: employee.dominant_personality,
+      personalityProfile: employee.personality_profile,
+      headShot: employee.head_shot_url,
+      databaseId: employee.id
+    }
+  }
+
+  addEmployeeToDatabase(employeeName: string): Observable<any> {
+    return this.http.post(`${this.EXPRESS_URL}/employees`, { name: employeeName });
+  }
+
+  getNewestEmployee(): Employee {
+    return this.getEmployeeList[this.employeeList.length - 1];
   }
 }

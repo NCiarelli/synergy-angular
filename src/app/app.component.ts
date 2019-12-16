@@ -12,10 +12,8 @@ export class AppComponent implements OnInit {
 
   constructor(private profileService: ProfileService) { }
   ngOnInit() {
-    // Import some static example data from the JSON to the service employeeList array
-    // REMOVE WHEN WE GET A DATABASE WORKING
-    // Move 
-    this.profileService.importExampleData();
+    // Import all employee data from the database
+    this.profileService.retrieveEmployeeList();
     console.log(this.profileService.getEmployeeList());
   }
 }
