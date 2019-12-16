@@ -6,4 +6,5 @@ export interface Employee {
   dominantPersonality: string;
   personalityProfile?: { personality: any[] };
   headShot?: string;
+  selected?: boolean;
 }

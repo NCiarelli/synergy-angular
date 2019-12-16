@@ -67,12 +67,15 @@ button:focus {
   padding: 15px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
-
 .hide {
   display: none;
 }
-
+#selected .selected-formula {
+  display: block;
+  margin: 0 auto;
+}
 app-employee-banner {
   height: auto;
   overflow: auto;

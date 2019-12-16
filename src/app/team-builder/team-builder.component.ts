@@ -14,33 +14,43 @@ export class TeamBuilderComponent implements OnInit {
       name: "Efficiency",
       structure: [[{}], [{}, {}, {}], [], [{}], [], []],
       backgroundClass: ["efficiency"],
-      buttonActiveClass: [""]
+      buttonActiveClass: [""],
+      formula:
+        "1 employee from Openness, 3 employees from Conscientiousness, and an employee from Agreeableness."
     },
     {
       name: "Relationship Building",
       structure: [[{}], [], [{}, {}], [{}, {}], [], []],
       backgroundClass: ["relationship"],
-      buttonActiveClass: [""]
+      buttonActiveClass: [""],
+      formula:
+        "1 employee from Openness, 2 employees from Extraversion, and 2 employees from Agreeableness."
     },
     {
       name: "Creativity",
       structure: [[{}, {}], [], [{}, {}], [], [], [{}]],
       backgroundClass: ["creativity"],
-      buttonActiveClass: [""]
+      buttonActiveClass: [""],
+      formula:
+        "2 employees from Openness, 2 employees from Extraversion, and 1 employee from any category of your choosing."
     },
     {
       name: "Risk Management",
       structure: [[], [{}, {}], [], [], [{}, {}], [{}]],
       backgroundClass: ["risk"],
-      buttonActiveClass: [""]
+      buttonActiveClass: [""],
+      formula:
+        "2 employees from Conscientiousness, 2 employees from Neuroticism, and 1 employee from any category of your choosing."
     }
   ];
+
   //   team_types = {
   //     Efficiency: [1, 3, 0, 1, 0, 0];
   //     Relationship_building: [1, 0, 2, 2, 0, 0];
   //     Creativity: [2, 0, 2, 0, 0, 1];
   //     Risk_management: [0, 2, 0, 0, 2, 1]
   // }
+
   teamNames = Object.keys(this.teamTypes);
   teamSlots: any[] = [[], [], [], [], [], []];
   personalityTypes = [
@@ -70,6 +80,9 @@ export class TeamBuilderComponent implements OnInit {
   namedTeam: string = "";
   teamTypeSelected: boolean = false;
   selectInstructions: boolean = false;
+  grayedOut: boolean = false;
+  activeTeamFormula: string = "";
+  progress: boolean = false;
 
   constructor(private profileService: ProfileService) {}
 
@@ -95,7 +108,10 @@ export class TeamBuilderComponent implements OnInit {
     this.doneTeam = [];
     this.activeTeamTypeName = teamType.name;
     this.teamTypeSelected = true;
+    this.activeTeamFormula = teamType.formula;
   }
+
+  createTeamFormula(teamFormula) {}
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {
@@ -112,6 +128,14 @@ export class TeamBuilderComponent implements OnInit {
       if (this.isSlotOpen(personalityTypeSlots[i])) {
         // Put the employee in the slot
         personalityTypeSlots[i] = employee;
+
+        // if (this.teamSlots[i].length <= 1) {
+        //   this.progress = true;
+        // }
+
+        // switch the boolean value to true to toggle the grayed out class
+        employee.selected = true;
+
         // Check if all slots are full
         if (!this.checkTeamSlots(slot => this.isSlotOpen(slot))) {
           // Push all the employees in slots to the finished team array
@@ -178,6 +202,7 @@ export class TeamBuilderComponent implements OnInit {
 
   // Function for removing a team member from a team slot
   removeTeamMember(personalityIndex, slotIndex) {
+    this.teamSlots[personalityIndex][slotIndex].selected = false;
     // This overwrites the employee in the team slot with an empty object
     this.teamSlots[personalityIndex][slotIndex] = {};
   }
@@ -186,5 +211,15 @@ export class TeamBuilderComponent implements OnInit {
     this.namedTeam = formData.value.teamNameInput;
     this.selectInstructions = true;
     // console.log(this.teamName);
+  }
+
+  countEmptySlots(personalitySlots): number {
+    let counter = 0;
+    for (let personalitySlot of personalitySlots) {
+      if (this.isSlotOpen(personalitySlot)) {
+        counter++;
+      }
+    }
+    return counter;
   }
 }

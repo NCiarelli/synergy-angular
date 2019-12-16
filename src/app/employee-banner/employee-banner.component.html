@@ -1,10 +1,10 @@
-<main class="slider">
+<main class="photo-container">
   <div
-    class="slide"
+    class="profile"
     *ngFor="let employee of employeeList"
     (click)="clickEmployee(employee)"
   >
-    <!-- ng class here -->
+    <div [ngClass]="{ gray: employee.selected }"></div>
     <div>
       <div class="cardBanner"></div>
       <img
