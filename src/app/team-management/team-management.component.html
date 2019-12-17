@@ -1,7 +1,16 @@
 <h1>Team Dashboard</h1>
 <p>{{ activeTeam.name }}</p>
 <div>
-  <!-- insert active team here -->
+  <div class="team-container created-team">
+    <div *ngFor="let slot of activeTeam.members" class="member-slot">
+      <div class="cardBanner"></div>
+      <img class=".sm-headShot" [src]="getSrcLink(slot)" alt="" />
+      <div [ngClass]="getPersonalityClass(slot)" class="profileText">
+        <p>{{ slot.name }}</p>
+        <p>{{ slot.dominantPersonality }}</p>
+      </div>
+    </div>
+  </div>
 </div>
 <button (click)="loadModal()" class="add-notes-btn">Add/Edit Notes</button>
 
