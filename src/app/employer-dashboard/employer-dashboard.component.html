@@ -29,7 +29,7 @@
     <div [ngClass]="[employee.dominantPersonality]" class="profileText">
       <p>{{ employee.name }}</p>
       <p>{{ employee.dominantPersonality }}</p>
-      <a [routerLink]="['/profile', employee.name]">Details</a>
+      <a [routerLink]="['/employee-profile', employee.name]">Details</a>
     </div>
   </div>
 </main>
