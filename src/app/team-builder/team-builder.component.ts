@@ -7,6 +7,8 @@ import {
 import { ProfileService } from "../services/profile.service";
 import { Employee } from "../interfaces/employee";
 import { NgForm } from "@angular/forms";
+import { TeamService } from "../services/team.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-team-builder",
@@ -91,9 +93,13 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
   overlayDisplay: boolean = false;
   modalDisplay: boolean = false;
 
-  constructor(private profileService: ProfileService) { }
+  constructor(
+    private profileService: ProfileService,
+    private teamService: TeamService,
+    public router: Router
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.profileService.setSelectedFalseAllEmployees();
@@ -123,7 +129,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.profileService.setSelectedFalseAllEmployees();
   }
 
-  createTeamFormula(teamFormula) { }
+  createTeamFormula(teamFormula) {}
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {
@@ -146,13 +152,14 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
 
         // Check if all slots are full
         if (!this.checkTeamSlots(slot => this.isSlotOpen(slot))) {
+          this.doneTeam = [];
           // Push all the employees in slots to the finished team array
           for (let PersonalityTypeSlots of this.teamSlots) {
             for (let slot of PersonalityTypeSlots) {
               this.doneTeam.push(slot);
             }
           }
-          // Change to the finished team display
+          //trigger the modal to display
           this.teamBuilt = true;
           this.overlayDisplay = true;
           this.modalDisplay = true;
@@ -238,5 +245,10 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.overlayDisplay = false;
     this.modalDisplay = false;
     this.teamBuilt = false;
+  }
+  saveTeam() {
+    this.teamService.addCreatedTeam(this.doneTeam);
+    //route to team dashboard
+    this.router.navigate(["team-management"]);
   }
 }
