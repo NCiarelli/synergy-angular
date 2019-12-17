@@ -36,9 +36,9 @@ export class EmployerDashboardComponent implements OnInit {
     }
   }
 
-  sendEmployeesToDatabase() {
-    this.profileService.sendEmployeesToDatabase();
-  }
+  // sendEmployeesToDatabase() {
+  //   this.profileService.sendEmployeesToDatabase();
+  // }
 }
 
 // match: string;
@@ -46,7 +46,7 @@ export class EmployerDashboardComponent implements OnInit {
 //   this.match = form.value.filterText.trim().toLowerCase();
 // }
 // filter() {
-//   if (!this.match) {
+//   if (!this.match) {s
 //     return this.todos;
 //   } else {
 //     return this.todos.filter(todo =>

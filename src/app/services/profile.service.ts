@@ -258,13 +258,22 @@ export class ProfileService {
     return this.http.put(`${this.EXPRESS_URL}/employees/${employee.databaseId}/update-all`, updateParams);
   }
 
-  sendEmployeesToDatabase() {
-    for (let employee of this.employeeList) {
-      this.addEmployeeToDatabase(employee.name).subscribe((response) => {
-        let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
-        employee.databaseId = newEmployee.databaseId;
-        this.updateEmployeeDatabaseEntry(employee);
-      });
-    }
-  }
+  // FOR EXPORTING ENTIRE LOCAL EMPLOYEE LIST TO DATABASE
+  // sendEmployeesToDatabase() {
+  //   for (let employee of this.employeeList) {
+  //     this.addEmployeeToDatabase(employee.name).subscribe((response) => {
+  //       let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
+  //       employee.databaseId = newEmployee.databaseId;
+  //       // console.log("Added ", newEmployee.name, " to the Database.");
+  //       this.updateEmployeeDatabaseEntry(employee).subscribe(() => {
+  //         for (let surveyEntry of employee.textData.contentItems) {
+  //           surveyEntry.employeeId = employee.databaseId;
+  //           this.addSurveyEntryToDatabase(surveyEntry).subscribe(() => {
+  //             console.log("Added survey entry for ", employee.name);
+  //           })
+  //         }
+  //       });
+  //     });
+  //   }
+  // }
 }
