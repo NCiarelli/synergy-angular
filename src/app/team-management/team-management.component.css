@@ -1,0 +1,90 @@
+form {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid rgb(236, 232, 232); */
+  border-radius: 3px;
+  width: 80vw;
+  position: relative;
+}
+
+form:hover {
+  border-color: #f26322;
+}
+
+#answer {
+  border: none;
+  background-color: rgb(233, 227, 227);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.add-notes-btn {
+  padding: 10px;
+  border-style: none;
+  background-color: #fd9c3c;
+  border: 2px solid #fd9c3c;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  /* align-self: flex-start; */
+  margin-top: 10px;
+  width: 100%;
+}
+.modal-window {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  padding: 30px;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 2;
+  width: 75%;
+  height: auto;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* filter: blur(5px); */
+}
+.whole-page {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+@media screen and (min-width: 768px) {
+  form {
+    width: 500px;
+  }
+  /* .form-header i {
+      font-size: 25px;
+    } */
+  /* .form-header {
+      margin-top: 40px;
+      margin-bottom: 15px;
+    } */
+  .header {
+    font-size: 25px;
+  }
+  .add-notes-btn {
+    width: auto;
+  }
+  /* .modal-window {
+    width: 800px;
+    height: 500px;
+  } */
+}
