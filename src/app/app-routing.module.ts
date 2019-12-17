@@ -13,11 +13,10 @@ const routes: Routes = [
   { path: "profile", component: ProfileCardComponent },
   { path: "team-builder", component: TeamBuilderComponent },
   { path: "", component: SplashComponent },
-  { path: "**", component: SplashComponent }
+  { path: "**", redirectTo: "" }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
