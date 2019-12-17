@@ -33,23 +33,15 @@
 <!--  -->
 <!-- </section> -->
 
-<<<<<<< Updated upstream
-=======
-<form
-  *ngIf="teamTypeSelected && !teamBuilt"
-  id="teamNameForm"
-  #nameForm="ngForm"
-  (ngSubmit)="onTeamNameSubmit(nameForm)"
->
-  <label for="teamNameInput">Give your team a name:</label>
-  <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
-
-  <button class="nameTeamButton" type="submit">Submit</button>
-</form>
->>>>>>> Stashed changes
 <section id="team-slots" *ngIf="!teamBuilt">
-  <button *ngIf="teamTypeSelected && !teamBuilt" class="nameTeamButton" (click)="generateRandomTeam()"
-    type="button">Generate Random Team</button>
+  <button
+    *ngIf="teamTypeSelected && !teamBuilt"
+    class="nameTeamButton"
+    (click)="generateRandomTeam()"
+    type="button"
+  >
+    Generate Random Team
+  </button>
 
   <h3 *ngIf="selectInstructions" class="add-instructions">
     Click an employee to add to {{ namedTeam }}.
