@@ -51,7 +51,6 @@ export class SurveyFormComponent implements OnInit {
       this.surveyError = true;
     }
 
-
     // Add the text data to the employee object in the textData object, contentItems array, as well as the database
     this.profileService.addTextData(formData.value.answer, this.activeEmployee).subscribe(() => {
       // Check if there is enough data for the personality profile analysis.

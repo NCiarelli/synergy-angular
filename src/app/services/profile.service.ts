@@ -203,7 +203,7 @@ export class ProfileService {
       name: employee.name,
       textData: { contentItems: [] },
       dominantPersonality: employee.dominant_personality,
-      personalityProfile: employee.personality_profile,
+      personalityProfile: JSON.parse(employee.personality_profile),
       headShot: employee.head_shot_url,
       databaseId: employee.id
     }
@@ -214,7 +214,7 @@ export class ProfileService {
   }
 
   getNewestEmployee(): Employee {
-    return this.getEmployeeList[this.employeeList.length - 1];
+    return this.employeeList[this.employeeList.length - 1];
   }
 
   surveyEntryDatabaseStructureToLocal(surveyEntry: any): ContentItem {
