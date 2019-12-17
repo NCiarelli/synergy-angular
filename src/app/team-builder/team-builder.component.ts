@@ -97,9 +97,9 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     private profileService: ProfileService,
     private teamService: TeamService,
     public router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.profileService.setSelectedFalseAllEmployees();
@@ -129,7 +129,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.profileService.setSelectedFalseAllEmployees();
   }
 
-  createTeamFormula(teamFormula) {}
+  createTeamFormula(teamFormula) { }
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {
@@ -247,8 +247,9 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.teamBuilt = false;
   }
   saveTeam() {
-    this.teamService.addCreatedTeam(this.doneTeam);
-    //route to team dashboard
-    this.router.navigate(["team-management"]);
+    this.teamService.addCreatedTeam(this.doneTeam, this.activeTeamTypeName, this.namedTeam).subscribe(() => {
+      //route to team dashboard
+      this.router.navigate(["team-management"]);
+    });
   }
 }

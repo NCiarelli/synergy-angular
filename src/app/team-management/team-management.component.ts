@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TeamService } from "../services/team.service";
+import { Team } from '../interfaces/team';
 
 @Component({
   selector: "app-team-management",
@@ -7,7 +8,11 @@ import { TeamService } from "../services/team.service";
   styleUrls: ["./team-management.component.css"]
 })
 export class TeamManagementComponent implements OnInit {
-  constructor(private teamService: TeamService) {}
+  activeteam: Team;
 
-  ngOnInit() {}
+  constructor(private teamService: TeamService) { }
+
+  ngOnInit() {
+    this.activeteam = this.teamService.getNewestSavedTeam();
+  }
 }
