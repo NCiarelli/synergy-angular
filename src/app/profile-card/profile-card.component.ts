@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { ProfileService } from "../services/profile.service";
 import { ChartsModule } from "ng2-charts";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: "app-profile-card",
@@ -8,6 +9,11 @@ import { ChartsModule } from "ng2-charts";
   styleUrls: ["./profile-card.component.css"]
 })
 export class ProfileCardComponent implements OnInit {
+  urlArray = this.document.location.href.split("/");
+  parsedEmployeeName = this.urlArray[this.urlArray.length - 1].replace(
+    "%20",
+    " "
+  );
   returnedEmployee;
   // personalityData:
   radarChartLabels: string[] = [
@@ -20,10 +26,14 @@ export class ProfileCardComponent implements OnInit {
   radarChartData: any;
   public radarChartType: string = "radar";
 
-  constructor(private profileService: ProfileService) {}
+  constructor(
+    private profileService: ProfileService,
+    @Inject(DOCUMENT) private document: Document
+  ) {
+    // console.log(this.document.location.href.split("/"));
+  }
 
   getChart(employee: string) {
-    this.returnedEmployee = this.profileService.getEmployee(employee);
     this.radarChartData = [
       {
         data: [
@@ -49,6 +59,10 @@ export class ProfileCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnedEmployee = this.getChart("Colin Sords");
+    console.log(this.parsedEmployeeName);
+    console.log(this.urlArray);
+    this.returnedEmployee = this.profileService.getEmployee(
+      this.parsedEmployeeName
+    );
   }
 }
