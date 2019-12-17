@@ -85,7 +85,6 @@ export class ProfileService {
     return this.addEmployeeToDatabase(newName).pipe(map((response) => {
       // Restructure the returned employee data to local structure
       let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
-      console.log(newEmployee);
       // Add the new employee to the employee list
       this.employeeList.push(newEmployee);
       // The new employee index will be the last index of the array now
@@ -98,7 +97,6 @@ export class ProfileService {
 
   addTextData(inputTextData: string, employee: Employee): Observable<any> {
     // Single employee code
-    console.log(employee);
     // Create the new text data object
     let newTextData: ContentItem = {
       // Get the text data from the form
