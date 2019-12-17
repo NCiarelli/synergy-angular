@@ -23,7 +23,7 @@ main {
   /* margin-right: 3px; */
   /* text-align: flex-start; */
 }
-a {
+.link {
   width: 175px;
   padding: 5px;
   background-color: #fd9c3c;

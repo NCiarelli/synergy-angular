@@ -15,6 +15,7 @@ export class ProfileCardComponent implements OnInit, OnDestroy {
 
   returnedEmployee;
   // personalityData:
+  radarChartOptions = { responsive: true, maintainAspectRatio: false };
   radarChartLabels: string[] = [
     "Openness",
     "Conscientiousness",

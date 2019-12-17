@@ -13,7 +13,9 @@
     When you're ready to start building:
   </p>
   <div class="btn">
-    <a routerLink="/team-builder" routerLinkActive="active">Build A Team</a>
+    <a class="link" routerLink="/team-builder" routerLinkActive="active"
+      >Build A Team</a
+    >
   </div>
 </section>
 
@@ -28,7 +30,9 @@
     <div [ngClass]="[employee.dominantPersonality]" class="profileText">
       <p>{{ employee.name }}</p>
       <p>{{ employee.dominantPersonality }}</p>
-      <a [routerLink]="['/employee-profile', employee.name]">Details</a>
+      <a [routerLink]="['/employee-profile', employee.name]" class="temp"
+        >Details</a
+      >
     </div>
   </div>
 </main>
