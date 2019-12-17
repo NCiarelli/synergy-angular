@@ -2,6 +2,7 @@ export interface ContentItem {
   content: string;
   contenttype: string;
   created: number;
-  id: string;
+  id?: string;
   language: string;
+  employeeId?: number;
 }

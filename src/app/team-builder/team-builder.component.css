@@ -212,6 +212,97 @@ h4 {
   margin-top: 5px;
 }
 
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* filter: blur(5px); */
+}
+
+.modal-window {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  padding: 30px;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 2;
+  width: 75%;
+  height: auto;
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.modal-btns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 70%;
+}
+
+.modal-btns h3 {
+  font-size: 20px;
+}
+
+.whole-page {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.modal-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenly;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-btn-container button {
+  width: 100%;
+  border-style: none;
+  background-color: #fd9c3c;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 15px;
+  cursor: pointer;
+  color: white;
+}
+
+.modal-btn-container button:active {
+  background-color: #eb8251;
+}
+.sm-headShot {
+  width: 75px;
+}
+.sm-name {
+  width: 75px;
+}
+.sm-name p {
+  font-size: 15px;
+  color: white;
+}
+.selected-team {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 @media only screen and (min-width: 768px) {
   .btn-container {
     flex-wrap: nowrap;
@@ -224,5 +315,27 @@ h4 {
   }
   .instructions {
     font-size: 20px;
+  }
+
+  .modal-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-btn-container button {
+    width: 70%;
+    padding: 10px;
+  }
+
+  .modal-window {
+    width: 800px;
+    height: 500px;
+  }
+  .selected-team {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
   }
 }

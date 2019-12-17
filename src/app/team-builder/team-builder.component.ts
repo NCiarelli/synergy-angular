@@ -88,10 +88,12 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
   grayedOut: boolean = false;
   activeTeamFormula: string = "";
   progress: boolean = false;
+  overlayDisplay: boolean = false;
+  modalDisplay: boolean = false;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.profileService.setSelectedFalseAllEmployees();
@@ -121,7 +123,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.profileService.setSelectedFalseAllEmployees();
   }
 
-  createTeamFormula(teamFormula) {}
+  createTeamFormula(teamFormula) { }
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {
@@ -152,7 +154,10 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
           }
           // Change to the finished team display
           this.teamBuilt = true;
+          this.overlayDisplay = true;
+          this.modalDisplay = true;
         }
+
         // And exit the function
         return;
       }
@@ -227,5 +232,11 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
       }
     }
     return counter;
+  }
+
+  closeModal() {
+    this.overlayDisplay = false;
+    this.modalDisplay = false;
+    this.teamBuilt = false;
   }
 }
