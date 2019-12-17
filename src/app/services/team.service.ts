@@ -77,4 +77,8 @@ export class TeamService {
     }
     return teamObject;
   }
+
+  updateTeamNotesInDatabase(team: Team): Observable<any> {
+    return this.http.put(`${this.EXPRESS_URL}/teams/${team.id}/notes`, { notes: team.notes });
+  }
 }

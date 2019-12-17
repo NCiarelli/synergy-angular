@@ -11,14 +11,7 @@
   <form *ngIf="modalDisplay">
     <p>{{ activeTeam.name }}</p>
     <label for="notes">Notes:</label>
-    <textarea
-      ngModel
-      name="notes"
-      id="notes"
-      cols="30"
-      rows="10"
-      required
-    ></textarea>
+    <textarea [(ngModel)]="notesText" name="notes" id="notes" cols="30" rows="10" required></textarea>
 
     <div class="btn-container">
       <button type="submit" (click)="closeModal()" class="add-notes-btn">
