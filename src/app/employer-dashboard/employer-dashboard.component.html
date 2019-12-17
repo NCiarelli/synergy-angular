@@ -2,9 +2,13 @@
   <h3>Employee Profiles</h3>
   <h3>Filter employees by name or personality type:</h3>
   <form #filterForm="ngForm" (input)="findMatch(filterForm)">
-    <input type="text" name="filterText" placeholder="begin typing to filter" ngModel />
+    <input
+      type="text"
+      name="filterText"
+      placeholder="begin typing to filter"
+      ngModel
+    />
   </form>
-
   <p class="instructions">
     When you're ready to start building:
   </p>
@@ -16,7 +20,11 @@
 <main>
   <div class="profile" *ngFor="let employee of filterByName()">
     <div class="cardBanner"></div>
-    <img class="headShot" [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
+    <img
+      class="headShot"
+      [src]="employee.headShot ? employee.headShot : defaultAvatar"
+      alt=""
+    />
     <div [ngClass]="[employee.dominantPersonality]" class="profileText">
       <p>{{ employee.name }}</p>
       <p>{{ employee.dominantPersonality }}</p>

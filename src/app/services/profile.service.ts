@@ -26,7 +26,7 @@ export class ProfileService {
     "Any"
   ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   findEmployeeIndex(name: string): number {
     // Check if the employee name already exists, case insensitive
@@ -51,10 +51,12 @@ export class ProfileService {
         employee.personalityProfile = response.result;
         this.assignDominantPersonality(employee);
         // Update the database with the new personality data
-        this.updateEmployeeDatabasePersonalityProfile(employee).subscribe((response) => {
-          // DEBUG
-          console.log(response);
-        });
+        this.updateEmployeeDatabasePersonalityProfile(employee).subscribe(
+          response => {
+            // DEBUG
+            console.log(response);
+          }
+        );
       });
   }
 
@@ -82,17 +84,20 @@ export class ProfileService {
   // Returns the named employee's index in the array
   addEmployee(newName: string): Observable<any> {
     // Add the new employee to the database
-    return this.addEmployeeToDatabase(newName).pipe(map((response) => {
-      // Restructure the returned employee data to local structure
-      let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
-      // Add the new employee to the employee list
-      this.employeeList.push(newEmployee);
-      // The new employee index will be the last index of the array now
-      const employeeIndex = this.employeeList.length - 1;
-      // DEBUG
-      console.log(this.employeeList[employeeIndex]);
-    }));
-
+    return this.addEmployeeToDatabase(newName).pipe(
+      map(response => {
+        // Restructure the returned employee data to local structure
+        let newEmployee: Employee = this.employeeDatabaseStructureToLocal(
+          response
+        );
+        // Add the new employee to the employee list
+        this.employeeList.push(newEmployee);
+        // The new employee index will be the last index of the array now
+        const employeeIndex = this.employeeList.length - 1;
+        // DEBUG
+        console.log(this.employeeList[employeeIndex]);
+      })
+    );
   }
 
   addTextData(inputTextData: string, employee: Employee): Observable<any> {
@@ -108,15 +113,17 @@ export class ProfileService {
       employeeId: employee.databaseId
     };
     // Send the new text entry to the database
-    return this.addSurveyEntryToDatabase(newTextData).pipe(map((response) => {
-      let returnedEntry: ContentItem = this.surveyEntryDatabaseStructureToLocal(response);
-      // Add the new text data entry to the contentItems array of the employee
-      employee.textData.contentItems.push(returnedEntry);
-      // DEBUG
-      console.log(employee.textData.contentItems);
-    }));
-
-
+    return this.addSurveyEntryToDatabase(newTextData).pipe(
+      map(response => {
+        let returnedEntry: ContentItem = this.surveyEntryDatabaseStructureToLocal(
+          response
+        );
+        // Add the new text data entry to the contentItems array of the employee
+        employee.textData.contentItems.push(returnedEntry);
+        // DEBUG
+        console.log(employee.textData.contentItems);
+      })
+    );
   }
 
   checkIfEnoughDataForProfile(employee: Employee): boolean {
@@ -188,14 +195,18 @@ export class ProfileService {
 
   // Gets the entire employee list from the database
   retrieveEmployeeList(): Observable<any> {
-    return this.http.get(`${this.EXPRESS_URL}/employees`).pipe(map((response: any) => {
-      // Force the employee list to be empty
-      this.employeeList.length = 0;
-      // Add all the employees retrieved from the database to the local service employee list
-      for (let databaseEmployee of response) {
-        this.employeeList.push(this.employeeDatabaseStructureToLocal(databaseEmployee));
-      }
-    }));
+    return this.http.get(`${this.EXPRESS_URL}/employees`).pipe(
+      map((response: any) => {
+        // Force the employee list to be empty
+        this.employeeList.length = 0;
+        // Add all the employees retrieved from the database to the local service employee list
+        for (let databaseEmployee of response) {
+          this.employeeList.push(
+            this.employeeDatabaseStructureToLocal(databaseEmployee)
+          );
+        }
+      })
+    );
   }
 
   employeeDatabaseStructureToLocal(employee: any): Employee {
@@ -206,11 +217,13 @@ export class ProfileService {
       personalityProfile: employee.personality_profile,
       headShot: employee.head_shot_url,
       databaseId: employee.id
-    }
+    };
   }
 
   addEmployeeToDatabase(employeeName: string): Observable<any> {
-    return this.http.post(`${this.EXPRESS_URL}/employees`, { name: employeeName });
+    return this.http.post(`${this.EXPRESS_URL}/employees`, {
+      name: employeeName
+    });
   }
 
   getNewestEmployee(): Employee {
@@ -224,26 +237,44 @@ export class ProfileService {
       created: surveyEntry.created,
       language: "en",
       id: surveyEntry.id
-    }
+    };
   }
 
   addSurveyEntryToDatabase(surveyEntry: ContentItem): Observable<any> {
-    return this.http.post(`${this.EXPRESS_URL}/employees/${surveyEntry.employeeId}/survey-entries`, surveyEntry)
+    return this.http.post(
+      `${this.EXPRESS_URL}/employees/${surveyEntry.employeeId}/survey-entries`,
+      surveyEntry
+    );
   }
 
   getSurveyEntriesByEmployeeId(employee: Employee): Observable<any> {
-    return this.http.get(`${this.EXPRESS_URL}/employees/${employee.databaseId}/survey-entries`).pipe(map((response: any) => {
-
-      for (let surveyEntry of response) {
-        // Add the retrieved survey entries to the contentItems array after translating the structure
-        employee.textData.contentItems.push(this.surveyEntryDatabaseStructureToLocal(surveyEntry));
-      }
-    }));
+    return this.http
+      .get(
+        `${this.EXPRESS_URL}/employees/${employee.databaseId}/survey-entries`
+      )
+      .pipe(
+        map((response: any) => {
+          for (let surveyEntry of response) {
+            // Add the retrieved survey entries to the contentItems array after translating the structure
+            employee.textData.contentItems.push(
+              this.surveyEntryDatabaseStructureToLocal(surveyEntry)
+            );
+          }
+        })
+      );
   }
 
   // Send an update to the database to include the personality profile and dominant personality
-  updateEmployeeDatabasePersonalityProfile(employee: Employee): Observable<any> {
-    return this.http.put(`${this.EXPRESS_URL}/employees/${employee.databaseId}/personality-profile`, { personalityProfile: employee.personalityProfile, dominantPersonality: employee.dominantPersonality });
+  updateEmployeeDatabasePersonalityProfile(
+    employee: Employee
+  ): Observable<any> {
+    return this.http.put(
+      `${this.EXPRESS_URL}/employees/${employee.databaseId}/personality-profile`,
+      {
+        personalityProfile: employee.personalityProfile,
+        dominantPersonality: employee.dominantPersonality
+      }
+    );
   }
 
   setSelectedFalseAllEmployees() {
@@ -254,15 +285,26 @@ export class ProfileService {
   // Using to populate example data
   updateEmployeeDatabaseEntry(employee: Employee): Observable<any> {
     let headShot = employee.headShot ? employee.headShot : null;
-    let updateParams = { name: employee.name, dominantPersonality: employee.dominantPersonality, personalityProfile: null, headShot: headShot, notes: "" };
-    return this.http.put(`${this.EXPRESS_URL}/employees/${employee.databaseId}/update-all`, updateParams);
+    let updateParams = {
+      name: employee.name,
+      dominantPersonality: employee.dominantPersonality,
+      personalityProfile: null,
+      headShot: headShot,
+      notes: ""
+    };
+    return this.http.put(
+      `${this.EXPRESS_URL}/employees/${employee.databaseId}/update-all`,
+      updateParams
+    );
   }
 
   // FOR EXPORTING ENTIRE LOCAL EMPLOYEE LIST TO DATABASE
   // sendEmployeesToDatabase() {
   //   for (let employee of this.employeeList) {
-  //     this.addEmployeeToDatabase(employee.name).subscribe((response) => {
-  //       let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
+  //     this.addEmployeeToDatabase(employee.name).subscribe(response => {
+  //       let newEmployee: Employee = this.employeeDatabaseStructureToLocal(
+  //         response
+  //       );
   //       employee.databaseId = newEmployee.databaseId;
   //       // console.log("Added ", newEmployee.name, " to the Database.");
   //       this.updateEmployeeDatabaseEntry(employee).subscribe(() => {
@@ -270,7 +312,7 @@ export class ProfileService {
   //           surveyEntry.employeeId = employee.databaseId;
   //           this.addSurveyEntryToDatabase(surveyEntry).subscribe(() => {
   //             console.log("Added survey entry for ", employee.name);
-  //           })
+  //           });
   //         }
   //       });
   //     });

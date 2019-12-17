@@ -9,7 +9,7 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./employer-dashboard.component.css"]
 })
 export class EmployerDashboardComponent implements OnInit {
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService) {}
   employeeList: Employee[];
   defaultAvatar: string = "../../assets/defaultAvatar.png";
   filterText: string = "";
@@ -35,10 +35,6 @@ export class EmployerDashboardComponent implements OnInit {
       );
     }
   }
-
-  // sendEmployeesToDatabase() {
-  //   this.profileService.sendEmployeesToDatabase();
-  // }
 }
 
 // match: string;
