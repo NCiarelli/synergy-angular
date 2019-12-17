@@ -10,22 +10,35 @@
   <!-- buttons for loadouts -->
   <div class="btn-container">
     <!-- <button class="team-names team-name-btn">Optimize team for...</button> -->
-    <button *ngFor="let teamType of teamTypes" class="team-names team-name-btn" type="button"
-      (click)="createBuilder(teamType)" [ngClass]="teamType.buttonActiveClass">
+    <button
+      *ngFor="let teamType of teamTypes"
+      class="team-names team-name-btn"
+      type="button"
+      (click)="createBuilder(teamType)"
+      [ngClass]="teamType.buttonActiveClass"
+    >
       {{ teamType.name }}
     </button>
     <!-- <div class="header-background" [ngClass]="headerBackgroundClass">
     <p>{{ activeHeaderText }}</p>-->
   </div>
-  <div class="selected-formula" id="selected" *ngIf="teamTypeSelected && !teamBuilt">
+  <div
+    class="selected-formula"
+    id="selected"
+    *ngIf="teamTypeSelected && !teamBuilt"
+  >
     <p>{{ activeTeamTypeName }} requires {{ activeTeamFormula }}</p>
   </div>
 </section>
 <!--  -->
 <!-- </section> -->
 
-<form *ngIf="teamTypeSelected && !teamBuilt" id="teamNameForm" #nameForm="ngForm"
-  (ngSubmit)="onTeamNameSubmit(nameForm)">
+<form
+  *ngIf="teamTypeSelected && !teamBuilt"
+  id="teamNameForm"
+  #nameForm="ngForm"
+  (ngSubmit)="onTeamNameSubmit(nameForm)"
+>
   <label for="teamNameInput">Give your team a name:</label>
   <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
 
@@ -35,10 +48,16 @@
   <h3 *ngIf="selectInstructions" class="add-instructions">
     Click an employee to add to {{ namedTeam }}.
   </h3>
-  <div *ngFor="let personalityType of personalityTypes; index as i" [ngClass]="{ hide: teamSlots[i].length === 0 }">
+  <div
+    *ngFor="let personalityType of personalityTypes; index as i"
+    [ngClass]="{ hide: teamSlots[i].length === 0 }"
+  >
     <p *ngIf="teamTypeSelected && !teamBuilt"></p>
     <h4>{{ personalityType }}</h4>
-    <app-employee-banner [personalityFilter]="personalityType" (pickEmployee)="addEmployee($event, teamSlots[i])">
+    <app-employee-banner
+      [personalityFilter]="personalityType"
+      (pickEmployee)="addEmployee($event, teamSlots[i])"
+    >
     </app-employee-banner>
     <div class="progress" *ngIf="countEmptySlots(teamSlots[i]) !== 0">
       <p>
@@ -46,18 +65,29 @@
         {{ countEmptySlots(teamSlots[i]) }} from the above employees.
       </p>
     </div>
-    <div class="hide" [ngClass]="{ displayCheck: countEmptySlots(teamSlots[i]) == 0 }">
+    <div
+      class="hide"
+      [ngClass]="{ displayCheck: countEmptySlots(teamSlots[i]) == 0 }"
+    >
       <i class="fa fa-check" aria-hidden="true"></i>
     </div>
     <div class="slots-container">
       <div *ngFor="let slot of teamSlots[i]; index as j" class="member-slot">
         <div class="cardBanner">
-          <button type="button" *ngIf="!isSlotOpen(slot)" (click)="removeTeamMember(i, j)">
+          <button
+            type="button"
+            *ngIf="!isSlotOpen(slot)"
+            (click)="removeTeamMember(i, j)"
+          >
             <i class="fas fa-times"></i>
           </button>
         </div>
         <img class="headShot" [src]="getSrcLink(slot)" alt="" />
-        <div *ngIf="!isSlotOpen(slot)" [ngClass]="getPersonalityClass(slot)" class="profileText">
+        <div
+          *ngIf="!isSlotOpen(slot)"
+          [ngClass]="getPersonalityClass(slot)"
+          class="profileText"
+        >
           <p>{{ slot.name }}</p>
           <p>{{ slot.dominantPersonality }}</p>
         </div>
@@ -98,7 +128,7 @@
           {{ activeTeamTypeName }}.
         </h3>
         <div class="btn-container">
-          <button routerLink="/team-management">
+          <button (click)="saveTeam()">
             Create Team
           </button>
           <button (click)="closeModal()">
