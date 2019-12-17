@@ -86,7 +86,7 @@ export class SurveyFormComponent implements OnInit {
       this.profileService.addEmployee(this.employeeName).subscribe(() => {
         // When an employee has finished being added to both the database anad local list
         // Get the added (newest) employee on the list
-        this.activeEmployee = this.profileService.getNewestEmployee()
+        this.activeEmployee = this.profileService.getNewestEmployee();
         // Then activate the survey form
         this.nameFormActive = false;
         this.surveyFormActive = true;

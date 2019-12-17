@@ -257,4 +257,14 @@ export class ProfileService {
     let updateParams = { name: employee.name, dominantPersonality: employee.dominantPersonality, personalityProfile: null, headShot: headShot, notes: "" };
     return this.http.put(`${this.EXPRESS_URL}/employees/${employee.databaseId}/update-all`, updateParams);
   }
+
+  sendEmployeesToDatabase() {
+    for (let employee of this.employeeList) {
+      this.addEmployeeToDatabase(employee.name).subscribe((response) => {
+        let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
+        employee.databaseId = newEmployee.databaseId;
+        this.updateEmployeeDatabaseEntry(employee);
+      });
+    }
+  }
 }

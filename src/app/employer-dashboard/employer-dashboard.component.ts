@@ -35,6 +35,10 @@ export class EmployerDashboardComponent implements OnInit {
       );
     }
   }
+
+  sendEmployeesToDatabase() {
+    this.profileService.sendEmployeesToDatabase();
+  }
 }
 
 // match: string;
