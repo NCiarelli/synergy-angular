@@ -56,7 +56,6 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
   //     Risk_management: [0, 2, 0, 0, 2, 1]
   // }
 
-  teamNames = Object.keys(this.teamTypes);
   teamSlots: any[] = [[], [], [], [], [], []];
   personalityTypes = [
     "Openness",
@@ -85,6 +84,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
   namedTeam: string = "";
   teamTypeSelected: boolean = false;
   selectInstructions: boolean = false;
+
   grayedOut: boolean = false;
   activeTeamFormula: string = "";
   progress: boolean = false;

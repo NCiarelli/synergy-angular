@@ -1,0 +1,60 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+.card-container {
+  width: 100%;
+  height: 85vh;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.employee-details {
+  width: 90%;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headShot {
+  margin-bottom: 5px;
+}
+
+.chart-container {
+  position: relative;
+  display: block;
+  border: 0px;
+  margin: 0px;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* z-index: -1; */
+}
+
+.text-details p {
+  margin: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+/* 
+.page {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+} */
+
+/* @media screen and (min-width: 768px) {
+  .page {
+    width: 75vh;
+    margin: 0 auto;
+  }
+} */
