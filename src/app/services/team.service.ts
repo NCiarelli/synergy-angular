@@ -5,6 +5,7 @@ import { Team } from '../interfaces/team';
 import { Employee } from '../interfaces/employee';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { ProfileService } from './profile.service';
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +16,7 @@ export class TeamService {
   savedTeams: Team[] = [];
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private profileService: ProfileService) { }
 
   addCreatedTeam(doneTeam: Employee[], teamTypeInput: string, teamName: string): Observable<any> {
     // Construct a team object from the inputs
@@ -29,9 +30,7 @@ export class TeamService {
     }));
   }
 
-  // teamDatabaseStructureToLocal(databaseTeam: any): Team {
 
-  // }
 
   getSavedTeams() {
     return this.savedTeams;
@@ -52,7 +51,30 @@ export class TeamService {
     return this.http.post(`${this.EXPRESS_URL}/teams`, requestData);
   }
 
-  // getAllSavedTeamsFromDatabase(): Observable<any> {
-  //   // Make HTTP Request to Express Server to get all the teams saved in the database
-  // }
+  // MUST RUN AFTER EMPLOYEES HAVE BEEN RETRIEVED FROM THE DATABASE
+  getAllSavedTeamsFromDatabase(): Observable<any> {
+    // Make HTTP Request to Express Server to get all the teams saved in the database
+    return this.http.get(`${this.EXPRESS_URL}/teams`).pipe(map((response: any) => {
+      // Force the teams list to be empty
+      this.savedTeams.length = 0;
+      // Add all the teams retrieved from the database to the local service teams list
+      for (let databaseTeam of response) {
+        this.savedTeams.push(this.teamDatabaseStructureToLocal(databaseTeam));
+      }
+    }));
+  }
+
+  teamDatabaseStructureToLocal(databaseTeam: any): Team {
+    let teamObject: Team = {
+      name: databaseTeam.name,
+      teamType: databaseTeam.team_type,
+      id: databaseTeam.id,
+      notes: databaseTeam.notes,
+      members: []
+    }
+    for (let memberId of databaseTeam.member_ids) {
+      teamObject.members.push(this.profileService.findEmployeeById(memberId));
+    }
+    return teamObject;
+  }
 }
