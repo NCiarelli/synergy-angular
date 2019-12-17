@@ -16,7 +16,7 @@
     <!-- <button *ngIf="returnedEmployee" (click)="getChart(returnedEmployee)">
       Load Chart
     </button> -->
-    <div class="chart-container">
+    <div *ngIf="returnedEmployee" class="chart-container">
       <canvas
         baseChart
         [labels]="radarChartLabels"

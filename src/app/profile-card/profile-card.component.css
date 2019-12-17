@@ -29,8 +29,8 @@
   position: relative;
   display: block;
   padding: 10px;
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 100%;
   pointer-events: none;
   /* z-index: -1; */
 }

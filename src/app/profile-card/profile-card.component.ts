@@ -10,12 +10,16 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ProfileCardComponent implements OnInit, OnDestroy {
   id: string;
-  private sub: any;
+  sub: any;
   showGraph: boolean = false;
 
   returnedEmployee;
   // personalityData:
-  radarChartOptions = { responsive: true, maintainAspectRatio: false };
+  radarChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: { display: false }
+  };
   radarChartLabels: string[] = [
     "Openness",
     "Conscientiousness",
@@ -43,11 +47,7 @@ export class ProfileCardComponent implements OnInit, OnDestroy {
     console.log(this.showGraph);
     this.sub = this.route.params.subscribe(params => {
       this.id = params.index;
-      console.log(params.index);
-    });
-    this.returnedEmployee = this.profileService.getEmployee(this.id);
-
-    setTimeout(() => {
+      this.returnedEmployee = this.profileService.getEmployee(this.id);
       this.radarChartData = [
         {
           data: [
@@ -69,8 +69,9 @@ export class ProfileCardComponent implements OnInit, OnDestroy {
           pointBackgroundColor: "#fd9c3c"
         }
       ];
-    }, 2000);
+    });
   }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
