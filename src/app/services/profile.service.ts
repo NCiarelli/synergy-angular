@@ -102,7 +102,6 @@ export class ProfileService {
 
   addTextData(inputTextData: string, employee: Employee): Observable<any> {
     // Single employee code
-    console.log(employee);
     // Create the new text data object
     let newTextData: ContentItem = {
       // Get the text data from the form

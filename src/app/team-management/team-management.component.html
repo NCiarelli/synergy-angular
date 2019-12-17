@@ -1,1 +1,24 @@
-<p>team-management works!</p>
+<h1>Team Dashboard</h1>
+
+<p>team name here</p>
+
+<section class="created-team">
+  <div class="created-team-header">
+    <!-- <img class="scrum-icon" src="../../assets/scrum_board_icon.svg" alt="" /> -->
+    <h4 class="created-team-copy">
+      {{ namedTeam }} is ready to work and is optimized for
+      {{ activeTeamTypeName }}.
+    </h4>
+  </div>
+
+  <div class="team-container created-team">
+    <div *ngFor="let slot of doneTeam" class="member-slot">
+      <div class="cardBanner"></div>
+      <img class="headShot" [src]="getSrcLink(slot)" alt="" />
+      <div [ngClass]="getPersonalityClass(slot)" class="profileText">
+        <p>{{ slot.name }}</p>
+        <p>{{ slot.dominantPersonality }}</p>
+      </div>
+    </div>
+  </div>
+</section>
