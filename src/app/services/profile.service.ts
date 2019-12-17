@@ -249,4 +249,12 @@ export class ProfileService {
   setSelectedFalseAllEmployees() {
     this.employeeList.forEach(employee => (employee.selected = false));
   }
+
+  // /employees/:id/update-all
+  // Using to populate example data
+  updateEmployeeDatabaseEntry(employee: Employee): Observable<any> {
+    let headShot = employee.headShot ? employee.headShot : null;
+    let updateParams = { name: employee.name, dominantPersonality: employee.dominantPersonality, personalityProfile: null, headShot: headShot, notes: "" };
+    return this.http.put(`${this.EXPRESS_URL}/employees/${employee.databaseId}/update-all`, updateParams);
+  }
 }
