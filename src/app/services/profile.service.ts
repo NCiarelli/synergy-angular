@@ -318,4 +318,8 @@ export class ProfileService {
   //     });
   //   }
   // }
+
+  findEmployeeById(id: number): Employee {
+    return this.employeeList.find(employee => employee.databaseId === id);
+  }
 }
