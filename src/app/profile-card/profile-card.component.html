@@ -1,1 +1,26 @@
-<p>profile-card works!</p>
+<div class="page">
+  <!-- <div class="card-container">
+    <div class="employee-details">
+      <img
+        class="headShot"
+        [src]="
+          returnedEmployee.headShot ? returnedEmployee.headShot : defaultAvatar
+        "
+        alt=""
+      />
+      <div class="text-details">
+        <p>Name: {{ returnedEmployee.name }}</p>
+        <p>Dominant Personality: {{ returnedEmployee.dominantPersonality }}</p>
+      </div>
+    </div> -->
+
+  <div class="chart-container">
+    <canvas
+      baseChart
+      [labels]="radarChartLabels"
+      [datasets]="radarChartData"
+      [chartType]="radarChartType"
+    ></canvas>
+  </div>
+  <!-- </div> -->
+</div>

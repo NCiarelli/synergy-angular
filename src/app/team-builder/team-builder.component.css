@@ -10,6 +10,41 @@
 .instructions {
   display: inline block;
   text-align: center;
+  font-size: 14px;
+}
+#nameTeamForm {
+  align-items: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid rgb(236, 232, 232); */
+  border-radius: 3px;
+  width: 20vw;
+  position: relative;
+  left: 20px;
+}
+#nameTeamForm input {
+  margin: 3px;
+}
+
+form:hover {
+  border-color: #f26322;
+}
+.nameTeamButton {
+  border: 1px solid #f26322;
+  background-color: #fd9c3c;
+  color: rgb(233, 227, 227);
+  vertical-align: middle;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px;
+  border: 1px solid #f26322;
+  width: auto;
+  padding: 5px;
+}
+button:focus {
+  outline: none;
 }
 .created-team {
   justify-content: center;
@@ -33,14 +68,16 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
-
 .hide {
   display: none;
 }
-
+#selected .selected-formula {
+  display: block;
+  margin: 0 auto;
+}
 app-employee-banner {
-  height: auto;
   overflow: auto;
 }
 
@@ -61,6 +98,15 @@ app-employee-banner {
   border: 1px solid black;
   margin-right: 4px;
   width: 200px;
+}
+.notGray {
+  width: 200px;
+}
+.selectedGray {
+  background-color: grey;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
 }
 
 p {
@@ -111,7 +157,9 @@ h4 {
 #team-slots {
   margin-left: 15px;
 }
-
+.displayCheck div {
+  color: red;
+}
 .btn-container {
   width: 100%;
   display: flex;
@@ -154,11 +202,27 @@ h4 {
   cursor: pointer;
 }
 
+#teamNameForm {
+  width: 90%;
+}
+
+#teamNameInput {
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
 @media only screen and (min-width: 768px) {
   .btn-container {
     flex-wrap: nowrap;
   }
   .team-container {
     flex-direction: row;
+  }
+  #teamNameForm {
+    width: 300px;
+  }
+  .instructions {
+    font-size: 20px;
   }
 }

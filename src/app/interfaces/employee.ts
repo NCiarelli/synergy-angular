@@ -7,4 +7,5 @@ export interface Employee {
   personalityProfile?: { personality: any[] };
   headShot?: string;
   databaseId?: number;
+  selected?: boolean;
 }

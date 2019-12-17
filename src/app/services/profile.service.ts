@@ -171,7 +171,9 @@ export class ProfileService {
         }
       }
       // Stores the Name of the personality type with the highest percentile in the dominantPersonality of the employee
-      employee.dominantPersonality = this.personalityTypes[highestPersonalityIndex];
+      employee.dominantPersonality = this.personalityTypes[
+        highestPersonalityIndex
+      ];
       // DEBUG
       console.log(
         `${employee.name}'s dominant personality type is now ${this.personalityTypes[highestPersonalityIndex]}`
@@ -242,5 +244,9 @@ export class ProfileService {
   // Send an update to the database to include the personality profile and dominant personality
   updateEmployeeDatabasePersonalityProfile(employee: Employee): Observable<any> {
     return this.http.put(`${this.EXPRESS_URL}/employees/${employee.databaseId}/personality-profile`, { personalityProfile: employee.personalityProfile, dominantPersonality: employee.dominantPersonality });
+  }
+
+  setSelectedFalseAllEmployees() {
+    this.employeeList.forEach(employee => (employee.selected = false));
   }
 }

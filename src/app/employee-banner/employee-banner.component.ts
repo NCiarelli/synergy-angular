@@ -20,7 +20,7 @@ export class EmployeeBannerComponent implements OnInit {
   }
 
   filterEmployeeList(): Employee[] {
-    // Filter the employee list based on any personlity type that was given as an input binding
+    // Filter the employee list based on any personality type that was given as an input binding
 
     // If there is not filter type or the type is "Any"
     if (!this.personalityFilter || this.personalityFilter === "Any") {

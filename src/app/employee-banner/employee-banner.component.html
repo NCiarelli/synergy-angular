@@ -1,10 +1,13 @@
-<main class="slider">
-  <div class="slide" *ngFor="let employee of filterEmployeeList()" (click)="clickEmployee(employee)">
-    <div class="cardBanner"></div>
-    <img class="headShot" [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
-    <div [ngClass]="[employee.dominantPersonality]" class="profileText">
-      <p>{{ employee.name }}</p>
-      <p>{{ employee.dominantPersonality }}</p>
+<main class="photo-container">
+  <div class="profile" *ngFor="let employee of filterEmployeeList()" (click)="clickEmployee(employee)">
+    <div [ngClass]="{ gray: employee.selected }"></div>
+    <div>
+      <div class="cardBanner"></div>
+      <img class="headShot" [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
+      <div [ngClass]="[employee.dominantPersonality]" class="profileText">
+        <p>{{ employee.name }}</p>
+        <p>{{ employee.dominantPersonality }}</p>
+      </div>
     </div>
   </div>
 </main>

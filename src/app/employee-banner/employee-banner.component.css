@@ -4,7 +4,7 @@ p {
   font-family: "Open Sans", sans-serif;
 }
 
-.slider {
+.photo-container {
   width: 100%;
   position: relative;
   overflow-x: auto;
@@ -16,28 +16,24 @@ p {
   margin: auto;
   padding-bottom: 20px;
 }
-
-.slide {
-  /* position: absolute; */
+.gray {
+  background-color: gray;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  opacity: 0.5;
+}
+.profile {
   margin-bottom: 5px;
   transition: all 0.5s ease;
   margin-right: 4px;
-  /* Move slides off to the left  by default transform */
-  /* transform: translate(-100%, 0); */
+  position: relative;
 }
 
-/* // Set active slide to be in the viewport */
-/* .slide:active {
-  transform: translate(0, 0);
-} */
-
-.slide:hover {
+.profile:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
-/* img {
-  margin-bottom: 10px;
-  margin-right: 5px;
-} */
 
 /* #FEC804 -yellow #F26322 orange #7A2D59 #181B46 */

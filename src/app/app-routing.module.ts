@@ -9,7 +9,8 @@ import { ProfileCardComponent } from "./profile-card/profile-card.component";
 const routes: Routes = [
   { path: "employer-dashboard", component: EmployerDashboardComponent },
   { path: "employee-survey", component: SurveyFormComponent },
-  { path: "profile/:id", component: ProfileCardComponent },
+  //temporary switch
+  { path: "profile", component: ProfileCardComponent },
   { path: "team-builder", component: TeamBuilderComponent },
   { path: "", component: SplashComponent },
   { path: "**", component: SplashComponent }
