@@ -12,6 +12,7 @@ import { ProfileCardComponent } from "./profile-card/profile-card.component";
 import { EmployerDashboardComponent } from "./employer-dashboard/employer-dashboard.component";
 import { EmployeeBannerComponent } from "./employee-banner/employee-banner.component";
 import { HeaderComponent } from "./header/header.component";
+import { TeamManagementComponent } from './team-management/team-management.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HeaderComponent } from "./header/header.component";
     ProfileCardComponent,
     EmployerDashboardComponent,
     EmployeeBannerComponent,
-    HeaderComponent
+    HeaderComponent,
+    TeamManagementComponent
   ],
   imports: [
     BrowserModule,

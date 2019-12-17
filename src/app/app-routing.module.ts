@@ -5,6 +5,7 @@ import { EmployerDashboardComponent } from "./employer-dashboard/employer-dashbo
 import { SurveyFormComponent } from "./survey-form/survey-form.component";
 import { TeamBuilderComponent } from "./team-builder/team-builder.component";
 import { ProfileCardComponent } from "./profile-card/profile-card.component";
+import { TeamManagementComponent } from "./team-management/team-management.component";
 
 const routes: Routes = [
   { path: "employer-dashboard", component: EmployerDashboardComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   //temporary switch
   { path: "profile", component: ProfileCardComponent },
   { path: "team-builder", component: TeamBuilderComponent },
+  { path: "team-management", component: TeamManagementComponent },
   { path: "", component: SplashComponent },
   { path: "**", component: SplashComponent }
 ];

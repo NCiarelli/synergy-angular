@@ -99,11 +99,57 @@
   </div>
 </section>
 
-<section class="created-team" *ngIf="teamBuilt">
+<!-- modal check mark here -->
+<div *ngIf="modalDisplay && teamBuilt" class="whole-page">
+  <div class="modal-window">
+    <form
+      id="teamNameForm"
+      #nameForm="ngForm"
+      (ngSubmit)="onTeamNameSubmit(nameForm)"
+    >
+      <div class="selected-team">
+        <i class="fas fa-check-circle"></i>
+        <div *ngFor="let slot of doneTeam" class="modal-member-slot">
+          <img class="sm-headShot" [src]="getSrcLink(slot)" alt="" />
+          <div [ngClass]="getPersonalityClass(slot)" class="sm-name">
+            <p>{{ slot.name }}</p>
+            <!-- <p>{{ slot.dominantPersonality }}</p> -->
+          </div>
+        </div>
+      </div>
+
+      <label for="teamNameInput">Give your team a name:</label>
+      <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
+      <button class="nameTeamButton" type="submit">Submit</button>
+
+      <div class="modal-btns">
+        <h3>
+          {{ namedTeam }} is ready to work and is optimized for
+          {{ activeTeamTypeName }}.
+        </h3>
+        <div class="btn-container">
+          <button routerLink="/team-management">
+            Create Team
+          </button>
+          <button (click)="closeModal()">
+            Edit Team
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="overlayDisplay && teamBuilt" class="overlay"></div>
+
+<section
+  class="created-team"
+  *ngIf="!overlayDisplay && !modalDisplay && teamBuilt"
+>
   <div class="created-team-header">
     <img class="scrum-icon" src="../../assets/scrum_board_icon.svg" alt="" />
     <h4 class="created-team-copy">
-      {{ namedTeam }} team is ready to work and is optimized for
+      {{ namedTeam }} is ready to work and is optimized for
       {{ activeTeamTypeName }}.
     </h4>
   </div>
