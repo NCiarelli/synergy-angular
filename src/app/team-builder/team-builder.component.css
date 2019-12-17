@@ -10,6 +10,7 @@
 .instructions {
   display: inline block;
   text-align: center;
+  font-size: 14px;
 }
 #nameTeamForm {
   align-items: center;
@@ -74,7 +75,6 @@ button:focus {
 }
 
 app-employee-banner {
-  height: auto;
   overflow: auto;
 }
 
@@ -197,11 +197,27 @@ h4 {
   cursor: pointer;
 }
 
+#teamNameForm {
+  width: 90%;
+}
+
+#teamNameInput {
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
 @media only screen and (min-width: 768px) {
   .btn-container {
     flex-wrap: nowrap;
   }
   .team-container {
     flex-direction: row;
+  }
+  #teamNameForm {
+    width: 300px;
+  }
+  .instructions {
+    font-size: 20px;
   }
 }

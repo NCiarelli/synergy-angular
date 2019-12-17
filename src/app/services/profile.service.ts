@@ -26,7 +26,7 @@ export class ProfileService {
     "Any"
   ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   findEmployeeIndex(name: string): number {
     // Check if the employee name already exists, case insensitive
@@ -166,7 +166,9 @@ export class ProfileService {
         }
       }
       // Stores the Name of the personality type with the highest percentile in the dominantPersonality of the employee
-      employee.dominantPersonality = this.personalityTypes[highestPersonalityIndex];
+      employee.dominantPersonality = this.personalityTypes[
+        highestPersonalityIndex
+      ];
       // DEBUG
       console.log(
         `${employee.name}'s dominant personality type is now ${this.personalityTypes[highestPersonalityIndex]}`

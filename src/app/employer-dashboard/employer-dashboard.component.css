@@ -57,13 +57,16 @@ h3 {
   padding-bottom: 10px;
   text-align: center;
   padding: 0;
-  margin: 0;
   margin: 3px;
+  margin-left: 15px;
 }
 
 .profile {
   margin: 2px;
   transition: all 0.5s ease;
+  width: 90%;
+  display: flex;
+  margin-bottom: 5px;
 }
 
 .profile:hover {
@@ -74,19 +77,47 @@ h3 {
 /* display: initial */
 .cardBanner {
   background-color: #fd9c3c;
-  height: 30px;
-  display: none;
+  height: 0px;
+  /* height: 30px; */
+  /* display: none; */
 }
 
 /* display: initial */
 .headShot {
-  display: none;
+  /* display: none; */
+  width: 25%;
 }
 
 .profileText {
   font-family: sans-serif;
-  width: 200px;
+  width: 100%;
   color: #fff;
   padding-top: 3px;
   padding-bottom: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+@media screen and (min-width: 768px) {
+  .headShot {
+    display: initial;
+    width: 100%;
+  }
+  .profile {
+    width: auto;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .profileText {
+    width: auto;
+    display: block;
+  }
+  .cardBanner {
+    display: block;
+  }
+  .profileText p {
+    margin-left: 0px;
+  }
 }

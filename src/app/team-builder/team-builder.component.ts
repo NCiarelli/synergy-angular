@@ -66,6 +66,9 @@ export class TeamBuilderComponent implements OnInit {
   teamBuilt: boolean = false;
   doneTeam: any[] = [];
   activeTeamTypeName: string = "";
+  namedTeam: string = "";
+  teamTypeSelected: boolean = false;
+  selectInstructions: boolean = false;
   constructor(private profileService: ProfileService) {}
 
   ngOnInit() {}
