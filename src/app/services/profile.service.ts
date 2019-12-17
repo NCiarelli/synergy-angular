@@ -85,6 +85,7 @@ export class ProfileService {
     return this.addEmployeeToDatabase(newName).pipe(map((response) => {
       // Restructure the returned employee data to local structure
       let newEmployee: Employee = this.employeeDatabaseStructureToLocal(response);
+      console.log(newEmployee);
       // Add the new employee to the employee list
       this.employeeList.push(newEmployee);
       // The new employee index will be the last index of the array now
@@ -97,6 +98,7 @@ export class ProfileService {
 
   addTextData(inputTextData: string, employee: Employee): Observable<any> {
     // Single employee code
+    console.log(employee);
     // Create the new text data object
     let newTextData: ContentItem = {
       // Get the text data from the form
@@ -203,7 +205,7 @@ export class ProfileService {
       name: employee.name,
       textData: { contentItems: [] },
       dominantPersonality: employee.dominant_personality,
-      personalityProfile: employee.personality_profile,
+      personalityProfile: JSON.parse(employee.personality_profile),
       headShot: employee.head_shot_url,
       databaseId: employee.id
     }
@@ -214,7 +216,7 @@ export class ProfileService {
   }
 
   getNewestEmployee(): Employee {
-    return this.getEmployeeList[this.employeeList.length - 1];
+    return this.employeeList[this.employeeList.length - 1];
   }
 
   surveyEntryDatabaseStructureToLocal(surveyEntry: any): ContentItem {

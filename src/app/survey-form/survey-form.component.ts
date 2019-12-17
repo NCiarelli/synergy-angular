@@ -51,7 +51,7 @@ export class SurveyFormComponent implements OnInit {
       this.surveyError = true;
     }
 
-
+    console.log({ ...this.activeEmployee });
     // Add the text data to the employee object in the textData object, contentItems array, as well as the database
     this.profileService.addTextData(formData.value.answer, this.activeEmployee).subscribe(() => {
       // Check if there is enough data for the personality profile analysis.
@@ -87,6 +87,8 @@ export class SurveyFormComponent implements OnInit {
         // When an employee has finished being added to both the database anad local list
         // Get the added (newest) employee on the list
         this.activeEmployee = this.profileService.getNewestEmployee();
+        console.log("Last employee on list: ", { ...this.profileService.getNewestEmployee() });
+        console.log("Active employee: ", this.activeEmployee);
         // Then activate the survey form
         this.nameFormActive = false;
         this.surveyFormActive = true;
