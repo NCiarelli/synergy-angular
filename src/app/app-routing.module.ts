@@ -15,11 +15,10 @@ const routes: Routes = [
   { path: "team-builder", component: TeamBuilderComponent },
   { path: "team-management", component: TeamManagementComponent },
   { path: "", component: SplashComponent },
-  { path: "**", component: SplashComponent }
+  { path: "**", redirectTo: "" }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
