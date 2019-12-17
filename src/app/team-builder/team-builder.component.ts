@@ -91,9 +91,9 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
   overlayDisplay: boolean = false;
   modalDisplay: boolean = false;
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.profileService.setSelectedFalseAllEmployees();
@@ -123,7 +123,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.profileService.setSelectedFalseAllEmployees();
   }
 
-  createTeamFormula(teamFormula) {}
+  createTeamFormula(teamFormula) { }
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {

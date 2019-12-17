@@ -9,13 +9,14 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./employer-dashboard.component.css"]
 })
 export class EmployerDashboardComponent implements OnInit {
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) { }
   employeeList: Employee[];
   defaultAvatar: string = "../../assets/defaultAvatar.png";
   filterText: string = "";
 
   ngOnInit() {
     this.employeeList = this.profileService.getEmployeeList();
+    console.log(this.employeeList);
   }
 
   match: string;
@@ -33,6 +34,10 @@ export class EmployerDashboardComponent implements OnInit {
           employee.dominantPersonality.toLowerCase().includes(this.match)
       );
     }
+  }
+
+  sendEmployeesToDatabase() {
+    this.profileService.sendEmployeesToDatabase();
   }
 }
 
