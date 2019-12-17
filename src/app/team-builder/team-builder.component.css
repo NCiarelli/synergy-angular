@@ -68,12 +68,15 @@ button:focus {
   padding: 15px;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
-
 .hide {
   display: none;
 }
-
+#selected .selected-formula {
+  display: block;
+  margin: 0 auto;
+}
 app-employee-banner {
   overflow: auto;
 }
@@ -154,7 +157,9 @@ h4 {
 #team-slots {
   margin-left: 15px;
 }
-
+.displayCheck div {
+  color: red;
+}
 .btn-container {
   width: 100%;
   display: flex;

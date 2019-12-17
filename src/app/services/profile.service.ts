@@ -180,4 +180,8 @@ export class ProfileService {
       );
     }
   }
+
+  setSelectedFalseAllEmployees() {
+    this.employeeList.forEach(employee => (employee.selected = false));
+  }
 }
