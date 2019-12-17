@@ -11,6 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 export class ProfileCardComponent implements OnInit, OnDestroy {
   id: string;
   sub: any;
+  defaultAvatar: string = "../../assets/defaultAvatar.png";
   showGraph: boolean = false;
 
   returnedEmployee;
