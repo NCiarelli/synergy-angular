@@ -20,13 +20,25 @@
   <form *ngIf="modalDisplay">
     <p>{{ activeTeam.name }}</p>
     <label for="notes">Notes:</label>
-    <textarea [(ngModel)]="notesText" name="notes" id="notes" cols="30" rows="10" required></textarea>
+    <textarea
+      [(ngModel)]="notesText"
+      name="notes"
+      id="notes"
+      cols="30"
+      rows="10"
+      required
+    ></textarea>
 
     <div class="btn-container">
-      <button type="submit" (click)="closeModal()" class="add-notes-btn">
+      <button type="button" (click)="closeModal()" class="add-notes-btn">
         Add Notes
       </button>
     </div>
   </form>
 </div>
 <div *ngIf="overlayDisplay" class="overlay"></div>
+<section class="saved-teams">
+  <p (click)="makeTeamActive(team)" *ngFor="let team of savedTeams">
+    {{ team.name }} {{ team.teamType }} {{ team.notes }}
+  </p>
+</section>

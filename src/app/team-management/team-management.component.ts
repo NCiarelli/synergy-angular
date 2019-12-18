@@ -13,7 +13,7 @@ export class TeamManagementComponent implements OnInit {
   overlayDisplay: boolean = false;
   modalDisplay: boolean = false;
   notesText: string = "";
-
+  savedTeams: Team[];
   defaultAvatar: string = "../../assets/defaultAvatar.png";
   constructor(private teamService: TeamService) {}
 
@@ -22,8 +22,17 @@ export class TeamManagementComponent implements OnInit {
     if (this.activeTeam.notes) {
       this.notesText = this.activeTeam.notes;
     }
-  }
 
+    this.savedTeams = this.teamService.getSavedTeams();
+  }
+  makeTeamActive(team) {
+    this.activeTeam = team;
+    if (this.activeTeam.notes) {
+      this.notesText = this.activeTeam.notes;
+    } else {
+      this.notesText = "";
+    }
+  }
   loadModal() {
     this.overlayDisplay = true;
     this.modalDisplay = true;
