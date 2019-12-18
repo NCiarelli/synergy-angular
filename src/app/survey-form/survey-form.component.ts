@@ -3,6 +3,7 @@ import { ProfileService } from "../services/profile.service";
 import { Employee } from "../interfaces/employee";
 import { NgForm } from "@angular/forms";
 import { ContentItem } from "../interfaces/content-item";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "app-survey-form",
@@ -32,7 +33,7 @@ export class SurveyFormComponent implements OnInit {
     "Do you often second guess your decisions? Why?"
   ];
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService) {}
 
   // Adds the submitted survey text to the employee's textdata
   // If the employee does not exist, it creates them in the list
@@ -52,22 +53,26 @@ export class SurveyFormComponent implements OnInit {
     }
 
     // Add the text data to the employee object in the textData object, contentItems array, as well as the database
-    this.profileService.addTextData(formData.value.answer, this.activeEmployee).subscribe(() => {
-      // Check if there is enough data for the personality profile analysis.
-      // This will trigger creating a personality profile in the profile service
-      // Which is added to the employee object and overwrites the dominant personality stored
-      this.enoughData = this.profileService.checkIfEnoughDataForProfile(this.activeEmployee);
-      if (this.enoughData) {
-        // If enough text data has been collected...
-        // Create the personality profile for the employee
-        this.profileService.createProfile(this.activeEmployee);
-        // And flip the boolean surveyFormActive to remove the survey form from the view.
-        // With enoughData being true, the congrats screen will appear
-        this.surveyFormActive = false;
-      }
-      // Reset the form
-      formData.reset();
-    });
+    this.profileService
+      .addTextData(formData.value.answer, this.activeEmployee)
+      .subscribe(() => {
+        // Check if there is enough data for the personality profile analysis.
+        // This will trigger creating a personality profile in the profile service
+        // Which is added to the employee object and overwrites the dominant personality stored
+        this.enoughData = this.profileService.checkIfEnoughDataForProfile(
+          this.activeEmployee
+        );
+        if (this.enoughData) {
+          // If enough text data has been collected...
+          // Create the personality profile for the employee
+          this.profileService.createProfile(this.activeEmployee);
+          // And flip the boolean surveyFormActive to remove the survey form from the view.
+          // With enoughData being true, the congrats screen will appear
+          this.surveyFormActive = false;
+        }
+        // Reset the form
+        formData.reset();
+      });
   }
 
   onNameSubmit(formData: NgForm) {
@@ -93,21 +98,23 @@ export class SurveyFormComponent implements OnInit {
     } else {
       // If the employee exists, check how much survey data they have entered already
       // Retrieve the data from the database
-      this.profileService.getSurveyEntriesByEmployeeId(this.activeEmployee).subscribe(() => {
-        // Check if there is enough data for the personality profile analysis.
-        this.enoughData = this.profileService.checkIfEnoughDataForProfile(this.activeEmployee);
-        if (this.enoughData) {
-          // If enough text data has been collected, change the survey question index to 0 to display the generic prompt for more info
-          this.questionArrayIndex = 0;
-        }
-        // Activate the survey form
-        this.nameFormActive = false;
-        this.surveyFormActive = true;
-      })
-
+      this.profileService
+        .getSurveyEntriesByEmployeeId(this.activeEmployee)
+        .subscribe(() => {
+          // Check if there is enough data for the personality profile analysis.
+          this.enoughData = this.profileService.checkIfEnoughDataForProfile(
+            this.activeEmployee
+          );
+          if (this.enoughData) {
+            // If enough text data has been collected, change the survey question index to 0 to display the generic prompt for more info
+            this.questionArrayIndex = 0;
+          }
+          // Activate the survey form
+          this.nameFormActive = false;
+          this.surveyFormActive = true;
+        });
     }
-
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 }

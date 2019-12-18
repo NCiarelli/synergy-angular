@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { TeamService } from "../services/team.service";
 import { Team } from "../interfaces/team";
 import { NgForm } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "app-team-management",
@@ -15,7 +16,7 @@ export class TeamManagementComponent implements OnInit {
   notesText: string = "";
   savedTeams: Team[];
   defaultAvatar: string = "../../assets/defaultAvatar.png";
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService) {}
 
   ngOnInit() {
     this.activeTeam = this.teamService.getNewestSavedTeam();

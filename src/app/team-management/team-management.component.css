@@ -35,7 +35,7 @@
   width: 100%;
   position: relative;
   /* overflow-x: auto; */
-  overflow-y: auto;
+  /* overflow-y: auto; */
   display: flex;
   flex-direction: column;
   /* height: 400px; */
@@ -60,7 +60,17 @@ textarea {
 }
 
 .saved-teams {
+  margin-top: 15px;
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  /* height: 100%; */
+}
+
+.instructions {
+  margin: 0;
+  margin-bottom: 5px;
 }
 
 .sm-headShot {
@@ -111,6 +121,7 @@ form:hover {
   font-size: 15px;
   /* align-self: flex-start; */
   width: 90%;
+  margin-bottom: 20px;
 }
 .btn-container {
   display: flex;
@@ -119,6 +130,8 @@ form:hover {
 
 .active-team-name {
   margin-left: 20px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .modal-window {
@@ -163,6 +176,23 @@ form:hover {
   z-index: 3;
 }
 
+.saved-team-btn {
+  width: auto;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.saved-team-btn i {
+  margin-left: 5px;
+}
+
+.dropdown {
+  padding: 8px;
+  border-radius: 3px;
+}
+
 @media screen and (min-width: 768px) {
   form {
     width: auto;
@@ -185,5 +215,33 @@ form:hover {
   }
   .sm-headShot {
     width: 100%;
+  }
+  .team-container {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .active-team-name {
+    margin: 0;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  .profileText {
+    width: auto;
+    display: block;
+  }
+  .profileText p {
+    margin-left: 0px;
+  }
+  .displayed-team {
+    display: inline-flex;
+    text-align: center;
+    flex-direction: column;
+    width: auto;
+    margin-left: 15px;
+  }
+  .dropdown {
+    width: 400px;
+    margin-bottom: 15px;
   }
 }

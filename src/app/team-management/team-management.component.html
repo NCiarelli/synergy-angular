@@ -5,7 +5,14 @@
     <form *ngIf="modalDisplay">
       <p>{{ activeTeam.name }}</p>
       <label for="notes">Notes:</label>
-      <textarea [(ngModel)]="notesText" name="notes" id="notes" cols="30" rows="10" required></textarea>
+      <textarea
+        [(ngModel)]="notesText"
+        name="notes"
+        id="notes"
+        cols="30"
+        rows="10"
+        required
+      ></textarea>
       <div class="btn-container">
         <button type="button" (click)="postNote()" class="add-notes-btn">
           Add Notes
@@ -17,27 +24,42 @@
 </div>
 
 <h3>Team Dashboard</h3>
-<p *ngIf="activeTeam" class="active-team-name">{{ activeTeam.name }}</p>
-<div *ngIf="activeTeam">
-  <div class="team-container created-team">
-    <div *ngFor="let slot of activeTeam.members" class="member-slot">
-      <!-- <div class="cardBanner"></div> -->
-      <img class="sm-headShot" [src]="getSrcLink(slot)" alt="" />
-      <div [ngClass]="getPersonalityClass(slot)" class="profileText">
-        <p>{{ slot.name }}</p>
-        <p>{{ slot.dominantPersonality }}</p>
+<section class="saved-teams" *ngIf="savedTeams">
+  <p class="instructions">
+    Select a team:
+  </p>
+  <form>
+    <select
+      class="form-control dropdown"
+      [(ngModel)]="activeTeam"
+      name="teamSelection"
+      #team
+    >
+      <option *ngFor="let team of savedTeams" [ngValue]="team">
+        {{ team.name }}
+        {{ team.teamType }}
+        {{ team.notes }}
+      </option>
+    </select>
+  </form>
+</section>
+<div class="displayed-team">
+  <p *ngIf="activeTeam" class="active-team-name">{{ activeTeam.name }}</p>
+  <div *ngIf="activeTeam">
+    <div class="team-container created-team">
+      <div *ngFor="let slot of activeTeam.members" class="member-slot">
+        <!-- <div class="cardBanner"></div> -->
+        <img class="sm-headShot" [src]="getSrcLink(slot)" alt="" />
+        <div [ngClass]="getPersonalityClass(slot)" class="profileText">
+          <p>{{ slot.name }}</p>
+          <p>{{ slot.dominantPersonality }}</p>
+        </div>
       </div>
     </div>
   </div>
+  <div class="btn-container" *ngIf="activeTeam">
+    <button (click)="loadModal()" class="add-notes-btn">
+      Add/Edit Notes <i class="far fa-edit"></i>
+    </button>
+  </div>
 </div>
-<div class="btn-container" *ngIf="activeTeam">
-  <button (click)="loadModal()" class="add-notes-btn">
-    Add/Edit Notes <i class="far fa-edit"></i>
-  </button>
-</div>
-
-<section class="saved-teams" *ngIf="savedTeams">
-  <p (click)="makeTeamActive(team)" *ngFor="let team of savedTeams">
-    {{ team.name }} {{ team.teamType }} {{ team.notes }}
-  </p>
-</section>
