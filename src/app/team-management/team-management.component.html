@@ -5,14 +5,7 @@
     <form *ngIf="modalDisplay">
       <p>{{ activeTeam.name }}</p>
       <label for="notes">Notes:</label>
-      <textarea
-        [(ngModel)]="notesText"
-        name="notes"
-        id="notes"
-        cols="30"
-        rows="10"
-        required
-      ></textarea>
+      <textarea [(ngModel)]="notesText" name="notes" id="notes" cols="30" rows="10" required></textarea>
       <div class="btn-container">
         <button type="button" (click)="postNote()" class="add-notes-btn">
           Add Notes
@@ -29,16 +22,10 @@
     Select a team:
   </p>
   <form>
-    <select
-      class="form-control dropdown"
-      [(ngModel)]="activeTeam"
-      name="teamSelection"
-      #team
-    >
+    <select class="form-control dropdown" [(ngModel)]="activeTeam" name="teamSelection" #team>
       <option *ngFor="let team of savedTeams" [ngValue]="team">
         {{ team.name }}
         {{ team.teamType }}
-        {{ team.notes }}
       </option>
     </select>
   </form>
