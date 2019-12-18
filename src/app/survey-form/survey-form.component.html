@@ -46,9 +46,9 @@
 
       <form id="nameForm" #nameForm="ngForm" (ngSubmit)="onNameSubmit(nameForm)">
         <label for="nameInput">Enter your full name to get started:</label>
-        <input type="text" name="nameInput" id="nameInput" ngModel />
+        <input type="text" name="nameInput" id="nameInput" ngModel required />
 
-        <button class="submit-btn" type="submit">Submit</button>
+        <button class="submit-btn" type="submit" [disabled]="!nameForm.valid">Submit</button>
       </form>
     </section>
     <form id="dataForm" #form="ngForm" (ngSubmit)="onSubmit(form)" *ngIf="surveyFormActive && !surveyError">
