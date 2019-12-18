@@ -15,7 +15,7 @@ export class TeamManagementComponent implements OnInit {
   modalDisplay: boolean = false;
   notesText: string = "";
   savedTeams: Team[];
-  defaultAvatar: string = "../../assets/defaultAvatar.png";
+  defaultAvatar: string = "../../assets/default_img.png";
   constructor(private teamService: TeamService) {}
 
   ngOnInit() {

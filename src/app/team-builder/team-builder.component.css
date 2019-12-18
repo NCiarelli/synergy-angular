@@ -310,7 +310,8 @@ h4 {
   width: auto;
 }
 
-.empty-slot-container p {
+.empty-slot-container p,
+.profileText p {
   font-size: 12px;
 }
 
@@ -371,7 +372,9 @@ h4 {
   .modal-member-slot {
     padding: 2px;
   }
-  .empty-slot-container p {
+
+  .empty-slot-container p,
+  .profileText p {
     font-size: 14px;
   }
   form {

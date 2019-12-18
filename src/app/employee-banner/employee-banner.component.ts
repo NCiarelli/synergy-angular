@@ -11,9 +11,9 @@ export class EmployeeBannerComponent implements OnInit {
   @Input() personalityFilter: string;
   @Output() pickEmployee = new EventEmitter<Employee>();
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService) {}
   employeeList: Employee[];
-  defaultAvatar: string = "../../assets/defaultAvatar.png";
+  defaultAvatar: string = "../../assets/default_img.png";
 
   ngOnInit() {
     this.employeeList = this.profileService.getEmployeeList();
