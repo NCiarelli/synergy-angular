@@ -20,7 +20,11 @@
 </section>
 
 <main>
-  <div class="profile" *ngFor="let employee of filterByName()">
+  <div
+    [routerLink]="['/employee-profile', employee.name]"
+    class="profile"
+    *ngFor="let employee of filterByName()"
+  >
     <div class="cardBanner"></div>
     <img
       class="headShot"
@@ -30,9 +34,6 @@
     <div [ngClass]="[employee.dominantPersonality]" class="profileText">
       <p>{{ employee.name }}</p>
       <p>{{ employee.dominantPersonality }}</p>
-      <a [routerLink]="['/employee-profile', employee.name]" class="temp"
-        >Details</a
-      >
     </div>
   </div>
 </main>
