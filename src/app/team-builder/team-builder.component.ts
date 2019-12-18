@@ -252,4 +252,43 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
       this.router.navigate(["team-management"]);
     });
   }
+
+
+  generateRandomTeam() {
+    for (let i = 0; i < this.teamSlots.length; i++) {
+      let usedIndicies: number[] = [];
+      let currentPersonalityFilter: string = this.personalityTypes[i];
+      let filteredEmployeeList: Employee[];
+      // If the type is "Any"
+      if (currentPersonalityFilter === "Any") {
+        // Get all employees from the list in the service
+        filteredEmployeeList = this.profileService.getEmployeeList();
+        // And keep adding employees randomly until the team is full
+        let randomIndex;
+        while (!this.teamBuilt) {
+          randomIndex = Math.floor(Math.random() * filteredEmployeeList.length);
+          // Try to add the employee at the random index to a team slot
+          this.addEmployee(filteredEmployeeList[randomIndex], this.teamSlots[i]);
+        }
+      } else {
+        // Otherwise
+        // Get only the employees that match the personality type filter
+        filteredEmployeeList = this.profileService.getEmployeeList().filter((employee: Employee) => {
+          return employee.dominantPersonality === currentPersonalityFilter;
+        });
+        // Fill all the slots for this personality type randomly
+        for (let j = 0; j < this.teamSlots[i].length; j++) {
+          let trialIndex;
+          // Keep generating a random index for the filtered list until you get an unused index
+          do {
+            trialIndex = Math.floor(Math.random() * filteredEmployeeList.length);
+          } while (usedIndicies.includes(trialIndex));
+          // Add the generated index to the used array
+          usedIndicies.push(trialIndex);
+          // Add the employee at the random index to a team slot
+          this.addEmployee(filteredEmployeeList[trialIndex], this.teamSlots[i]);
+        }
+      }
+    }
+  }
 }

@@ -33,18 +33,16 @@
 <!--  -->
 <!-- </section> -->
 
-<form
-  *ngIf="teamTypeSelected && !teamBuilt"
-  id="teamNameForm"
-  #nameForm="ngForm"
-  (ngSubmit)="onTeamNameSubmit(nameForm)"
->
-  <label for="teamNameInput">Give your team a name:</label>
-  <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
-
-  <button class="nameTeamButton" type="submit">Submit</button>
-</form>
 <section id="team-slots" *ngIf="!teamBuilt">
+  <button
+    *ngIf="teamTypeSelected && !teamBuilt"
+    class="nameTeamButton"
+    (click)="generateRandomTeam()"
+    type="button"
+  >
+    Generate Random Team
+  </button>
+
   <h3 *ngIf="selectInstructions" class="add-instructions">
     Click an employee to add to {{ namedTeam }}.
   </h3>
@@ -99,14 +97,10 @@
   </div>
 </section>
 
-<!-- modal check mark here -->
+<!-- modal  here -->
 <div *ngIf="modalDisplay && teamBuilt" class="whole-page">
   <div class="modal-window">
-    <form
-      id="teamNameForm"
-      #nameForm="ngForm"
-      (ngSubmit)="onTeamNameSubmit(nameForm)"
-    >
+    <form id="teamNameForm" #form="ngForm" (ngSubmit)="onTeamNameSubmit(form)">
       <div class="selected-team">
         <i class="fas fa-check-circle"></i>
         <div *ngFor="let slot of doneTeam" class="modal-member-slot">

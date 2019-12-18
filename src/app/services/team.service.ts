@@ -66,7 +66,7 @@ export class TeamService {
 
   teamDatabaseStructureToLocal(databaseTeam: any): Team {
     let teamObject: Team = {
-      name: databaseTeam.name,
+      name: databaseTeam.team_name,
       teamType: databaseTeam.team_type,
       id: databaseTeam.id,
       notes: databaseTeam.notes,
@@ -76,5 +76,9 @@ export class TeamService {
       teamObject.members.push(this.profileService.findEmployeeById(memberId));
     }
     return teamObject;
+  }
+
+  updateTeamNotesInDatabase(team: Team): Observable<any> {
+    return this.http.put(`${this.EXPRESS_URL}/teams/${team.id}/notes`, { notes: team.notes });
   }
 }

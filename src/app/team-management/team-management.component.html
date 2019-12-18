@@ -1,24 +1,44 @@
 <h1>Team Dashboard</h1>
-
-<p>team name here</p>
-
-<section class="created-team">
-  <div class="created-team-header">
-    <!-- <img class="scrum-icon" src="../../assets/scrum_board_icon.svg" alt="" /> -->
-    <h4 class="created-team-copy">
-      {{ namedTeam }} is ready to work and is optimized for
-      {{ activeTeamTypeName }}.
-    </h4>
-  </div>
-
+<p>{{ activeTeam.name }}</p>
+<div>
   <div class="team-container created-team">
-    <div *ngFor="let slot of doneTeam" class="member-slot">
+    <div *ngFor="let slot of activeTeam.members" class="member-slot">
       <div class="cardBanner"></div>
-      <img class="headShot" [src]="getSrcLink(slot)" alt="" />
+      <img class=".sm-headShot" [src]="getSrcLink(slot)" alt="" />
       <div [ngClass]="getPersonalityClass(slot)" class="profileText">
         <p>{{ slot.name }}</p>
         <p>{{ slot.dominantPersonality }}</p>
       </div>
     </div>
   </div>
+</div>
+<button (click)="loadModal()" class="add-notes-btn">Add/Edit Notes</button>
+
+<!-- modal text input for notes -->
+<div *ngIf="modalDisplay" class="whole-page"></div>
+<div class="modal-window">
+  <form *ngIf="modalDisplay">
+    <p>{{ activeTeam.name }}</p>
+    <label for="notes">Notes:</label>
+    <textarea
+      [(ngModel)]="notesText"
+      name="notes"
+      id="notes"
+      cols="30"
+      rows="10"
+      required
+    ></textarea>
+
+    <div class="btn-container">
+      <button type="button" (click)="closeModal()" class="add-notes-btn">
+        Add Notes
+      </button>
+    </div>
+  </form>
+</div>
+<div *ngIf="overlayDisplay" class="overlay"></div>
+<section class="saved-teams">
+  <p (click)="makeTeamActive(team)" *ngFor="let team of savedTeams">
+    {{ team.name }} {{ team.teamType }} {{ team.notes }}
+  </p>
 </section>
