@@ -11,22 +11,30 @@
   display: inline block;
   font-size: 14px;
 }
-#nameTeamForm {
-  align-items: center;
-}
+
 form {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid rgb(236, 232, 232); */
+  width: 100%;
   border-radius: 3px;
-  width: 20vw;
+  margin-top: 10px;
+  margin-bottom: 10px;
   position: relative;
-  left: 20px;
 }
 #nameTeamForm input {
   margin: 3px;
 }
-
+.nameTeamButton {
+  width: auto;
+  padding: 10px;
+  background-color: #fd9c3c;
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+}
 form:hover {
   border-color: #f26322;
 }
@@ -46,23 +54,7 @@ form:hover {
 button:focus {
   outline: none;
 }
-.created-team {
-  justify-content: center;
-}
 
-.created-team-header {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 15px;
-}
-.scrum-icon {
-  width: 150px;
-}
-.created-team-copy {
-  font-size: 1.5em;
-}
 #button-section {
   /* border: 1px solid black; */
   padding: 15px;
@@ -208,9 +200,9 @@ h4 {
   cursor: pointer;
 }
 
-#teamNameForm {
+/* #teamNameForm {
   width: 90%;
-}
+} */
 
 #teamNameInput {
   padding: 5px;
@@ -234,7 +226,7 @@ h4 {
 .modal-window {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
   justify-content: center;
   padding: 30px;
   background-color: white;
@@ -285,7 +277,7 @@ h4 {
   font-size: 15px;
   margin-bottom: 10px;
   margin-top: 10px;
-  padding: 15px;
+  padding: 10px;
   cursor: pointer;
   color: white;
 }
@@ -322,6 +314,10 @@ h4 {
   font-size: 12px;
 }
 
+.modal-header {
+  text-align: center;
+}
+
 @media only screen and (min-width: 768px) {
   .btn-container {
     flex-wrap: nowrap;
@@ -338,13 +334,14 @@ h4 {
 
   .modal-btn-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .modal-btn-container button {
-    width: 70%;
+    width: 146px;
     padding: 10px;
+    margin: 4px;
   }
 
   .modal-window {
@@ -357,14 +354,27 @@ h4 {
     width: 100%;
     height: auto;
   }
+  .sm-headShot {
+    width: 150px;
+  }
   .headShot {
     width: 200px;
     height: 200px;
   }
+  .sm-name {
+    width: 150px;
+  }
   .member-slot {
     width: 200px;
   }
+
+  .modal-member-slot {
+    padding: 2px;
+  }
   .empty-slot-container p {
     font-size: 14px;
+  }
+  form {
+    align-self: center;
   }
 }
