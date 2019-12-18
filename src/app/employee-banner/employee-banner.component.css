@@ -37,13 +37,25 @@ p {
 }
 
 .headShot {
+  width: 150px;
+}
+
+.profileText {
   width: 100%;
+}
+
+.profileText p {
+  font-size: 12px;
 }
 
 /* #FEC804 -yellow #F26322 orange #7A2D59 #181B46 */
 
 @media screen and (min-width: 768px) {
   .headShot {
-    width: 100%;
+    width: 200px;
+    height: 200px;
+  }
+  .profileText p {
+    font-size: 14px;
   }
 }

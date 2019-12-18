@@ -11,50 +11,26 @@
   display: inline block;
   font-size: 14px;
 }
-/* #nameTeamForm {
+#nameTeamForm {
   align-items: center;
-} */
-
+}
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* border: 1px solid rgb(236, 232, 232); */
   border-radius: 3px;
   width: 20vw;
   position: relative;
+  left: 20px;
 }
 #nameTeamForm input {
   margin: 3px;
 }
 
-.nameTeamButton {
-  width: 90%;
-  border-style: none;
-  background-color: #fd9c3c;
-  border-radius: 5px;
-  font-size: 15px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  padding: 10px;
-  cursor: pointer;
-  color: white;
-}
-
 form:hover {
   border-color: #f26322;
 }
-/* .modal-team-btn {
-  width: auto;
-  padding: 5px;
-  background-color: #fd9c3c;
-  color: white;
-  border-style: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 15px;
-  text-align: center;
-  margin-right: 15px;
-} */
+
 .generate-team-btn {
   width: auto;
   padding: 10px;
@@ -106,7 +82,6 @@ app-employee-banner {
 }
 
 .slots-container {
-  width: 100%;
   position: relative;
   overflow-x: auto;
   overflow-y: hidden;
@@ -121,7 +96,7 @@ app-employee-banner {
 .member-slot {
   border: 1px solid black;
   margin-right: 4px;
-  width: 200px;
+  width: 150px;
 }
 .notGray {
   width: 200px;
@@ -172,11 +147,6 @@ h4 {
 
 .team-name-btn:focus {
   outline: none;
-}
-.add-progress p {
-  font-size: 15px;
-  padding-bottom: 18px;
-  text-align: left;
 }
 
 .selected {
@@ -240,7 +210,6 @@ h4 {
   padding: 5px;
   margin-bottom: 5px;
   margin-top: 5px;
-  width: 90%;
 }
 
 .overlay {
@@ -255,20 +224,12 @@ h4 {
   background-color: rgba(0, 0, 0, 0.8);
   /* filter: blur(5px); */
 }
-.whole-page {
-  height: 80vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-}
 
 .modal-window {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* justify-content: center; */
+  /* align-items: center; */
+  justify-content: center;
   padding: 30px;
   background-color: white;
   border-radius: 5px;
@@ -280,36 +241,45 @@ h4 {
   padding-right: 10px;
 }
 
-.modal-member-slot {
-  text-align: center;
+.modal-btns {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 70%;
 }
-/* .modal-member-slot p {
-  margin: 0 auto;
-} */
 
-.modal-header h3 {
+.modal-btns h3 {
   font-size: 20px;
-  text-align: center;
+}
+
+.whole-page {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
 }
 
 .modal-btn-container {
   display: flex;
-
+  flex-direction: column;
   align-items: space-evenly;
   height: 100%;
+  width: 100%;
 }
 
 .modal-btn-container button {
-  width: 90%;
+  width: 100%;
   border-style: none;
   background-color: #fd9c3c;
   border-radius: 5px;
   font-size: 15px;
-  margin: 8px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 15px;
   cursor: pointer;
   color: white;
 }
@@ -333,6 +303,19 @@ h4 {
   flex-wrap: wrap;
   justify-content: center;
 }
+.headShot {
+  width: 150px;
+  height: 150px;
+}
+
+.empty-slot-container {
+  width: auto;
+}
+
+.empty-slot-container p {
+  font-size: 12px;
+}
+
 @media only screen and (min-width: 768px) {
   .btn-container {
     flex-wrap: nowrap;
@@ -349,14 +332,12 @@ h4 {
 
   .modal-btn-container {
     display: flex;
-
+    flex-direction: column;
     align-items: center;
-    flex-direction: row;
-    justify-content: center;
   }
 
   .modal-btn-container button {
-    width: 127px;
+    width: 70%;
     padding: 10px;
   }
 
@@ -367,22 +348,17 @@ h4 {
   .selected-team {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: auto;
   }
-  .sm-headShot {
-    width: 80%;
+  .headShot {
+    width: 200px;
+    height: 200px;
   }
-  .sm-name {
-    width: 80%;
+  .member-slot {
+    width: 200px;
   }
-  .sm-name p {
-    font-size: 15px;
-    color: white;
-  }
-  .modal-member-slot {
-    width: 150px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .empty-slot-container p {
+    font-size: 14px;
   }
 }

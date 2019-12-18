@@ -87,7 +87,7 @@
           <p>{{ slot.name }}</p>
           <p>{{ slot.dominantPersonality }}</p>
         </div>
-        <div *ngIf="isSlotOpen(slot)">
+        <div class="empty-slot-container" *ngIf="isSlotOpen(slot)">
           <p>No Employee Selected</p>
         </div>
       </div>

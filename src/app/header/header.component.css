@@ -32,7 +32,8 @@ img {
   margin-left: 8px;
 }
 
-.login-links a:visited {
+.login-links a:visited,
+a:link {
   display: flex;
   align-content: center;
   margin-right: 8px;
