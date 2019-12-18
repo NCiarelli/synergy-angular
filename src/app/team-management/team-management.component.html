@@ -1,10 +1,35 @@
-<h1>Team Dashboard</h1>
-<p>{{ activeTeam.name }}</p>
+<!-- modal text input for notes -->
+<div *ngIf="modalDisplay" class="whole-page">
+  <div class="modal-window">
+    <p class="close-btn" (click)="closeModal()"><i class="fas fa-times"></i></p>
+    <form *ngIf="modalDisplay">
+      <p>{{ activeTeam.name }}</p>
+      <label for="notes">Notes:</label>
+      <textarea
+        [(ngModel)]="notesText"
+        name="notes"
+        id="notes"
+        cols="30"
+        rows="10"
+        required
+      ></textarea>
+      <div class="btn-container">
+        <button type="button" (click)="postNote()" class="add-notes-btn">
+          Add Notes
+        </button>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="overlayDisplay" class="overlay"></div>
+</div>
+
+<h3>Team Dashboard</h3>
+<p class="active-team-name">{{ activeTeam.name }}</p>
 <div>
   <div class="team-container created-team">
     <div *ngFor="let slot of activeTeam.members" class="member-slot">
-      <div class="cardBanner"></div>
-      <img class=".sm-headShot" [src]="getSrcLink(slot)" alt="" />
+      <!-- <div class="cardBanner"></div> -->
+      <img class="sm-headShot" [src]="getSrcLink(slot)" alt="" />
       <div [ngClass]="getPersonalityClass(slot)" class="profileText">
         <p>{{ slot.name }}</p>
         <p>{{ slot.dominantPersonality }}</p>
@@ -12,31 +37,12 @@
     </div>
   </div>
 </div>
-<button (click)="loadModal()" class="add-notes-btn">Add/Edit Notes</button>
-
-<!-- modal text input for notes -->
-<div *ngIf="modalDisplay" class="whole-page"></div>
-<div class="modal-window">
-  <form *ngIf="modalDisplay">
-    <p>{{ activeTeam.name }}</p>
-    <label for="notes">Notes:</label>
-    <textarea
-      [(ngModel)]="notesText"
-      name="notes"
-      id="notes"
-      cols="30"
-      rows="10"
-      required
-    ></textarea>
-
-    <div class="btn-container">
-      <button type="button" (click)="closeModal()" class="add-notes-btn">
-        Add Notes
-      </button>
-    </div>
-  </form>
+<div class="btn-container">
+  <button (click)="loadModal()" class="add-notes-btn">
+    Add/Edit Notes <i class="far fa-edit"></i>
+  </button>
 </div>
-<div *ngIf="overlayDisplay" class="overlay"></div>
+
 <section class="saved-teams">
   <p (click)="makeTeamActive(team)" *ngFor="let team of savedTeams">
     {{ team.name }} {{ team.teamType }} {{ team.notes }}

@@ -41,6 +41,11 @@ export class TeamManagementComponent implements OnInit {
   closeModal() {
     this.overlayDisplay = false;
     this.modalDisplay = false;
+  }
+
+  postNote() {
+    this.overlayDisplay = false;
+    this.modalDisplay = false;
     this.activeTeam.notes = this.notesText;
     this.teamService.updateTeamNotesInDatabase(this.activeTeam).subscribe();
   }

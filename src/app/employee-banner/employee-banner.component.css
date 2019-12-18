@@ -36,4 +36,14 @@ p {
   cursor: pointer;
 }
 
+.headShot {
+  width: 100%;
+}
+
 /* #FEC804 -yellow #F26322 orange #7A2D59 #181B46 */
+
+@media screen and (min-width: 768px) {
+  .headShot {
+    width: 100%;
+  }
+}
