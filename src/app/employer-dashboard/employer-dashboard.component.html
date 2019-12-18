@@ -4,33 +4,17 @@
 </p>
 <div class="btn">
   <a routerLink="/team-builder" routerLinkActive="active">Build a Team</a>
-  <a routerLink="/team-management" routerLinkActive="active"
-    >Go to Saved Teams</a
-  >
+  <a routerLink="/team-management" routerLinkActive="active">Go to Saved Teams</a>
 </div>
 <p class="instructions">Filter employees by name or personality type:</p>
 <form #filterForm="ngForm" (input)="findMatch(filterForm)">
-  <input
-    class="filter-input"
-    type="text"
-    name="filterText"
-    placeholder="Begin typing to filter"
-    ngModel
-  />
+  <input class="filter-input" type="text" name="filterText" placeholder="Begin typing to filter" ngModel />
 </form>
 
 <main>
-  <div
-    [routerLink]="['/employee-profile', employee.name]"
-    class="profile"
-    *ngFor="let employee of filterByName()"
-  >
+  <div [routerLink]="['/employee-profile', employee.name]" class="profile" *ngFor="let employee of filterByName()">
     <div class="cardBanner"></div>
-    <img
-      class="headShot"
-      [src]="employee.headShot ? employee.headShot : defaultAvatar"
-      alt=""
-    />
+    <img class="headShot" [src]="employee.headShot ? employee.headShot : defaultAvatar" alt="" />
     <div [ngClass]="[employee.dominantPersonality]" class="profileText">
       <p>{{ employee.name }}</p>
       <p>{{ employee.dominantPersonality }}</p>

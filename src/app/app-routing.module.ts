@@ -10,7 +10,7 @@ import { TeamManagementComponent } from "./team-management/team-management.compo
 const routes: Routes = [
   { path: "employer-dashboard", component: EmployerDashboardComponent },
   { path: "employee-survey", component: SurveyFormComponent },
-  { path: "employee-profile/:index", component: ProfileCardComponent },
+  { path: "employee-profile/:name", component: ProfileCardComponent },
   { path: "team-builder", component: TeamBuilderComponent },
   { path: "team-management", component: TeamManagementComponent },
   { path: "", component: SplashComponent },

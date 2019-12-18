@@ -11,17 +11,17 @@
   display: inline block;
   font-size: 14px;
 }
-#nameTeamForm {
+/* #nameTeamForm {
   align-items: center;
-}
+} */
+
 form {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid rgb(236, 232, 232); */
+
   border-radius: 3px;
   width: 20vw;
   position: relative;
-  left: 20px;
 }
 #nameTeamForm input {
   margin: 3px;
@@ -149,6 +149,11 @@ h4 {
 .team-name-btn:focus {
   outline: none;
 }
+.add-progress p {
+  font-size: 15px;
+  padding-bottom: 18px;
+  text-align: left;
+}
 
 .selected {
   background-color: orange;
@@ -225,12 +230,20 @@ h4 {
   background-color: rgba(0, 0, 0, 0.8);
   /* filter: blur(5px); */
 }
+.whole-page {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
 
 .modal-window {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  justify-content: center;
+  align-items: center;
+  /* justify-content: center; */
   padding: 30px;
   background-color: white;
   border-radius: 5px;
@@ -242,26 +255,17 @@ h4 {
   padding-right: 10px;
 }
 
-.modal-btns {
+.modal-member-slot {
+  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  height: 70%;
 }
+/* .modal-member-slot p {
+  margin: 0 auto;
+} */
 
-.modal-btns h3 {
+.modal-header h3 {
   font-size: 20px;
-}
-
-.whole-page {
-  height: 80vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
 }
 
 .modal-btn-container {
@@ -336,7 +340,22 @@ h4 {
   .selected-team {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: auto;
+  }
+  .sm-headShot {
+    width: 80%;
+  }
+  .sm-name {
+    width: 80%;
+  }
+  .sm-name p {
+    font-size: 15px;
+    color: white;
+  }
+  .modal-member-slot {
+    width: 150px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
