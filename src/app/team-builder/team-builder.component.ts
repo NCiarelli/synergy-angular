@@ -98,9 +98,9 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     private profileService: ProfileService,
     private teamService: TeamService,
     public router: Router
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnDestroy() {
     this.profileService.setSelectedFalseAllEmployees();
@@ -130,7 +130,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.profileService.setSelectedFalseAllEmployees();
   }
 
-  createTeamFormula(teamFormula) {}
+  createTeamFormula(teamFormula) { }
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {
@@ -224,6 +224,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.teamSlots[personalityIndex][slotIndex].selected = false;
     // This overwrites the employee in the team slot with an empty object
     this.teamSlots[personalityIndex][slotIndex] = {};
+    this.teamBuilt = false;
   }
 
   onTeamNameSubmit(formData: NgForm) {
@@ -261,43 +262,32 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
       let usedIndicies: number[] = [];
       let currentPersonalityFilter: string = this.personalityTypes[i];
       let filteredEmployeeList: Employee[];
-      // If the type is "Any"
+
+      // Get only the employees that match the personality type filter
       if (currentPersonalityFilter === "Any") {
-        // Get all employees from the list in the service
+        // If the type is "Any", get all employees
         filteredEmployeeList = this.profileService.getEmployeeList();
-        // And keep adding employees randomly until the team is full
-        let randomIndex;
-        while (!this.teamBuilt) {
-          randomIndex = Math.floor(Math.random() * filteredEmployeeList.length);
-          // Try to add the employee at the random index to a team slot
-          this.addEmployee(
-            filteredEmployeeList[randomIndex],
-            this.teamSlots[i]
-          );
-        }
       } else {
-        // Otherwise
-        // Get only the employees that match the personality type filter
+        // Otherwise, filter the employee list for only the current personality type
         filteredEmployeeList = this.profileService
           .getEmployeeList()
           .filter((employee: Employee) => {
             return employee.dominantPersonality === currentPersonalityFilter;
           });
-        // Fill all the slots for this personality type randomly
-        for (let j = 0; j < this.teamSlots[i].length; j++) {
-          let trialIndex;
-          // Keep generating a random index for the filtered list until you get an unused index
-          do {
-            trialIndex = Math.floor(
-              Math.random() * filteredEmployeeList.length
-            );
-          } while (usedIndicies.includes(trialIndex));
-          // Add the generated index to the used array
-          usedIndicies.push(trialIndex);
-          // Add the employee at the random index to a team slot
+      }
+      // Fill all the slots for this personality type randomly
+      for (let j = 0; j < this.teamSlots[i].length; j++) {
+        let trialIndex;
+        // Keep generating a random index for the filtered list until you successfully add an employee to the empty slot
+        while (this.isSlotOpen(this.teamSlots[i][j])) {
+          trialIndex = Math.floor(
+            Math.random() * filteredEmployeeList.length
+          );
+          // Attempt to add the employee at the random index to a team slot
           this.addEmployee(filteredEmployeeList[trialIndex], this.teamSlots[i]);
         }
       }
     }
   }
 }
+
