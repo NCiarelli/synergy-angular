@@ -193,6 +193,14 @@ form:hover {
   border-radius: 3px;
 }
 
+.notes-text{
+  margin: 15px;
+}
+
+.notes-heading{
+  margin: 15px;
+}
+
 @media screen and (min-width: 768px) {
   form {
     width: auto;

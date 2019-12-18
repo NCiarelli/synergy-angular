@@ -49,4 +49,6 @@
       Add/Edit Notes <i class="far fa-edit"></i>
     </button>
   </div>
+  <h4 class="notes-heading" *ngIf="activeTeam">Notes: </h4>
+  <p class="notes-text" *ngIf="activeTeam">{{activeTeam.notes}}</p>
 </div>
