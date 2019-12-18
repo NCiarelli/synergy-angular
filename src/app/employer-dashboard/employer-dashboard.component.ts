@@ -11,7 +11,7 @@ import { NgForm } from "@angular/forms";
 export class EmployerDashboardComponent implements OnInit {
   constructor(private profileService: ProfileService) {}
   employeeList: Employee[];
-  defaultAvatar: string = "../../assets/defaultAvatar.png";
+  defaultAvatar: string = "../../assets/default_img.png";
   filterText: string = "";
 
   ngOnInit() {

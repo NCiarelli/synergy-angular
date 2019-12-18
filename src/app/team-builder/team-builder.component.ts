@@ -68,7 +68,8 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     "Any"
   ];
 
-  defaultAvatar: string = "../../assets/defaultAvatar.png";
+  defaultAvatar: string = "../../assets/default_img.png";
+  blankSlot: string = "../../assets/blank_slot.png";
 
   //   big5 trait order key
   // 0. openness
@@ -98,9 +99,9 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     private profileService: ProfileService,
     private teamService: TeamService,
     public router: Router
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.profileService.setSelectedFalseAllEmployees();
@@ -130,7 +131,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     this.profileService.setSelectedFalseAllEmployees();
   }
 
-  createTeamFormula(teamFormula) { }
+  createTeamFormula(teamFormula) {}
 
   // Add an employee to the team's slots for the current personality type
   addEmployee(employee: Employee, personalityTypeSlots: any[]): boolean {
@@ -191,7 +192,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
   getSrcLink(slotObject) {
     if (this.isSlotOpen(slotObject)) {
       // If the slot is open/empty, display the default Avatar picture
-      return this.defaultAvatar;
+      return this.blankSlot;
     } else {
       // Otherwise check if the slot's employee object has a picture and return the appropriate link
       return slotObject.headShot ? slotObject.headShot : this.defaultAvatar;
@@ -280,9 +281,7 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
         let trialIndex;
         // Keep generating a random index for the filtered list until you successfully add an employee to the empty slot
         while (this.isSlotOpen(this.teamSlots[i][j])) {
-          trialIndex = Math.floor(
-            Math.random() * filteredEmployeeList.length
-          );
+          trialIndex = Math.floor(Math.random() * filteredEmployeeList.length);
           // Attempt to add the employee at the random index to a team slot
           this.addEmployee(filteredEmployeeList[trialIndex], this.teamSlots[i]);
         }
@@ -290,4 +289,3 @@ export class TeamBuilderComponent implements OnInit, OnDestroy {
     }
   }
 }
-

@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class ProfileCardComponent implements OnInit, OnDestroy {
   name: string;
   sub: any;
-  defaultAvatar: string = "../../assets/defaultAvatar.png";
+  defaultAvatar: string = "../../assets/default_img.png";
   showGraph: boolean = false;
 
   returnedEmployee;
@@ -43,7 +43,7 @@ export class ProfileCardComponent implements OnInit, OnDestroy {
     private profileService: ProfileService,
     private route: ActivatedRoute,
     public router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     console.log(this.showGraph);
@@ -54,16 +54,16 @@ export class ProfileCardComponent implements OnInit, OnDestroy {
         this.radarChartData = [
           {
             data: [
-              this.returnedEmployee.personalityProfile.personality[0].raw_score *
-              100,
-              this.returnedEmployee.personalityProfile.personality[1].raw_score *
-              100,
-              this.returnedEmployee.personalityProfile.personality[2].raw_score *
-              100,
-              this.returnedEmployee.personalityProfile.personality[3].raw_score *
-              100,
-              this.returnedEmployee.personalityProfile.personality[4].raw_score *
-              100
+              this.returnedEmployee.personalityProfile.personality[0]
+                .raw_score * 100,
+              this.returnedEmployee.personalityProfile.personality[1]
+                .raw_score * 100,
+              this.returnedEmployee.personalityProfile.personality[2]
+                .raw_score * 100,
+              this.returnedEmployee.personalityProfile.personality[3]
+                .raw_score * 100,
+              this.returnedEmployee.personalityProfile.personality[4]
+                .raw_score * 100
             ],
             // label: this.returnedEmployee,
             backgroundColor: "rgb(253,156,60,0.6)",
@@ -74,7 +74,7 @@ export class ProfileCardComponent implements OnInit, OnDestroy {
         ];
       } else if (!this.returnedEmployee.name) {
         // If the employee has no name (doesn't exist), return to the employer dashboard
-        this.router.navigate(['employer-dashboard']);
+        this.router.navigate(["employer-dashboard"]);
       }
     });
   }
