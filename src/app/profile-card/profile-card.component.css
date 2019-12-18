@@ -22,15 +22,15 @@
 }
 
 .headShot {
-  margin-bottom: 5px;
+  width: 25%;
 }
 
 .chart-container {
   position: relative;
   display: block;
   padding: 10px;
-  width: 80%;
-  height: 100%;
+  width: 85%;
+  height: 40%;
   pointer-events: none;
   /* z-index: -1; */
 }
@@ -40,12 +40,35 @@
   margin-top: 3px;
   margin-bottom: 3px;
 }
-/* 
-.page {
-  margin-top: 5px;
+
+.profileText {
+  font-family: sans-serif;
+  width: 100%;
+  color: #fff;
+  padding-top: 3px;
+  padding-bottom: 3px;
   display: flex;
-  align-items: center;
-} */
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.profileText p {
+  font-size: 15px;
+  padding-bottom: 10px;
+  text-align: center;
+  padding: 0;
+  margin: 3px;
+  margin-left: 15px;
+}
+
+.profile {
+  margin: 2px;
+  width: 90%;
+  display: flex;
+  margin-bottom: 5px;
+  margin-top: 25px;
+}
 
 @media screen and (min-width: 768px) {
   .page {
@@ -58,6 +81,7 @@
     align-items: center;
   } */
   .chart-container {
-    width: 800px;
+    width: 600px;
+    height: 400px;
   }
 }
