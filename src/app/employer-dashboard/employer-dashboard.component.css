@@ -25,9 +25,9 @@ main {
   margin-bottom: 20px;
   margin-left: 25px;
 }
-a {
-  width: auto;
-  padding: 10px;
+.link {
+  width: 175px;
+  padding: 5px;
   background-color: #fd9c3c;
   color: white;
   border-style: none;
@@ -118,6 +118,7 @@ h3 {
     display: block;
     margin-bottom: 3px;
   }
+
   .profileText {
     width: auto;
     display: block;

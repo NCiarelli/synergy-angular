@@ -20,7 +20,11 @@
 </form>
 
 <main>
-  <div class="profile" *ngFor="let employee of filterByName()">
+  <div
+    [routerLink]="['/employee-profile', employee.name]"
+    class="profile"
+    *ngFor="let employee of filterByName()"
+  >
     <div class="cardBanner"></div>
     <img
       class="headShot"

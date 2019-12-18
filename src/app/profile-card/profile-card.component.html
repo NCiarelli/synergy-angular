@@ -1,6 +1,10 @@
 <div class="page">
-  <!-- <div class="card-container">
-    <div class="employee-details">
+  <div class="card-container">
+    <button routerLink="/employer-dashboard" class="btn">
+      <i class="fas fa-arrow-left"></i> Back to List
+    </button>
+
+    <div class="profile">
       <img
         class="headShot"
         [src]="
@@ -8,19 +12,25 @@
         "
         alt=""
       />
-      <div class="text-details">
-        <p>Name: {{ returnedEmployee.name }}</p>
-        <p>Dominant Personality: {{ returnedEmployee.dominantPersonality }}</p>
+      <div
+        [ngClass]="[returnedEmployee.dominantPersonality]"
+        class="profileText"
+      >
+        <p>{{ returnedEmployee.name }}</p>
+        <p>{{ returnedEmployee.dominantPersonality }}</p>
       </div>
-    </div> -->
-
-  <div class="chart-container">
-    <canvas
-      baseChart
-      [labels]="radarChartLabels"
-      [datasets]="radarChartData"
-      [chartType]="radarChartType"
-    ></canvas>
+    </div>
+    <div
+      *ngIf="returnedEmployee.personalityProfile != undefined"
+      class="chart-container"
+    >
+      <canvas
+        baseChart
+        [labels]="radarChartLabels"
+        [datasets]="radarChartData"
+        [options]="radarChartOptions"
+        [chartType]="radarChartType"
+      ></canvas>
+    </div>
   </div>
-  <!-- </div> -->
 </div>
