@@ -26,7 +26,7 @@ export class ProfileService {
     "Any"
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   findEmployeeIndex(name: string): number {
     // Check if the employee name already exists, case insensitive
@@ -78,6 +78,7 @@ export class ProfileService {
       return this.employeeList[employeeIndex];
     }
   }
+
 
   // Function to add employees to the list
   // A check if employee already exists should go here

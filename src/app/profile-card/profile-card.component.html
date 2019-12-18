@@ -5,32 +5,17 @@
     </button>
 
     <div class="profile">
-      <img
-        class="headShot"
-        [src]="
+      <img class="headShot" [src]="
           returnedEmployee.headShot ? returnedEmployee.headShot : defaultAvatar
-        "
-        alt=""
-      />
-      <div
-        [ngClass]="[returnedEmployee.dominantPersonality]"
-        class="profileText"
-      >
+        " alt="" />
+      <div [ngClass]="[returnedEmployee.dominantPersonality]" class="profileText">
         <p>{{ returnedEmployee.name }}</p>
         <p>{{ returnedEmployee.dominantPersonality }}</p>
       </div>
     </div>
-    <div
-      *ngIf="returnedEmployee.personalityProfile != undefined"
-      class="chart-container"
-    >
-      <canvas
-        baseChart
-        [labels]="radarChartLabels"
-        [datasets]="radarChartData"
-        [options]="radarChartOptions"
-        [chartType]="radarChartType"
-      ></canvas>
+    <div *ngIf="returnedEmployee.personalityProfile" class="chart-container">
+      <canvas baseChart [labels]="radarChartLabels" [datasets]="radarChartData" [options]="radarChartOptions"
+        [chartType]="radarChartType"></canvas>
     </div>
   </div>
 </div>
