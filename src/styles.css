@@ -26,7 +26,7 @@ body {
   background-color: #181b46;
 }
 .Agreeableness {
-  background-color: #416eb6;
+  background-color: #35B4B6;
 }
 .Conscientiousness {
   background-color: #ff65a7;
@@ -46,4 +46,8 @@ body {
   color: #fff;
   padding-top: 3px;
   padding-bottom: 3px;
+}
+
+img {
+  align-self: center;
 }
