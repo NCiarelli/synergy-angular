@@ -31,10 +31,7 @@ p {
   position: relative;
 }
 
-.profile:hover {
-  transform: scale(1.07);
-  cursor: pointer;
-}
+
 
 .headShot {
   width: 150px;
@@ -57,5 +54,10 @@ p {
   }
   .profileText p {
     font-size: 14px;
+  }
+
+  .profile:hover {
+    transform: scale(1.07);
+    cursor: pointer;
   }
 }
