@@ -25,9 +25,9 @@ main {
   margin-bottom: 20px;
   margin-left: 25px;
 }
-.link {
-  width: 175px;
-  padding: 5px;
+a {
+  width: auto;
+  padding: 8px;
   background-color: #fd9c3c;
   color: white;
   border-style: none;
