@@ -57,7 +57,7 @@
       (pickEmployee)="addEmployee($event, teamSlots[i])"
     >
     </app-employee-banner>
-    <div class="progress" *ngIf="countEmptySlots(teamSlots[i]) !== 0">
+    <div class="add-progress" *ngIf="countEmptySlots(teamSlots[i]) !== 0">
       <p>
         To optimize for {{ activeTeamTypeName }} please select
         {{ countEmptySlots(teamSlots[i]) }} from the above employees.
@@ -100,43 +100,45 @@
 <!-- modal  here -->
 <div *ngIf="modalDisplay && teamBuilt" class="whole-page">
   <div class="modal-window">
-    <form id="teamNameForm" #form="ngForm" (ngSubmit)="onTeamNameSubmit(form)">
-      <div class="selected-team">
-        <i class="fas fa-check-circle"></i>
-        <div *ngFor="let slot of doneTeam" class="modal-member-slot">
-          <img class="sm-headShot" [src]="getSrcLink(slot)" alt="" />
-          <div [ngClass]="getPersonalityClass(slot)" class="sm-name">
-            <p>{{ slot.name }}</p>
-            <!-- <p>{{ slot.dominantPersonality }}</p> -->
-          </div>
+    <!-- <form id="teamNameForm" #form="ngForm" (ngSubmit)="onTeamNameSubmit(form)"> -->
+    <div class="selected-team">
+      <!-- <i class="fas fa-check-circle"></i> -->
+      <div *ngFor="let slot of doneTeam" class="modal-member-slot">
+        <img class="sm-headShot" [src]="getSrcLink(slot)" alt="" />
+        <div [ngClass]="getPersonalityClass(slot)" class="sm-name">
+          <p>{{ slot.name }}</p>
+          <!-- <p>{{ slot.dominantPersonality }}</p> -->
         </div>
       </div>
-
+    </div>
+    <form id="teamNameForm" #form="ngForm" (ngSubmit)="onTeamNameSubmit(form)">
       <label for="teamNameInput">Give your team a name:</label>
       <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
-      <button class="nameTeamButton" type="submit">Submit</button>
 
-      <div class="modal-btns">
-        <h3>
-          {{ namedTeam }} is ready to work and is optimized for
-          {{ activeTeamTypeName }}.
-        </h3>
-        <div class="btn-container">
-          <button (click)="saveTeam()">
-            Create Team
-          </button>
-          <button (click)="closeModal()">
-            Edit Team
-          </button>
-        </div>
-      </div>
+      <button class="nameTeamButton" type="submit">Submit</button>
     </form>
+
+    <div class="modal-header">
+      <h3>
+        {{ namedTeam }} is ready to work and is optimized for
+        {{ activeTeamTypeName }}.
+      </h3>
+      <div class="btn-container">
+        <button (click)="saveTeam()">
+          Create Team
+        </button>
+        <button (click)="closeModal()">
+          Edit Team
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 
 <div *ngIf="overlayDisplay && teamBuilt" class="overlay"></div>
 
-<section
+<!-- no longer in use -->
+<!-- <section
   class="created-team"
   *ngIf="!overlayDisplay && !modalDisplay && teamBuilt"
 >
@@ -158,4 +160,4 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
