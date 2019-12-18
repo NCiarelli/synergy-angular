@@ -111,7 +111,12 @@
         </div>
       </div>
     </div>
-    <form id="teamNameForm" #form="ngForm" (ngSubmit)="onTeamNameSubmit(form)">
+    <form
+      *ngIf="!hideForm"
+      id="teamNameForm"
+      #form="ngForm"
+      (ngSubmit)="onTeamNameSubmit(form)"
+    >
       <label for="teamNameInput">Give your team a name:</label>
       <input type="text" name="teamNameInput" id="teamNameInput" ngModel />
 
@@ -119,7 +124,7 @@
     </form>
 
     <div class="modal-header">
-      <h3>
+      <h3 *ngIf="hideForm">
         {{ namedTeam }} is ready to work and is optimized for
         {{ activeTeamTypeName }}.
       </h3>
