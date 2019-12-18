@@ -1,9 +1,9 @@
 <h3>Team Builder</h3>
 
-<h3 class="instructions" *ngIf="!teamBuilt">
+<p class="instructions" *ngIf="!teamBuilt">
   Let's get the right mix of employees to maximize success. What would you like
   to optimize for this project?
-</h3>
+</p>
 
 <div class="team-formula-container"></div>
 <section id="button-section" *ngIf="!teamBuilt">
@@ -36,7 +36,7 @@
 <section id="team-slots" *ngIf="!teamBuilt">
   <button
     *ngIf="teamTypeSelected && !teamBuilt"
-    class="nameTeamButton"
+    class="generate-team-btn"
     (click)="generateRandomTeam()"
     type="button"
   >

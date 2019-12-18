@@ -4,6 +4,10 @@
 
 .instructions {
   align-self: flex-start;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10px;
+  margin-left: 25px;
 }
 
 main {
@@ -17,24 +21,22 @@ main {
 .btn {
   display: flex;
   justify-content: flex-start;
-  flex-direction: column;
-  /* width: 100%; */
-  /* align-items: center; */
-  /* margin-right: 3px; */
-  /* text-align: flex-start; */
+  width: 100%;
+  margin-bottom: 20px;
+  margin-left: 25px;
 }
 a {
-  width: 175px;
-  padding: 5px;
+  width: auto;
+  padding: 10px;
   background-color: #fd9c3c;
   color: white;
   border-style: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   text-decoration: none;
-  margin: 5px 0;
+  margin-right: 15px;
 }
 h4 {
   font-size: 20px;
@@ -43,13 +45,19 @@ h4 {
 }
 
 h3 {
-  margin-top: 20px;
+  margin-top: 15px;
   margin-bottom: 10px;
+  margin-left: 25px;
 }
 
-#instructional-copy {
-  padding-left: 15px;
-  margin-bottom: 25px;
+.filter-input {
+  padding: 10px;
+  border-style: none;
+  background-color: rgb(233, 227, 227);
+  border-radius: 5px;
+  width: 75%;
+  margin-bottom: 10px;
+  margin-left: 25px;
 }
 
 .profileText p {
@@ -70,7 +78,7 @@ h3 {
 }
 
 .profile:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
 }
 
@@ -119,5 +127,11 @@ h3 {
   }
   .profileText p {
     margin-left: 0px;
+  }
+  a {
+    width: 185px;
+  }
+  .filter-input {
+    width: 400px;
   }
 }

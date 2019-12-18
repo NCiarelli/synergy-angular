@@ -9,7 +9,6 @@
 }
 .instructions {
   display: inline block;
-  text-align: center;
   font-size: 14px;
 }
 #nameTeamForm {
@@ -31,17 +30,18 @@ form {
 form:hover {
   border-color: #f26322;
 }
-.nameTeamButton {
-  border: 1px solid #f26322;
-  background-color: #fd9c3c;
-  color: rgb(233, 227, 227);
-  vertical-align: middle;
-  position: relative;
-  z-index: 1;
-  border-radius: 3px;
-  border: 1px solid #f26322;
+
+.generate-team-btn {
   width: auto;
-  padding: 5px;
+  padding: 10px;
+  background-color: #fd9c3c;
+  color: white;
+  border-style: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+  margin-right: 15px;
 }
 button:focus {
   outline: none;
@@ -134,6 +134,7 @@ h4 {
   color: #1d1e1e;
   font-size: 15px;
   font-weight: 800;
+  margin-bottom: 5px;
 }
 .add-instructions {
   margin-bottom: 20px;
