@@ -15,11 +15,11 @@ export class TeamManagementComponent implements OnInit {
   notesText: string = "";
   savedTeams: Team[];
   defaultAvatar: string = "../../assets/defaultAvatar.png";
-  constructor(private teamService: TeamService) {}
+  constructor(private teamService: TeamService) { }
 
   ngOnInit() {
     this.activeTeam = this.teamService.getNewestSavedTeam();
-    if (this.activeTeam.notes) {
+    if (this.activeTeam) {
       this.notesText = this.activeTeam.notes;
     }
 

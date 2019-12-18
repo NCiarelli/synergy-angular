@@ -1,18 +1,11 @@
 <!-- modal text input for notes -->
-<div *ngIf="modalDisplay" class="whole-page">
+<div *ngIf="modalDisplay && activeTeam" class="whole-page">
   <div class="modal-window">
     <p class="close-btn" (click)="closeModal()"><i class="fas fa-times"></i></p>
     <form *ngIf="modalDisplay">
       <p>{{ activeTeam.name }}</p>
       <label for="notes">Notes:</label>
-      <textarea
-        [(ngModel)]="notesText"
-        name="notes"
-        id="notes"
-        cols="30"
-        rows="10"
-        required
-      ></textarea>
+      <textarea [(ngModel)]="notesText" name="notes" id="notes" cols="30" rows="10" required></textarea>
       <div class="btn-container">
         <button type="button" (click)="postNote()" class="add-notes-btn">
           Add Notes
@@ -24,8 +17,8 @@
 </div>
 
 <h3>Team Dashboard</h3>
-<p class="active-team-name">{{ activeTeam.name }}</p>
-<div>
+<p *ngIf="activeTeam" class="active-team-name">{{ activeTeam.name }}</p>
+<div *ngIf="activeTeam">
   <div class="team-container created-team">
     <div *ngFor="let slot of activeTeam.members" class="member-slot">
       <!-- <div class="cardBanner"></div> -->
@@ -37,13 +30,13 @@
     </div>
   </div>
 </div>
-<div class="btn-container">
+<div class="btn-container" *ngIf="activeTeam">
   <button (click)="loadModal()" class="add-notes-btn">
     Add/Edit Notes <i class="far fa-edit"></i>
   </button>
 </div>
 
-<section class="saved-teams">
+<section class="saved-teams" *ngIf="savedTeams">
   <p (click)="makeTeamActive(team)" *ngFor="let team of savedTeams">
     {{ team.name }} {{ team.teamType }} {{ team.notes }}
   </p>
