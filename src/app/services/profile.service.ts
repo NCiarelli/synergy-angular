@@ -165,20 +165,20 @@ export class ProfileService {
       // If it exists...
       // Setup variable for temporary maximum value tracking
       let highestPersonalityIndex: number = -1;
-      let highestPersonalityPercentile = -Infinity;
+      let highestPersonalityRawScore = -Infinity;
       // For ease of code reading, A variable for shortcutting references to the used array in the the personality profile of the employee
       let personalityArray = employee.personalityProfile.personality;
-      // Go through the personality array to find the highest percentile personality
+      // Go through the personality array to find the highest raw_score personality
       for (let i = 0; i < personalityArray.length; i++) {
-        if (personalityArray[i].percentile > highestPersonalityPercentile) {
-          // If the current percentile being checked is higher than the recorded max percentile
+        if (personalityArray[i].raw_score > highestPersonalityRawScore) {
+          // If the current raw_score being checked is higher than the recorded max raw_score
           // Put the current index into highestPersonalityIndex
           highestPersonalityIndex = i;
-          // And replace the saved max with the percentile currently being checked
-          highestPersonalityPercentile = personalityArray[i].percentile;
+          // And replace the saved max with the raw_score currently being checked
+          highestPersonalityRawScore = personalityArray[i].raw_score;
         }
       }
-      // Stores the Name of the personality type with the highest percentile in the dominantPersonality of the employee
+      // Stores the Name of the personality type with the highest raw_score in the dominantPersonality of the employee
       employee.dominantPersonality = this.personalityTypes[
         highestPersonalityIndex
       ];
